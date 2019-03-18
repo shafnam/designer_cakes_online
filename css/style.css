@@ -1,0 +1,765 @@
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+body {
+	padding-top: 0px !important;
+	font-family: 'EB Garamond', serif;
+}
+/*h1{
+	font-family: 'Clicker Script', cursive;
+}*/
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    line-height: 46px;
+    font-size: 42px;
+    margin: 0 0 23px 0;
+  }
+h2 {
+    font-family: 'EB Garamond', serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 23px;
+    letter-spacing: 2px;
+    margin: 0 0 23px 0;
+    }
+p {
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    line-height: 23px;
+    margin: 0 0 23px 0;
+}
+h4 {
+    font-size: 1.5rem;
+	/*font-family: 'Parisienne', cursive;*/
+}
+a{ 
+	text-decoration: none;
+}
+th {
+    font-weight: 600;
+}
+.table td, .table th{
+   text-align: center;   
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(193, 122, 155, 0.12);
+}
+.table-bordered td, .table-bordered th {
+    border: 1px solid rgba(193, 122, 155, 0.12);
+}
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: rgba(193, 122, 155, 0.12);
+}
+.carousel-item {
+  height: 65vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.portfolio-item {
+  margin-bottom: 30px;
+}
+.dropdown-menu{
+	border-radius: 0;
+}
+/* Button */
+.btn-dark:before, .btn-dark:after {
+	border: 1px solid #000;
+    border-color: #000 !important;
+    opacity: 1 !important;
+}
+.main-btn {
+    -webkit-backface-visibility: hidden;
+    position: relative;
+    border-radius: 5px;
+    text-align: center;
+    stroke: #fff;
+    color: #6a6a6a;
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    -webkit-transition: background 250ms linear;
+    transition: background 250ms linear;
+    z-index: 1;
+    display: inline-block;
+    margin: 4px;
+    background: #FFF;
+    padding: .6em 1.2em;
+    letter-spacing: .1em;
+}
+.main-btn:before {
+    -webkit-transition: 250ms linear;
+    transition: 250ms linear;
+    -webkit-backface-visibility: hidden;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+    width: calc(100% + 8px);
+    -webkit-transform: translate(-4px, 0);
+    -moz-transform: translate(-4px, 0);
+    -ms-transform: translate(-4px, 0);
+    -o-transform: translate(-4px, 0);
+    transform: translate(-4px, 0);
+}
+.main-btn:after {
+    -webkit-transition: 250ms linear;
+    transition: 250ms linear;
+    -webkit-backface-visibility: hidden;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+    height: calc(100% + 8px);
+    -webkit-transform: translate(0, -4px);
+    -moz-transform: translate(0, -4px);
+    -ms-transform: translate(0, -4px);
+    -o-transform: translate(0, -4px);
+    transform: translate(0, -4px);
+}
+/* HEADER */
+
+/* SCROLLING HEADER */
+.header {
+  background-color: #f7dee466;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  width: 100%;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index:9999;
+  background-color: #ffdae7;
+  border-top: 2px #77777730 solid;
+  border-bottom: 2px #77777730 solid;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.my-bg{
+    background-image: url("../img/bg12a.jpg");
+    /*margin-top: -55px;*/
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-size: cover;
+}
+.my-bg h1{
+    padding-bottom: 0px;    
+}
+.my-bg h1 a{
+  font-size: 4rem;   
+	font-family: 'Dancing Script', cursive;
+	color: #000;
+	/*-webkit-text-fill-color: #403232;*/ /* Will override color (regardless of order) */
+	/*-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: white;*/
+}
+.my-bg a{
+    font-family: 'Poppins', sans-serif;
+	/*font-family: 'Dancing Script', cursive;*/
+    text-decoration: none;
+    font-size: 1rem; 
+}
+/* NAVIGATION */
+/*.my-bg .navbar{
+  margin-top: -45px;
+  padding: 0;
+	background-color: #f8f9fa91!important;
+	border: 0px solid #bfbfbf;
+}*/
+.my-bg .navbar-nav .nav-link {
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.7);
+    font-size: 16px;
+    padding: 2px;
+}
+.my-bg .navbar-light .navbar-nav .active>.nav-link, 
+.my-bg .navbar-light .navbar-nav .nav-link.active, 
+.my-bg .navbar-light .navbar-nav .nav-link.show, 
+.my-bg .navbar-light .navbar-nav .show>.nav-link {
+    color: #ab3184;
+}
+.navbar-light .navbar-nav .nav-link:focus, 
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #ab3184;
+}
+.navbar-light .navbar-toggler {
+    color: rgba(0,0,0,.5);
+    border-color: rgba(0, 0, 0, 0);
+}
+/* MAIN NAVIGATION MENU */
+.menu-area{
+	background: #d61a5e
+}
+.dropdown-menu{
+	padding:0;
+	margin:0;
+	border:0 solid transition!important;
+	border:0 solid rgba(0,0,0,.15);
+	border-radius:0;
+	-webkit-box-shadow:none!important;
+	box-shadow:none!important
+}
+.mainmenu a,
+.navbar-default .navbar-nav > li > a, 
+.mainmenu ul li a , 
+.navbar-expand-lg .navbar-nav .nav-link{
+	font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.7);
+    font-size: 16px;
+    padding: 2px;
+	display: block !important;
+}
+.mainmenu .active a,
+.mainmenu .active a:focus,
+.mainmenu .active a:hover,
+.mainmenu li a:hover,
+.mainmenu li a:focus ,
+.navbar-default .navbar-nav>.show>a,
+.navbar-default .navbar-nav>.show>a:focus, 
+.navbar-default .navbar-nav>.show>a:hover{
+	color: #ab3184;
+	outline: 0;
+}
+/*==========MAIN NAVIGATION MENU Sub Menu==========*/
+.mainmenu .collapse ul > li:hover > a{
+	background: none;
+}
+.mainmenu .collapse ul ul > li:hover > a, 
+.navbar-default .navbar-nav .show .dropdown-menu > li > a:focus, 
+.navbar-default .navbar-nav .show .dropdown-menu > li > a:hover{
+	color: #ab3184;
+}
+.mainmenu .collapse ul ul ul > li:hover > a{
+	background: none;
+}
+.mainmenu .collapse ul ul, 
+.mainmenu .collapse ul ul.dropdown-menu{
+	background:#fff;
+}
+.mainmenu .collapse ul ul li a, 
+.mainmenu .collapse ul ul li a .dropdown-menu{
+	text-transform: capitalize;
+	font-size: 14px;
+	font-weight: 200;
+	padding: 4px;
+	transition: all .2s;
+}
+.mainmenu .collapse ul ul ul, 
+.mainmenu .collapse ul ul ul.dropdown-menu{
+	background:#fff
+}
+.mainmenu .collapse ul ul ul ul, 
+.mainmenu .collapse ul ul ul ul.dropdown-menu{
+	background:#fff
+}
+
+/****************************** MAIN NAVIGATION MENU Drop-down menu work on hover **********************************/
+.mainmenu{
+	background: none;
+	border: 0 solid;
+	margin: 0;
+	padding: 0;
+	min-height:20px;
+	width: 100%;
+}
+
+/* HOME PAGE */
+.homepage{
+    margin-top: 0px;
+}
+.header-margin{
+	margin-top: 100px;
+}
+.home-cake-section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+.home-cake-section .card {
+    background-color: rgba(0,0,0,.03);
+    border: 3px solid rgba(0,0,0,.125);
+    border-radius: 0;
+}
+.home-cake-section .card-footer {
+    background-color: rgba(0,0,0,.0);
+}
+.home-cake-section a{
+	font-size: 1.2rem;
+    /*font-family: 'Dancing Script', cursive;*/
+	color: #2f2c2c;
+    font-weight: 600;
+}
+.home-cake-section a:hover{
+	color: #ab3184;
+	text-decoration: none;
+}
+/* PAGE CONTENT MENU HOVER */
+.sub-menu-parent { 
+	position: relative;     
+	padding-bottom: 0;
+	padding-top: 0;
+}
+.sub-menu { 
+  visibility: hidden; /* hides sub-menu */
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-2em);
+  z-index: -1;
+  transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+}
+.sub-menu-parent:focus .sub-menu,
+.sub-menu-parent:focus-within .sub-menu,
+.sub-menu-parent:hover .sub-menu {
+  visibility: visible; /* shows sub-menu */
+  opacity: 1;
+  z-index: 1;
+  transform: translateY(0%);
+  transition-delay: 0s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
+}
+nav a { 
+    display: block; 
+    padding: 0; 
+    text-decoration: none !important; 
+}
+nav a:hover { color: #000; }
+nav ul,
+nav ul li { list-style-type: none; padding: 2px 10px; margin: 0; }
+nav > ul { text-align: left; }
+nav > ul > li { display: block; border-left: solid 1px #aaa; }
+nav > ul > li:first-child { border-left: none; }
+.dropdown-toggle::after{display: none;}
+.sub-menu {    background: #DDD;  }
+.sub-menu li a {    padding: 0.5rem;      font-size: medium;}
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px solid;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+
+/* Cake Designs Page */
+.cake-designs{
+	background: #f6fbff url('../img/cake-bg-small.png');
+  margin-top: 45px;
+    padding-top: 1px;
+	padding: 1rem;
+}
+.cake-designs h1{
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+.ps-product__thumbnail {
+    position: relative;
+}
+.ps-product--detail .ps-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+.ps-badge {
+    display: inline-block;
+    max-width: 60px;
+    position: relative;
+}
+.ps-product--detail .ps-badge--sale {
+    left: auto;
+    right: 0;
+}
+.ps-product--detail .ps-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+.ps-product__thumbnail img {
+    width: 100%;
+}
+.ps-product__preview {
+	display: none;
+}
+.cake-designs .card-body {
+    border-top: 1px solid #0000001f;
+}
+.cake-designs .card-body h4{
+    font-family: 'Dancing Script', cursive;
+}
+/* Product Overlay */
+.overlay-container {
+  position: relative;
+}
+.image {
+  opacity: 1;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.overlay-container:hover .image {
+  opacity: 0.3;
+}
+.overlay-container:hover .middle {
+  opacity: 1;
+}
+.text {
+  background-color: none;
+  color: black;
+  font-size: 12px;
+}
+/**/
+.dropdown-slide > .dropdown-menu {
+  opacity: .3;
+  display: block;
+  -webkit-transform-origin: top;
+  transform-origin: top;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-transform: scale(1, 0);
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+}
+.show.dropdown-slide > .dropdown-menu {
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);
+  opacity: 1;
+}
+/* Cakes Sizes Page */
+.cake-sizes h4{
+	font-family: 'EB Garamond', serif;
+}
+/* Contact us page */
+.contact-page {
+	/*overflow: hidden;*/
+	padding-top: 2rem;
+	padding-bottom: 4rem;
+}
+#contatti{
+	/*background-color: #70c3be;*/
+	letter-spacing: 2px;
+}
+#contatti a{
+	color: #000;
+	text-decoration: none;
+}
+#contatti a:hover{
+    color: #ab3184;
+    text-decoration: none;
+}
+#contatti a  i{
+	color: #ab3184;
+}
+@media (max-width: 575.98px) {
+
+	#contatti{padding-bottom: 800px;}
+	#contatti .maps iframe{
+		width: 100%;
+		height: 450px;
+	}
+}
+@media (min-width: 576px) {
+
+   #contatti{padding-bottom: 800px;}
+   #contatti .maps iframe{
+		width: 100%;
+		height: 450px;
+	}
+}
+@media (min-width: 768px) {
+
+	#contatti{padding-bottom: 350px;}
+	#contatti .maps iframe{
+		width: 100%;
+		height: 850px;
+	}	
+}
+@media (min-width: 992px) {
+	#contatti{padding-bottom: 200px;}
+	#contatti .maps iframe{
+		width: 100%;
+		height: 610px;
+	}
+}
+#author a{
+  color: #000;
+  text-decoration: none;    
+}
+/*Cake Fillings*/
+.cake-filling .list-group-item {
+    padding: .25rem 1.25rem;
+}
+.cake-filling  .table td, .cake-filling .table th {
+	padding: 2px;
+}
+.cake-filling th:first-child, .cake-filling td:first-child
+{
+  position:sticky;
+  left:-1px;
+  background-color:white;	 
+}
+/* Image ZooM Transition*/
+figure {
+    overflow: hidden;
+    margin: 0;
+}
+#zoomIn img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+#zoomIn:hover img {
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+/* cake flavours  */
+.cake-flavours .card-title{
+    cursor: pointer;
+}
+/* HIDE RADIO */
+.cake-flavours .img-label [type=radio] { 
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+/* IMAGE STYLES */
+.cake-flavours .img-label [type=radio] + img {
+    cursor: pointer;
+}
+/* CHECKED STYLES */
+.cake-flavours .img-label [type=radio]:checked + img {
+    border: 2px solid #f00;
+}
+/* ORDER  DESIGN PAGE */
+#order-design{
+	padding: 1rem;
+}	
+#order-design h1 {
+	font-size: 2rem;
+	margin: 0;
+}
+/* Fancy Radio button */
+.form-check {
+  padding-left: 0;
+}
+.radio {
+  margin: 16px 0;
+  display: block;
+  cursor: pointer;
+}
+.radio input {
+  display: none;
+}
+.radio input + span {
+  line-height: 22px;
+  height: 22px;
+  padding-left: 22px;
+  display: block;
+  position: relative;
+}
+.radio input + span:not(:empty) {
+  padding-left: 30px;
+}
+.radio input + span:before, .radio input + span:after {
+  content: "";
+  width: 22px;
+  height: 22px;
+  display: block;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+.radio input + span:before {
+  background: #d1d7e3;
+  transition: background 0.2s ease, -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+  transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+  transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2), -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+}
+.radio input + span:after {
+  background: #fff;
+  -webkit-transform: scale(0.78);
+  transform: scale(0.78);
+  transition: -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4), -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+}
+.radio input:checked + span:before {
+  -webkit-transform: scale(1.04);
+  transform: scale(1.04);
+  background: #fb5de0;
+}
+.radio input:checked + span:after {
+  -webkit-transform: scale(0.4);
+  transform: scale(0.4);
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+.radio:hover input + span:before {
+  -webkit-transform: scale(0.92);
+          transform: scale(0.92);
+}
+.radio:hover input + span:after {
+  -webkit-transform: scale(0.74);
+          transform: scale(0.74);
+}
+.radio:hover input:checked + span:after {
+  -webkit-transform: scale(0.4);
+          transform: scale(0.4);
+}
+
+/* tabs */
+.cake-flavours .nav-tabs {
+  border-bottom: 0px;
+  border-top: 0px;
+}
+.cake-flavours .nav-tabs .nav-item.show .nav-link, .cake-flavours .nav-tabs .nav-link.active {
+  border-color: #dee2e6;
+  border-radius: 0;
+}
+.cake-flavours .card-footer {
+  padding: 0 10px 14px 10px;
+}
+
+
+/*
+####################################################
+M E D I A  Q U E R I E S
+####################################################
+*/
+ 
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+Bootstrap 4 breakpoints
+*/
+ 
+/* 
+Extra small devices (portrait phones, less than 576px) 
+No media query since this is the default in Bootstrap because it is "mobile first"
+*/
+ 
+/* Desktop Layout Sizes (Can range from 960-1140 depending on your layout.)*/
+@media only screen and (min-width:1025px) {}
+/*Tablet (Landscape)*/
+@media only screen and (min-width:769px) and (max-width:1024px) {}
+/*Tablet (Portrait)*/
+@media only screen and (min-width:581px) and (max-width:768px) {}
+/*Phone (Landscape)*/
+@media only screen and (min-width:321px) and (max-width:580px) {
+
+  .my-bg h1 a {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+}
+/*Typical Phone (Portrait)*/
+@media only screen and (max-width:320px) {
+
+  .my-bg h1 a {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+}
+ 
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+
+}
+ 
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) { 
+  
+  .mainmenu .collapse ul li:hover> ul{display:block}
+	.mainmenu .collapse ul ul{position:absolute;top:100%;left:33%;min-width:250px;display:none}
+	/*******/
+	.mainmenu .collapse ul ul li{position:relative}
+	.mainmenu .collapse ul ul li:hover> ul{display:block}
+	.mainmenu .collapse ul ul ul{position:absolute;top:0;left:100%;min-width:250px;display:none}
+	/*******/
+	.mainmenu .collapse ul ul ul li{position:relative}
+	.mainmenu .collapse ul ul ul li:hover ul{display:block}
+	.mainmenu .collapse ul ul ul ul{position:absolute;top:0;left:-100%;min-width:250px;display:none;z-index:1}
+ 
+}
+ 
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+ 
+}
+ 
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+    
+}
+ 
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+Custom media queries
+*/
+ 
+/* Set width to make card deck cards 100% width */
+@media (max-width: 950px) { 
+ 
+}
+
+@media only screen and (min-width: 767px) {
+	
+}
+@media only screen and (max-width: 767px) {
+	.navbar-nav .show .dropdown-menu .dropdown-menu > li > a{
+		padding-left: 15px;
+		color: #af6aa9;
+	}
+	.navbar-nav .show .dropdown-menu .dropdown-menu .dropdown-menu > li > a{
+		padding:16px 15px 16px 45px
+	}
+}

@@ -1,0 +1,668 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Mar 17, 2019 at 07:03 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.1.25
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `dct`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `designs`
+--
+
+CREATE TABLE `designs` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `parent_id` int(10) DEFAULT NULL,
+  `name` varchar(100) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `designs`
+--
+
+INSERT INTO `designs` (`id`, `parent_id`, `name`, `image`, `created_at`) VALUES
+(1, NULL, 'Kids Birthday Cakes', 'kids-bd-cakes.jpg', '2019-03-15 18:50:59'),
+(2, NULL, 'Adults Birthday Cakes', 'adult-bd-cakes.jpg', '2019-03-15 08:04:26'),
+(3, NULL, 'Cupcakes/ Mini Cakes', 'cupcakes-mini-cakes.jpg', '2019-03-15 08:04:26'),
+(4, NULL, 'Wedding Cakes', 'wedding-cakes.jpg', '2019-03-15 08:04:26'),
+(5, NULL, 'Christening Cakes', 'christening-cakes.jpg', '2019-03-15 08:04:26'),
+(6, NULL, 'Naming & Baby Shower Cakes', 'naming-baby-shower-cakes.jpg', '2019-03-15 08:04:26'),
+(7, 0, 'All Kids Birthday Cakes ', 'all-kids-birthday-cakes.jpg', '2019-03-17 09:27:52'),
+(8, 1, 'Girls Birthday Cakes ', 'girls-birthday-cakes.jpg', '2019-03-17 09:27:38'),
+(9, 1, 'Boys Birthday Cakes ', 'boys-birthday-cakes.jpg', '2019-03-17 09:27:44'),
+(10, 1, 'Twins Birthday Cakes ', 'twins-birthday-cakes.jpg', '2019-03-17 09:27:48'),
+(11, 2, 'All Adult Birthday Cakes ', 'all-adult-birthday-cakes.jpg', '2019-03-15 08:04:26'),
+(12, 2, 'Female Birthday Cakes ', 'female-birthday-cakes.jpg', '2019-03-15 08:04:26'),
+(13, 2, 'Male Birthday Cakes ', 'male-birthday-cakes.jpg', '2019-03-15 08:04:26'),
+(14, 2, 'Twins Birthday Cakes ', 'twins-adult-birthday-cakes.jpg', '2019-03-15 08:11:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fillings`
+--
+
+CREATE TABLE `fillings` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `image` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `fillings`
+--
+
+INSERT INTO `fillings` (`id`, `name`, `image`, `created_at`) VALUES
+(1, 'Vanilla ', NULL, '2019-03-15 08:53:52'),
+(2, 'Cream Cheese', NULL, '2019-03-15 08:54:24'),
+(3, 'Chocolate', NULL, '2019-03-15 08:54:52'),
+(4, 'Chocolate Hazelnut', NULL, '2019-03-15 08:55:16'),
+(5, 'Strawberry', NULL, '2019-03-15 08:55:36'),
+(6, 'Passion Fruit', NULL, '2019-03-15 08:56:42'),
+(7, 'Pineapple and Peach with Vanilla ', NULL, '2019-03-15 08:57:04'),
+(8, 'Passion Fruit and Peach with Vanilla ', NULL, '2019-03-15 08:57:33'),
+(9, 'Black forest filling with Chocolate', NULL, '2019-03-15 08:57:58'),
+(10, 'Strawberry Jam with Vanilla', NULL, '2019-03-15 08:58:33'),
+(11, 'Rum Flavoured', NULL, '2019-03-15 08:59:09'),
+(12, 'Blueberry Flavoured', NULL, '2019-03-15 08:59:29'),
+(13, 'Butterscotch Flavoured', NULL, '2019-03-15 08:59:47'),
+(14, 'Caramel Flavoured', NULL, '2019-03-15 09:00:00'),
+(15, 'Lime Flavoured', NULL, '2019-03-15 09:00:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `flavours`
+--
+
+CREATE TABLE `flavours` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `parent_id` int(10) DEFAULT NULL,
+  `name` varchar(100) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `flavours`
+--
+
+INSERT INTO `flavours` (`id`, `parent_id`, `name`, `image`, `created_at`) VALUES
+(1, NULL, 'Sponge Cake', 'sponge-cake.jpg', '2019-03-15 08:37:53'),
+(2, NULL, 'Carrot Cake', 'carrot-cake.jpg', '2019-03-15 08:38:56'),
+(3, NULL, 'Chocolate Mud Cake', 'chocolate-mud-cake.jpg', '2019-03-15 08:39:44'),
+(4, NULL, 'Red Velvet Cake', 'red-velvet-cake.jpg', '2019-03-15 08:40:33'),
+(5, NULL, 'Sri Lankan Cake', 'sri-lankan-cake.jpg', '2019-03-15 08:41:20'),
+(6, NULL, 'Dietary Requirement Cakes', 'dietary-requirements-cake.jpg', '2019-03-15 08:42:39'),
+(7, 1, 'Vanilla', 'sponge-cake-vanilla.jpg', '2019-03-15 08:37:53'),
+(8, 1, 'Chocolate', 'sponge-cake-chocolate.jpg', '2019-03-15 08:37:53'),
+(9, 1, 'Strawberry', 'sponge-cake-strawberry.jpg', '2019-03-15 08:37:53'),
+(10, 1, 'Coffee', 'sponge-cake-coffee.jpg', '2019-03-15 08:37:53'),
+(11, 5, 'Vanilla Butter Cake', '1.jpg', '2019-03-15 08:37:53'),
+(12, 5, 'Chocolate Cake', '1.jpg', '2019-03-15 08:37:53'),
+(13, 5, 'Ribbon Cake', '1.jpg', '2019-03-15 08:37:53'),
+(14, 6, 'Vanilla - Eggless Cake', '1.jpg', '2019-03-15 08:50:31'),
+(15, 6, 'Chocolate - Eggless Cake', '1.jpg', '2019-03-15 08:50:31'),
+(16, 6, 'Vanilla - Gluten Free Cake', '1.jpg', '2019-03-15 08:50:31'),
+(17, 6, 'Chocolate - Gluten Free Cake', '1.jpg', '2019-03-15 08:50:31'),
+(18, 6, 'Vanilla - Lactose Free Cake', '1.jpg', '2019-03-15 08:50:31'),
+(19, 6, 'Chocolate - Lactose Free Cake', '1.jpg', '2019-03-15 08:50:31'),
+(20, 6, 'Vanilla - Vegan Cake', '1.jpg', '2019-03-15 08:50:31'),
+(21, 6, 'Chocolate - Vegan Cake', '1.jpg', '2019-03-15 08:50:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `flavour_filling`
+--
+
+CREATE TABLE `flavour_filling` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `flavour_id` int(10) UNSIGNED NOT NULL,
+  `filling_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `flavour_filling`
+--
+
+INSERT INTO `flavour_filling` (`id`, `flavour_id`, `filling_id`, `created_at`) VALUES
+(1, 7, 1, '2019-03-15 09:02:45'),
+(2, 7, 2, '2019-03-15 09:04:20'),
+(3, 7, 3, '2019-03-15 09:04:20'),
+(4, 7, 4, '2019-03-15 09:04:20'),
+(5, 7, 5, '2019-03-15 09:04:20'),
+(6, 7, 6, '2019-03-15 09:04:20'),
+(7, 7, 7, '2019-03-15 09:04:20'),
+(8, 7, 8, '2019-03-15 09:04:20'),
+(9, 7, 9, '2019-03-15 09:04:20'),
+(10, 7, 10, '2019-03-15 09:04:20'),
+(11, 7, 11, '2019-03-15 09:04:20'),
+(12, 7, 12, '2019-03-15 09:04:20'),
+(13, 7, 13, '2019-03-15 09:04:20'),
+(14, 7, 14, '2019-03-15 09:04:20'),
+(15, 7, 15, '2019-03-15 09:04:20'),
+(16, 8, 1, '2019-03-15 09:06:26'),
+(17, 8, 3, '2019-03-15 09:06:26'),
+(18, 8, 4, '2019-03-15 09:06:26'),
+(19, 8, 9, '2019-03-15 09:06:26'),
+(20, 8, 10, '2019-03-15 09:06:26'),
+(21, 8, 11, '2019-03-15 09:06:26'),
+(22, 9, 1, '2019-03-15 09:08:22'),
+(23, 9, 2, '2019-03-15 09:08:22'),
+(24, 9, 5, '2019-03-15 09:08:22'),
+(25, 9, 9, '2019-03-15 09:08:22'),
+(26, 9, 11, '2019-03-15 09:08:22'),
+(27, 10, 1, '2019-03-15 09:10:47'),
+(28, 10, 3, '2019-03-15 09:10:47'),
+(29, 10, 4, '2019-03-15 09:10:47'),
+(30, 10, 9, '2019-03-15 09:10:47'),
+(31, 10, 10, '2019-03-15 09:10:47'),
+(32, 10, 11, '2019-03-15 09:10:47'),
+(33, 10, 12, '2019-03-15 09:10:47'),
+(34, 10, 13, '2019-03-15 09:10:47'),
+(35, 2, 1, '2019-03-15 09:13:30'),
+(36, 2, 2, '2019-03-15 09:13:30'),
+(37, 11, 1, '2019-03-15 09:37:03'),
+(38, 11, 2, '2019-03-15 09:37:03'),
+(39, 11, 3, '2019-03-15 09:37:03'),
+(40, 11, 4, '2019-03-15 09:37:03'),
+(41, 11, 5, '2019-03-15 09:37:03'),
+(42, 11, 6, '2019-03-15 09:37:03'),
+(43, 11, 7, '2019-03-15 09:37:03'),
+(44, 11, 8, '2019-03-15 09:37:03'),
+(45, 11, 9, '2019-03-15 09:37:03'),
+(46, 11, 10, '2019-03-15 09:37:03'),
+(47, 11, 11, '2019-03-15 09:37:03'),
+(48, 11, 12, '2019-03-15 09:37:03'),
+(49, 11, 13, '2019-03-15 09:37:03'),
+(50, 11, 14, '2019-03-15 09:37:03'),
+(51, 11, 15, '2019-03-15 09:37:03'),
+(52, 3, 1, '2019-03-15 09:37:03'),
+(53, 3, 3, '2019-03-15 09:37:03'),
+(54, 3, 4, '2019-03-15 09:37:03'),
+(55, 3, 9, '2019-03-15 09:37:03'),
+(56, 3, 10, '2019-03-15 09:37:03'),
+(57, 3, 11, '2019-03-15 09:37:03'),
+(58, 4, 2, '2019-03-15 09:37:03'),
+(59, 12, 1, '2019-03-15 09:37:03'),
+(60, 12, 3, '2019-03-15 09:37:03'),
+(61, 12, 4, '2019-03-15 09:37:03'),
+(62, 12, 9, '2019-03-15 09:37:03'),
+(63, 12, 10, '2019-03-15 09:37:03'),
+(64, 12, 11, '2019-03-15 09:37:03'),
+(65, 13, 1, '2019-03-15 09:37:03'),
+(66, 13, 3, '2019-03-15 09:37:03'),
+(67, 13, 6, '2019-03-15 09:37:03'),
+(68, 13, 7, '2019-03-15 09:37:03'),
+(69, 13, 8, '2019-03-15 09:37:03'),
+(70, 14, 1, '2019-03-15 09:37:03'),
+(71, 14, 2, '2019-03-15 09:37:03'),
+(72, 14, 3, '2019-03-15 09:37:03'),
+(73, 14, 4, '2019-03-15 09:37:03'),
+(74, 14, 5, '2019-03-15 09:37:03'),
+(75, 14, 6, '2019-03-15 09:37:03'),
+(76, 14, 7, '2019-03-15 09:37:03'),
+(77, 14, 8, '2019-03-15 09:37:03'),
+(78, 14, 9, '2019-03-15 09:37:03'),
+(79, 14, 10, '2019-03-15 09:37:03'),
+(80, 14, 11, '2019-03-15 09:37:03'),
+(81, 14, 12, '2019-03-15 09:37:03'),
+(82, 14, 13, '2019-03-15 09:37:03'),
+(83, 14, 14, '2019-03-15 09:37:03'),
+(84, 14, 15, '2019-03-15 09:37:03'),
+(85, 15, 1, '2019-03-15 09:37:03'),
+(86, 15, 3, '2019-03-15 09:37:03'),
+(87, 15, 4, '2019-03-15 09:37:03'),
+(88, 15, 9, '2019-03-15 09:37:03'),
+(89, 15, 10, '2019-03-15 09:37:03'),
+(90, 15, 11, '2019-03-15 09:37:03'),
+(91, 16, 1, '2019-03-15 09:37:03'),
+(92, 16, 2, '2019-03-15 09:37:03'),
+(93, 16, 3, '2019-03-15 09:37:03'),
+(94, 16, 4, '2019-03-15 09:37:03'),
+(95, 16, 5, '2019-03-15 09:37:03'),
+(96, 16, 6, '2019-03-15 09:37:03'),
+(97, 16, 7, '2019-03-15 09:37:03'),
+(98, 16, 8, '2019-03-15 09:37:03'),
+(99, 16, 9, '2019-03-15 09:37:03'),
+(100, 16, 10, '2019-03-15 09:37:03'),
+(101, 16, 11, '2019-03-15 09:37:03'),
+(102, 16, 12, '2019-03-15 09:37:03'),
+(103, 16, 13, '2019-03-15 09:37:03'),
+(104, 16, 14, '2019-03-15 09:37:03'),
+(105, 16, 15, '2019-03-15 09:37:03'),
+(106, 17, 1, '2019-03-15 09:37:03'),
+(107, 17, 3, '2019-03-15 09:37:03'),
+(108, 17, 4, '2019-03-15 09:37:03'),
+(109, 17, 9, '2019-03-15 09:37:03'),
+(110, 17, 10, '2019-03-15 09:37:03'),
+(111, 17, 11, '2019-03-15 09:37:03'),
+(112, 18, 1, '2019-03-15 09:37:03'),
+(113, 18, 2, '2019-03-15 09:37:03'),
+(114, 18, 3, '2019-03-15 09:37:03'),
+(115, 18, 4, '2019-03-15 09:37:03'),
+(116, 18, 5, '2019-03-15 09:37:03'),
+(117, 18, 6, '2019-03-15 09:37:03'),
+(118, 18, 7, '2019-03-15 09:37:03'),
+(119, 18, 8, '2019-03-15 09:37:03'),
+(120, 18, 9, '2019-03-15 09:37:03'),
+(121, 18, 10, '2019-03-15 09:37:03'),
+(122, 18, 11, '2019-03-15 09:37:03'),
+(123, 18, 12, '2019-03-15 09:37:03'),
+(124, 18, 13, '2019-03-15 09:37:03'),
+(125, 18, 14, '2019-03-15 09:37:03'),
+(126, 18, 15, '2019-03-15 09:37:03'),
+(127, 19, 1, '2019-03-15 09:37:03'),
+(128, 19, 3, '2019-03-15 09:37:03'),
+(129, 19, 4, '2019-03-15 09:37:03'),
+(130, 19, 9, '2019-03-15 09:37:03'),
+(131, 19, 10, '2019-03-15 09:37:03'),
+(132, 19, 11, '2019-03-15 09:37:03'),
+(133, 20, 1, '2019-03-15 09:37:03'),
+(134, 20, 2, '2019-03-15 09:37:03'),
+(135, 20, 3, '2019-03-15 09:37:03'),
+(136, 20, 4, '2019-03-15 09:37:03'),
+(137, 20, 5, '2019-03-15 09:37:03'),
+(138, 20, 6, '2019-03-15 09:37:03'),
+(139, 20, 7, '2019-03-15 09:37:03'),
+(140, 20, 8, '2019-03-15 09:37:03'),
+(141, 20, 9, '2019-03-15 09:37:03'),
+(142, 20, 10, '2019-03-15 09:37:03'),
+(143, 20, 11, '2019-03-15 09:37:03'),
+(144, 20, 12, '2019-03-15 09:37:03'),
+(145, 20, 13, '2019-03-15 09:37:03'),
+(146, 20, 14, '2019-03-15 09:37:03'),
+(147, 20, 15, '2019-03-15 09:37:03'),
+(148, 21, 1, '2019-03-15 09:37:03'),
+(149, 21, 3, '2019-03-15 09:37:03'),
+(150, 21, 4, '2019-03-15 09:37:03'),
+(151, 21, 9, '2019-03-15 09:37:03'),
+(152, 21, 10, '2019-03-15 09:37:03'),
+(153, 21, 11, '2019-03-15 09:37:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `design_id` int(10) UNSIGNED DEFAULT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `design_id`, `name`, `created_at`) VALUES
+(1, 8, 'Emma Wiggles Cake', '2019-03-17 09:04:50'),
+(2, 8, 'Hatchimals Cake', '2019-03-17 09:04:56'),
+(3, 9, 'Paw Patrol Cake', '2019-03-17 09:05:00'),
+(4, 9, 'Gekko Cake', '2019-03-17 09:05:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_images`
+--
+
+CREATE TABLE `product_images` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `product_id` int(10) UNSIGNED NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `product_images`
+--
+
+INSERT INTO `product_images` (`id`, `product_id`, `image`, `created_at`) VALUES
+(1, 1, '1.jpg', '0000-00-00 00:00:00'),
+(2, 1, '2.jpg', '0000-00-00 00:00:00'),
+(3, 1, '3.jpg', '0000-00-00 00:00:00'),
+(4, 1, '4.jpg', '0000-00-00 00:00:00'),
+(5, 2, '5.jpg', '0000-00-00 00:00:00'),
+(6, 2, '6.jpg', '0000-00-00 00:00:00'),
+(7, 2, '7.jpg', '0000-00-00 00:00:00'),
+(8, 2, '8.jpg', '0000-00-00 00:00:00'),
+(9, 3, '9.jpg', '2019-03-17 02:52:23'),
+(10, 3, '10.jpg', '2019-03-17 02:52:23'),
+(11, 3, '11.jpg', '2019-03-17 02:52:23'),
+(12, 3, '12.jpg', '2019-03-17 02:52:23'),
+(13, 4, '13.jpg', '2019-03-17 07:03:53'),
+(14, 4, '14.jpg', '2019-03-17 07:03:53'),
+(15, 4, '15.jpg', '2019-03-17 07:03:53'),
+(16, 4, '16.jpg', '2019-03-17 07:03:53');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `servings`
+--
+
+CREATE TABLE `servings` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `tier_id` int(10) UNSIGNED NOT NULL,
+  `shape_id` int(10) UNSIGNED NOT NULL,
+  `size_id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `servings`
+--
+
+INSERT INTO `servings` (`id`, `tier_id`, `shape_id`, `size_id`, `name`, `created_at`) VALUES
+(1, 1, 1, 1, '8', '2019-03-15 10:31:16'),
+(2, 1, 1, 2, '11', '2019-03-15 10:31:16'),
+(3, 1, 1, 3, '15', '2019-03-15 10:31:16'),
+(4, 1, 1, 4, '20', '2019-03-15 10:31:16'),
+(5, 1, 1, 5, '27', '2019-03-15 10:31:16'),
+(6, 1, 1, 6, '38', '2019-03-15 10:31:16'),
+(7, 1, 1, 7, '45', '2019-03-15 10:31:16'),
+(8, 1, 1, 8, '56', '2019-03-15 10:31:16'),
+(9, 1, 1, 9, '64', '2019-03-15 10:31:16'),
+(10, 1, 2, 1, '8', '2019-03-15 10:31:16'),
+(11, 1, 2, 2, '18', '2019-03-15 10:31:16'),
+(12, 1, 2, 3, '24', '2019-03-15 10:31:16'),
+(13, 1, 2, 4, '32', '2019-03-15 10:31:16'),
+(14, 1, 2, 5, '35', '2019-03-15 10:31:16'),
+(15, 1, 2, 6, '50', '2019-03-15 10:31:16'),
+(16, 1, 2, 7, '56', '2019-03-15 10:31:16'),
+(17, 1, 2, 8, '72', '2019-03-15 10:31:16'),
+(18, 1, 2, 9, '98', '2019-03-15 10:31:16'),
+(19, 1, 3, 1, '6', '2019-03-15 10:31:16'),
+(20, 1, 3, 2, '12', '2019-03-15 10:31:16'),
+(21, 1, 3, 3, '16', '2019-03-15 10:31:16'),
+(22, 1, 3, 4, '24', '2019-03-15 10:31:16'),
+(23, 1, 3, 5, '28', '2019-03-15 10:31:16'),
+(24, 1, 3, 6, '30', '2019-03-15 10:31:16'),
+(25, 1, 3, 7, '35', '2019-03-15 10:31:16'),
+(26, 1, 3, 8, '40', '2019-03-15 10:31:16'),
+(27, 1, 3, 9, '45', '2019-03-15 10:31:16'),
+(28, 2, 1, 10, '49', '2019-03-15 10:31:16'),
+(29, 2, 1, 11, '76', '2019-03-15 10:31:16'),
+(30, 2, 1, 12, '69', '2019-03-15 10:31:16'),
+(31, 2, 1, 13, '94', '2019-03-15 10:31:16'),
+(32, 2, 1, 14, '114', '2019-03-15 10:31:16'),
+(33, 2, 1, 15, '125', '2019-03-15 10:31:16'),
+(34, 2, 1, 16, '169', '2019-03-15 10:31:16'),
+(35, 2, 1, 17, '189', '2019-03-15 10:31:16'),
+(36, 2, 2, 10, '68', '2019-03-15 10:31:16'),
+(37, 2, 2, 11, '104', '2019-03-15 10:31:16'),
+(38, 2, 2, 12, '100', '2019-03-15 10:31:16'),
+(39, 2, 2, 13, '125', '2019-03-15 10:31:16'),
+(40, 2, 2, 14, '154', '2019-03-15 10:31:16'),
+(41, 2, 2, 15, '172', '2019-03-15 10:31:16'),
+(42, 2, 2, 16, '308', '2019-03-15 10:31:16'),
+(43, 2, 2, 17, '326', '2019-03-15 10:31:16'),
+(44, 2, 3, 10, '42', '2019-03-15 10:31:16'),
+(45, 2, 3, 11, '64', '2019-03-15 10:31:16'),
+(46, 2, 3, 12, '90', '2019-03-15 10:31:16'),
+(47, 2, 3, 14, '120', '2019-03-15 10:31:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shapes`
+--
+
+CREATE TABLE `shapes` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `shapes`
+--
+
+INSERT INTO `shapes` (`id`, `name`, `image`, `created_at`) VALUES
+(1, 'Round', 'round.jpg', '2019-03-15 09:43:08'),
+(2, 'Square', 'square.jpg', '2019-03-15 09:43:08'),
+(3, 'Heart', 'heart.jpg', '2019-03-15 09:43:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sizes`
+--
+
+CREATE TABLE `sizes` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sizes`
+--
+
+INSERT INTO `sizes` (`id`, `name`, `created_at`) VALUES
+(1, '5', '2019-03-15 09:46:07'),
+(2, '6', '2019-03-15 09:52:41'),
+(3, '7', '2019-03-15 09:52:41'),
+(4, '8', '2019-03-15 09:52:41'),
+(5, '9', '2019-03-15 09:52:41'),
+(6, '10', '2019-03-15 09:52:41'),
+(7, '11', '2019-03-15 09:52:41'),
+(8, '12', '2019-03-15 09:52:41'),
+(9, '14', '2019-03-15 09:52:41'),
+(10, '6,10', '2019-03-15 09:55:47'),
+(11, '8,12', '2019-03-15 09:55:51'),
+(12, '6,8,10', '2019-03-15 09:55:55'),
+(13, '6,9,12', '2019-03-15 09:56:00'),
+(14, '8,10,12', '2019-03-15 09:56:04'),
+(15, '6,8,10,12', '2019-03-15 09:56:07'),
+(16, '8,10,12,14', '2019-03-15 09:56:10'),
+(17, '6,8,10,12,14', '2019-03-15 09:56:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tiers`
+--
+
+CREATE TABLE `tiers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `image` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tiers`
+--
+
+INSERT INTO `tiers` (`id`, `name`, `image`, `created_at`) VALUES
+(1, 'Single', 'single-tier.jpg', '2019-03-15 09:40:25'),
+(2, 'Multiple', 'multiple-tier.jpg', '2019-03-15 09:40:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `created_at`) VALUES
+(1, 'admin', '$2y$10$SeY2Jq2YEnqKgLkWHGo3iOmiQ7LHSAOGRKjnJz9AKxQqRu5GOjtTW', '2018-10-15 00:00:00');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `designs`
+--
+ALTER TABLE `designs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `fillings`
+--
+ALTER TABLE `fillings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `flavours`
+--
+ALTER TABLE `flavours`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `flavour_filling`
+--
+ALTER TABLE `flavour_filling`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `product_images`
+--
+ALTER TABLE `product_images`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `servings`
+--
+ALTER TABLE `servings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `shapes`
+--
+ALTER TABLE `shapes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sizes`
+--
+ALTER TABLE `sizes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tiers`
+--
+ALTER TABLE `tiers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `designs`
+--
+ALTER TABLE `designs`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `fillings`
+--
+ALTER TABLE `fillings`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `flavours`
+--
+ALTER TABLE `flavours`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `flavour_filling`
+--
+ALTER TABLE `flavour_filling`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `product_images`
+--
+ALTER TABLE `product_images`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `servings`
+--
+ALTER TABLE `servings`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
+-- AUTO_INCREMENT for table `shapes`
+--
+ALTER TABLE `shapes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `sizes`
+--
+ALTER TABLE `sizes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `tiers`
+--
+ALTER TABLE `tiers`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
