@@ -1,3 +1,9 @@
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+    General
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -13,16 +19,13 @@ body {
 	padding-top: 0px !important;
 	font-family: 'EB Garamond', serif;
 }
-/*h1{
-	font-family: 'Clicker Script', cursive;
-}*/
 h1 {
     font-family: 'Dancing Script', cursive;
     font-weight: 700;
     line-height: 46px;
     font-size: 42px;
     margin: 0 0 23px 0;
-  }
+}
 h2 {
     font-family: 'EB Garamond', serif;
     font-weight: normal;
@@ -31,7 +34,7 @@ h2 {
     line-height: 23px;
     letter-spacing: 2px;
     margin: 0 0 23px 0;
-    }
+}
 p {
     font-family: 'EB Garamond', serif;
     font-size: 16px;
@@ -143,9 +146,13 @@ th {
     -o-transform: translate(0, -4px);
     transform: translate(0, -4px);
 }
-/* HEADER */
 
-/* SCROLLING HEADER */
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+    Header
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
+
 .header {
   background-color: #f7dee466;
   padding-top: 0.1rem;
@@ -157,11 +164,17 @@ th {
   top: 0;
   width: 100%;
   z-index:9999;
-  background-color: #ffdae7;
-  border-top: 2px #77777730 solid;
-  border-bottom: 2px #77777730 solid;
+  background-color: #f195b2 ;
+  /*border-top: 2px #77777730 solid;
+  border-bottom: 2px #77777730 solid;*/
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  box-shadow: 1px 2px 5px 2px rgba(0, 0, 255, .2);
+}
+.sticky .mainmenu a  {
+	font-size: 14px;
+  transition: all 0.3s ease 0s;
+  color: #695151;
 }
 .my-bg{
     background-image: url("../img/bg12a.jpg");
@@ -188,12 +201,6 @@ th {
     font-size: 1rem; 
 }
 /* NAVIGATION */
-/*.my-bg .navbar{
-  margin-top: -45px;
-  padding: 0;
-	background-color: #f8f9fa91!important;
-	border: 0px solid #bfbfbf;
-}*/
 .my-bg .navbar-nav .nav-link {
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
@@ -234,11 +241,11 @@ th {
 .mainmenu ul li a , 
 .navbar-expand-lg .navbar-nav .nav-link{
 	font-weight: 600;
-    font-family: 'Poppins', sans-serif;
-    text-transform: uppercase;
-    color: rgba(0,0,0,0.7);
-    font-size: 16px;
-    padding: 2px;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.7);
+  font-size: 16px;
+  padding: 2px;
 	display: block !important;
 }
 .mainmenu .active a,
@@ -249,17 +256,17 @@ th {
 .navbar-default .navbar-nav>.show>a,
 .navbar-default .navbar-nav>.show>a:focus, 
 .navbar-default .navbar-nav>.show>a:hover{
-	color: #ab3184;
+	color: #954f9c;
 	outline: 0;
 }
-/*==========MAIN NAVIGATION MENU Sub Menu==========*/
+/* MAIN NAVIGATION MENU Sub Menu */
 .mainmenu .collapse ul > li:hover > a{
 	background: none;
 }
 .mainmenu .collapse ul ul > li:hover > a, 
 .navbar-default .navbar-nav .show .dropdown-menu > li > a:focus, 
 .navbar-default .navbar-nav .show .dropdown-menu > li > a:hover{
-	color: #ab3184;
+	color: #954f9c;
 }
 .mainmenu .collapse ul ul ul > li:hover > a{
 	background: none;
@@ -284,7 +291,6 @@ th {
 .mainmenu .collapse ul ul ul ul.dropdown-menu{
 	background:#fff
 }
-
 /****************************** MAIN NAVIGATION MENU Drop-down menu work on hover **********************************/
 .mainmenu{
 	background: none;
@@ -295,7 +301,11 @@ th {
 	width: 100%;
 }
 
-/* HOME PAGE */
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+    Home Page
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
 .homepage{
     margin-top: 0px;
 }
@@ -308,17 +318,20 @@ th {
 }
 .home-cake-section .card {
     background-color: rgba(0,0,0,.03);
-    border: 3px solid rgba(0,0,0,.125);
-    border-radius: 0;
+    border: 2px solid rgba(0,0,0,.125);
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(40, 40, 40, 0.08);
+    box-shadow: 0px 0px 15px 0px rgba(40, 40, 40, 0.08);
+    text-align: center;
 }
 .home-cake-section .card-footer {
     background-color: rgba(0,0,0,.0);
 }
 .home-cake-section a{
 	font-size: 1.2rem;
-    /*font-family: 'Dancing Script', cursive;*/
+  /*font-family: 'Dancing Script', cursive;*/
 	color: #2f2c2c;
-    font-weight: 600;
+  font-weight: 600;
 }
 .home-cake-section a:hover{
 	color: #ab3184;
@@ -365,17 +378,69 @@ nav > ul > li:first-child { border-left: none; }
 .sub-menu {    background: #DDD;  }
 .sub-menu li a {    padding: 0.5rem;      font-size: medium;}
 .caret {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin-left: 2px;
-    vertical-align: middle;
-    border-top: 4px solid;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+/* Testimonials */
+.testimonial{
+  background: #d65195 url('../img/cake-bg-small.png');
+  /*#d65195*/
+}
+.testimonial h2 {
+  text-align: center!important;
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+.card .carousel-item {
+  height: 200px;
+}
+.carousel-caption {
+  bottom: 20%;
+}
+.card .carousel-caption {
+  padding: 0;
+  right: 0;
+  left: 0;
+  color: #3d3d3d;
+}
+.card .carousel-caption h3 {
+  color: #3d3d3d;
+  font-family: 'Dancing Script', cursive
+}
+.card .carousel-caption p {
+  line-height: 30px;
+}
+.card .carousel-caption .col-sm-3 {
+  display: flex;
+  align-items: center;
+}
+.card .carousel-caption .col-sm-9 {
+  text-align: left;
+}
+.navi a {
+    text-decoration:none;
+}
+a > .ico {
+    padding: 10px;    
+}
+a:hover > .ico {
+    color: #666;
 }
 
-/* Cake Designs Page */
+/****************************/
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+    Cake Designs Page
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
 .cake-designs{
 	background: #f6fbff url('../img/cake-bg-small.png');
   margin-top: 45px;
@@ -469,18 +534,27 @@ nav > ul > li:first-child { border-left: none; }
   transform: scale(1, 1);
   opacity: 1;
 }
-/* Cakes Sizes Page */
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+      Cakes Sizes Page
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
 .cake-sizes h4{
 	font-family: 'EB Garamond', serif;
 }
-/* Contact us page */
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+      Contact us page
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
 .contact-page {
 	/*overflow: hidden;*/
 	padding-top: 2rem;
 	padding-bottom: 4rem;
 }
 #contatti{
-	/*background-color: #70c3be;*/
 	letter-spacing: 2px;
 }
 #contatti a{
@@ -488,8 +562,8 @@ nav > ul > li:first-child { border-left: none; }
 	text-decoration: none;
 }
 #contatti a:hover{
-    color: #ab3184;
-    text-decoration: none;
+  color: #ab3184;
+  text-decoration: none;
 }
 #contatti a  i{
 	color: #ab3184;
@@ -529,7 +603,12 @@ nav > ul > li:first-child { border-left: none; }
   color: #000;
   text-decoration: none;    
 }
-/*Cake Fillings*/
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+      Cake filling page
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
 .cake-filling .list-group-item {
     padding: .25rem 1.25rem;
 }
@@ -557,7 +636,12 @@ figure {
 	-webkit-transform: scale(1.3);
 	transform: scale(1.3);
 }
-/* cake flavours  */
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+      Cake flavours page
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
 .cake-flavours .card-title{
     cursor: pointer;
 }
@@ -576,7 +660,38 @@ figure {
 .cake-flavours .img-label [type=radio]:checked + img {
     border: 2px solid #f00;
 }
-/* ORDER  DESIGN PAGE */
+.cake-flavours .nav-tabs {
+  border-bottom: 0px;
+  border-top: 0px;
+}
+.cake-flavours .nav-tabs .nav-item.show .nav-link, .cake-flavours .nav-tabs .nav-link.active {
+  border-color: #dee2e6;
+  border-radius: 0;
+}
+.cake-flavours .card-footer {
+  padding: 0 10px 14px 10px;
+}
+.showFlavours {
+  cursor: pointer;
+}
+#dLabel {
+  width: 240px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: #fff;
+  border: solid 1px #cccccc;
+  text-align: left;
+  padding: 7.5px 15px;
+  color: #383838;
+  letter-spacing: 0.7px;
+  margin-top: 0;
+}
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+     Order page
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
 #order-design{
 	padding: 1rem;
 }	
@@ -655,19 +770,128 @@ figure {
           transform: scale(0.4);
 }
 
-/* tabs */
-.cake-flavours .nav-tabs {
-  border-bottom: 0px;
-  border-top: 0px;
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+     Order wizard form
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
+
+.wizard {
+  margin: 0 auto;
+  background: #fff;
 }
-.cake-flavours .nav-tabs .nav-item.show .nav-link, .cake-flavours .nav-tabs .nav-link.active {
-  border-color: #dee2e6;
-  border-radius: 0;
+.wizard .nav-tabs {
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 0;
+  border-bottom-color: #e0e0e0;
 }
-.cake-flavours .card-footer {
-  padding: 0 10px 14px 10px;
+.wizard > div.wizard-inner {
+  position: relative;
+}
+.connecting-line {
+  height: 2px;
+  background: #e0e0e0;
+  position: absolute;
+  width: 80%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 50%;
+  z-index: 1;
+}
+.wizard .nav-tabs > li.active > a,
+.wizard .nav-tabs > li.active > a:hover,
+.wizard .nav-tabs > li.active > a:focus {
+  color: #555555;
+  cursor: default;
+  border: 0;
+  border-bottom-color: transparent;
 }
 
+span.round-tab {
+  width: 75px;
+  height: 75px;
+  line-height: 60px;
+  display: inline-block;
+  border-radius: 0px;
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  text-align: center;
+  font-size: 25px;
+}
+
+span.round-tab i {
+  color: #555555;
+}
+
+.wizard li a.active span.round-tab {
+  background: #e48acd;
+  border: 2px solid #9a5b8a;
+}
+
+.wizard li a.active span.round-tab i {
+  color: #5bc0de;
+}
+
+span.round-tab:hover {
+  color: #333;
+  border: 2px solid #333;
+}
+
+.wizard .nav-tabs > li {
+  width: 19%;
+}
+
+.wizard li a:after {
+  content: " ";
+  position: relative;
+  left: 46%;
+  top: -20px;
+  opacity: 0;
+  margin: 0 auto;
+  bottom: 0px;
+  border: 5px solid transparent;
+  border-bottom-color: #5bc0de;
+  transition: 0.1s ease-in-out;
+}
+
+.wizard li.active.nav-item:after {
+  content: " ";
+  position: relative;
+  left: 46%;
+  top: -20px;
+  opacity: 1;
+  margin: 0 auto;
+  bottom: 0px;
+  border: 10px solid transparent;
+  border-bottom-color: #5bc0de;
+}
+
+.wizard .nav-tabs > li a {
+  width: 70px;
+  height: 70px;
+  margin: 20px auto;
+  border-radius: 100%;
+  padding: 0;
+  position: relative;
+}
+
+.wizard .nav-tabs > li a:hover {
+  background: transparent;
+}
+
+.wizard .tab-pane {
+  position: relative;
+  padding-top: 30px;
+}
+
+.wizard h3 {
+  margin-top: 0;
+}
 
 /*
 ####################################################
@@ -697,6 +921,30 @@ No media query since this is the default in Bootstrap because it is "mobile firs
   .my-bg h1 a {
     font-size: 2.5rem;
     text-align: center;
+  }
+
+  .wizard {
+    width: 90%;
+    height: auto !important;
+  }
+
+  span.round-tab {
+      font-size: 16px;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+  }
+
+  .wizard .nav-tabs > li a {
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+  }
+
+  .wizard li.active:after {
+      content: " ";
+      position: absolute;
+      left: 35%;
   }
 
 }
@@ -743,7 +991,8 @@ No media query since this is the default in Bootstrap because it is "mobile firs
  
 /*
 ::::::::::::::::::::::::::::::::::::::::::::::::::::
-Custom media queries
+    Custom media queries
+::::::::::::::::::::::::::::::::::::::::::::::::::::
 */
  
 /* Set width to make card deck cards 100% width */
@@ -762,4 +1011,74 @@ Custom media queries
 	.navbar-nav .show .dropdown-menu .dropdown-menu .dropdown-menu > li > a{
 		padding:16px 15px 16px 45px
 	}
+}
+
+/*taken for a sample*/
+.cake_feature_item {
+  background: #fff;
+  overflow: hidden;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(40, 40, 40, 0.08);
+  box-shadow: 0px 0px 15px 0px rgba(40, 40, 40, 0.08);
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.cake_feature_item .cake_img {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.cake_feature_item .cake_img img {
+  -webkit-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+
+.cake_feature_item .cake_text {
+  position: relative;
+}
+
+.cake_feature_item .cake_text h4 {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  color: #343434;
+  font-size: 26px;
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  background: #fff;
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  top: -35px;
+  line-height: 68px;
+  margin-bottom: 0px;
+  z-index: 2;
+}
+
+.cake_feature_item .cake_text h3 {
+  font-size: 18px;
+  color: #343434;
+  font-family: "Playfair Display", serif;
+  margin-bottom: 22px;
+  padding-top: 35px;
+}
+
+.pest_btn {
+  background: #94c9d9;
+  color: #fff;
+  line-height: 36px;
+  display: inline-block;
+  padding: 0px 25px;
+  font-family: "Open Sans", sans-serif;
+  position: relative;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 3px;
 }

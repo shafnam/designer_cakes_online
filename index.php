@@ -29,7 +29,7 @@
 	<div class="container homepage">
 
 		<!-- Cake Category Section-->
-		<div class="row mt-0 home-cake-section">
+		<section class="row mt-0 home-cake-section">
 
 			<?php foreach ($desgin_details as $row) { ?> 
 			<div class="col-lg-4 mb-4">
@@ -66,10 +66,134 @@
 			</div>
 			<?php } ?>
 
-		</div>
+		</section>
 		<!-- /.row -->
-		
+	
 	</div>
+
+	<div class="container-fluid testimonial p-5">
+
+		<h2 class="text-center white-text">What our Clients Says</h2>
+
+		<!-- Testimonials setion -->
+		<section class="text-center">
+			<div class="card col-md-8 mb-5 mx-auto d-block">
+				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="7000">
+					<div class="w-100 carousel-inner" role="listbox">
+						
+						<div class="carousel-item active">
+							<div class="carousel-caption">
+								<div class="row">
+									<div class="col-sm-3">
+										<img src="img/testimonials/1.jpg" alt="" class="rounded-circle img-fluid"/>
+									</div>
+									<div class="col-sm-9">
+										<!-- <i class="fa fa-quote-left fa-3x" style="color: #ffe9fc;"></i> -->
+										<h3>Gives me Hope</h3>
+										<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+										<small class="smallest mute">- Yayo Dudemous</small>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="carousel-item">
+							<div class="carousel-caption">
+								<div class="row">
+									<div class="col-sm-3">
+										<img src="img/testimonials/2.jpg" alt="" class="rounded-circle img-fluid"/>
+									</div>
+									<div class="col-sm-9">
+										<h3>You will Love it.</h3>
+										<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+										<small class="smallest mute">- Yayo Dudemous</small>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="carousel-item">
+							<div class="carousel-caption">
+								<div class="row">
+									<div class="col-sm-3">
+										<img src="img/testimonials/3.jpg" alt="" class="rounded-circle img-fluid"/>
+									</div>
+									<div class="col-sm-9">
+										<h3>Velvet Pouch!</h3>
+										<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+										<small class="smallest mute">- Yayo Dudemous</small>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="carousel-item">
+							<div class="carousel-caption">
+								<div class="row">
+									<div class="col-sm-3">
+										<img src="img/testimonials/4.jpg" alt="" class="rounded-circle img-fluid"/>
+									</div>
+									<div class="col-sm-9">
+										<h3>Best Service!</h3>
+										<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+										<small class="smallest mute">- Yayo Dudemous</small>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="carousel-item">
+							<div class="carousel-caption">
+								<div class="row">
+									<div class="col-sm-3">
+										<img src="img/testimonials/5.jpg" alt="" class="rounded-circle img-fluid"/>
+									</div>
+									<div class="col-sm-9">
+										<h3>Happy About the Service!</h3>
+										<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+										<small class="smallest mute">- Yayo Dudemous</small>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="carousel-item">
+							<div class="carousel-caption">
+								<div class="row">
+									<div class="col-sm-3">
+										<img src="img/testimonials/6.jpg" alt="" class="rounded-circle img-fluid"/>
+									</div>
+									<div class="col-sm-9">
+										<h3>Best Service!</h3>
+										<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+										<small class="smallest mute">- Yayo Dudemous</small>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="float-right navi mt-3">
+						<a class="" href="#carouselExampleControls" role="button" data-slide="prev">
+							<span class="carousel-control-prev-icon ico" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						<a class="" href="#carouselExampleControls" role="button" data-slide="next">
+							<span class="carousel-control-next-icon ico" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
+						</a>
+					</div>
+
+				</div>
+			</div>
+		
+
+		</section>
+
+	</div>
+		
+	
 
 	<?php include('footer.php'); ?>
 	

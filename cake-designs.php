@@ -238,7 +238,7 @@
 	<?php include('layout-footer.php'); ?>
 	
 	<!-- Custom Plugins -->
-    <script src="vendor/lightGallery-master/dist/js/lightgallery-all.min.js"></script>
+  	<script src="vendor/lightGallery-master/dist/js/lightgallery-all.min.js"></script>
 	<script src="vendor/slick/slick/slick.min.js"></script>
 	<script src="vendor/slick-animation.min.js"></script>
 	<script src="js/custom.js"></script>

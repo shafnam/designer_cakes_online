@@ -18,10 +18,8 @@
 
         function viewParentDesigns() {
     
-            $sql = "SELECT * FROM designs WHERE parent_id IS NULL";
-    
-            $stmt = $this->con->query($sql);
-    
+            $sql = "SELECT * FROM designs WHERE parent_id IS NULL";    
+            $stmt = $this->con->query($sql);    
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if ($results) {
@@ -31,11 +29,9 @@
 
         function viewChildDesigns($parent_id) {
     
-            $sql = "SELECT * FROM designs WHERE parent_id = :parent_id";
-    
+            $sql = "SELECT * FROM designs WHERE parent_id = :parent_id";    
             $stmt = $this->con->prepare($sql);
-            $stmt->execute(array(':parent_id' => $parent_id));
-    
+            $stmt->execute(array(':parent_id' => $parent_id));    
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if ($results) {
@@ -46,11 +42,9 @@
 
         function viewDesigns($id) {
     
-            $sql = "SELECT * FROM designs WHERE id = :id";
-    
+            $sql = "SELECT * FROM designs WHERE id = :id";    
             $stmt = $this->con->prepare($sql);
             $stmt->execute(array(':id' => $id));
-
             $results = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($results) {
@@ -59,11 +53,7 @@
 
         }
 
-
-        /*function viewLatestData($table) {
-            
-        }
- 
+        /*
         public function create($fname,$lname,$email,$contact)
         {
             try
@@ -125,7 +115,7 @@
             return true;
         }*/
  
-        /* paging */
+        /* paging
         
         public function dataview($query)
         {
@@ -221,7 +211,7 @@
             }
         }
     
-        /* paging */
+        paging */
  
     }
 
@@ -239,10 +229,10 @@
             }            
         }
 
-        public function checkHasParent($id){
+        public function checkHasParent($id,$table){
             $parent = array(); 
             
-            $sql = "SELECT parent_id FROM designs WHERE id = :id";
+            $sql = "SELECT parent_id FROM $table WHERE id = :id";
             $stmt = $this->con->prepare($sql);
             $stmt->execute(array(':id' => $id));
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -253,7 +243,7 @@
         
         function viewAllDesignProducts($design_id){
 
-            $has_parent = $this->checkHasParent($design_id);
+            $has_parent = $this->checkHasParent($design_id,'designs');
 
             if($has_parent == null){
 
@@ -324,5 +314,123 @@
 
         }
         
+    }
+
+    class Flavour
+    {
+        private $conn;
+	
+        public function __construct()
+        {
+            try {
+                $this->con = new Database();
+                $this->con = $this->con->dbConnection();
+            } catch (Exception $e) {
+                die("Error:" . $e->getMessage());
+            }            
+        }
+
+        function viewParentFlavours() {
+    
+            $sql = "SELECT * FROM flavours WHERE parent_id IS NULL";    
+            $stmt = $this->con->query($sql);    
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if ($results) {
+                return $results;
+            }
+        }
+
+        function viewChildFlavours($parent_id) {
+    
+            $sql = "SELECT * FROM flavours WHERE parent_id = :parent_id";    
+            $stmt = $this->con->prepare($sql);
+            $stmt->execute(array(':parent_id' => $parent_id));    
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($results) {
+                return $results;
+            }
+
+        }
+
+        function viewFlavourInfo($flavour_id) {
+
+            $product = new Product();
+            $has_parent = $product->checkHasParent($flavour_id,'flavours');
+
+            if($has_parent == null){
+
+                // is a parent design
+
+                //print_r($has_parent);
+                //die();
+
+                $sql = "SELECT * FROM flavours WHERE id = :flavour_id";
+
+            } else {
+
+                $sql = "SELECT f1.id as childID, f1.name as ChildName, f2.name as ParentName 
+                        FROM flavours f1 
+                        JOIN flavours f2 
+                        ON f1.parent_id = f2.id 
+                        WHERE f1.id = :flavour_id";
+
+                // print_r($sql);
+                // die();
+            }    
+            
+    
+            $stmt = $this->con->prepare($sql);
+            $stmt->execute(array(':flavour_id' => $flavour_id));
+    
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // print_r($results);
+            // die();
+
+            if ($results) {
+                return $results;
+            }
+
+        }
+
+    }
+
+    class Filling
+    {
+        private $conn;
+	
+        public function __construct()
+        {
+            try {
+                $this->con = new Database();
+                $this->con = $this->con->dbConnection();
+            } catch (Exception $e) {
+                die("Error:" . $e->getMessage());
+            }            
+        }
+
+        function viewFillingByFlavour($flavour_id) {
+
+            //, fi.id AS fID, fl.name AS flavourName, fl.id AS flavourID
+    
+            $sql = "SELECT fi.*
+            FROM fillings AS fi 
+            LEFT JOIN flavour_filling AS ff 
+            ON fi.id = ff.filling_id 
+            LEFT JOIN flavours AS fl 
+            ON ff.flavour_id = fl.id
+            WHERE fl.id = :flavour_id";   
+             
+            $stmt = $this->con->prepare($sql);
+            $stmt->execute(array(':flavour_id' => $flavour_id));    
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($results) {
+                return $results;
+            }
+
+        }
+
     }
 

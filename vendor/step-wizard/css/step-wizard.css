@@ -2,7 +2,7 @@
   display: table;
   width: 100%;
   position: relative;
-  margin-top: 100px;
+  margin-top: 60px;
 }
 .stepwizard p {
   margin-top: 10px;
@@ -340,13 +340,13 @@
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #863f74;
-  border-color: #863f74;
+  background-color: #f8d0ee;
+  border-color: #f8d0ee;
 }
 
 .stepwizard-btn {
-  width: 110px;
-  height: 90px;
+  width: 90px;
+  height: 70px;
   margin-top: -30px;
 }
 

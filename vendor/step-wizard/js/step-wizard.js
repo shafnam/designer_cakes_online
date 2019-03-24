@@ -1,37 +1,38 @@
 $(document).ready(function () {
   
-      //validation
-     $('input, select').tooltipster({
-         trigger: 'custom',
-         onlyOne: false,
-         position: 'right',
-         theme: 'tooltipster-light'
-       });
+    //validation
+    $('input, select').tooltipster({
+        trigger: 'custom',
+        onlyOne: false,
+        position: 'right',
+        theme: 'tooltipster-light'
+    });
 
-        $("#form").validate({
-            errorPlacement: function (error, element) {
-                var lastError = $(element).data('lastError'),
-                    newError = $(error).text();
+    $("#order-design-form").validate({
+        errorPlacement: function (error, element) {
+            var lastError = $(element).data('lastError'),
+                newError = $(error).text();
 
-                $(element).data('lastError', newError);
+            $(element).data('lastError', newError);
 
-                if(newError !== '' && newError !== lastError){
-                    $(element).tooltipster('content', newError);
-                    $(element).tooltipster('show');
-                }
-            },
-            success: function (label, element) {
-                $(element).tooltipster('hide');
+            if(newError !== '' && newError !== lastError){
+                $(element).tooltipster('content', newError);
+                $(element).tooltipster('show');
+                $(window).scrollTop(200);                
             }
-        });
+        },
+        success: function (label, element) {
+            $(element).tooltipster('hide');
+        }
+    });
 
   
     /* This code handles all of the navigation stuff.
     ** Probably leave it. Credit to https://bootsnipp.com/snippets/featured/form-wizard-and-validation
     */
     var navListItems = $('div.setup-panel div a'),
-            allWells = $('.setup-content'),
-            allNextBtn = $('.nextBtn');
+        allWells = $('.setup-content'),
+        allNextBtn = $('.nextBtn');
 
     allWells.hide();
 
@@ -68,7 +69,7 @@ $(document).ready(function () {
 
         if (isValid){
             //Progress to the next page.
-          nextStepWizard.removeClass('disabled').trigger('click');    
+            nextStepWizard.removeClass('disabled').trigger('click');    
             // # # # AJAX REQUEST HERE # # # 
             
             /*
