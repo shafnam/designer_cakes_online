@@ -434,3 +434,197 @@
 
     }
 
+    class Tier
+    {
+        private $conn;
+	
+        public function __construct()
+        {
+            try {
+                $this->con = new Database();
+                $this->con = $this->con->dbConnection();
+            } catch (Exception $e) {
+                die("Error:" . $e->getMessage());
+            }            
+        }
+
+        function viewParentTiers() {
+    
+            $sql = "SELECT * FROM tiers WHERE parent_id IS NULL";    
+            $stmt = $this->con->query($sql);    
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if ($results) {
+                return $results;
+            }
+        }
+
+        function viewChildTiers() {
+    
+            $parent_id = 2;
+            $sql = "SELECT * FROM tiers WHERE parent_id = :parent_id";    
+            $stmt = $this->con->prepare($sql);
+            $stmt->execute(array(':parent_id' => $parent_id));    
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($results) {
+                return $results;
+            }
+
+        }
+
+        function  viewTierInfo($tier_id) {
+            $sql = "SELECT * FROM tiers WHERE id = :tier_id";
+    
+            $stmt = $this->con->prepare($sql);
+            $stmt->execute(array(':tier_id' => $tier_id));
+    
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($results) {
+                return $results;
+            }
+        }
+        
+
+    }
+
+    class Size
+    {
+        private $conn;
+	
+        public function __construct()
+        {
+            try {
+                $this->con = new Database();
+                $this->con = $this->con->dbConnection();
+            } catch (Exception $e) {
+                die("Error:" . $e->getMessage());
+            }            
+        }
+
+        function viewSizeByTier($tier_id) {
+
+            //, fi.id AS fID, fl.name AS flavourName, fl.id AS flavourID
+    
+            $sql = "SELECT * FROM sizes WHERE tier_id = :tier_id";   
+             
+            $stmt = $this->con->prepare($sql);
+            $stmt->execute(array(':tier_id' => $tier_id));    
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($results) {
+                return $results;
+            }
+
+        }
+
+    }
+
+    class Shape
+    {
+        private $conn;
+	
+        public function __construct()
+        {
+            try {
+                $this->con = new Database();
+                $this->con = $this->con->dbConnection();
+            } catch (Exception $e) {
+                die("Error:" . $e->getMessage());
+            }            
+        }
+
+        function viewShapeBySize($size_id) {
+
+            //, fi.id AS fID, fl.name AS flavourName, fl.id AS flavourID
+    
+            $sql = "SELECT s1.*
+            FROM shapes s1
+            INNER JOIN servings s2 
+            ON (s1.id = s2.shape_id)
+            WHERE size_id = :size_id";              
+             
+            $stmt = $this->con->prepare($sql);
+            $stmt->execute(array(':size_id' => $size_id));    
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($results) {
+                return $results;
+            }
+
+        }
+
+    }
+
+
+    class Serving
+    {
+        private $conn;
+	
+        public function __construct()
+        {
+            try {
+                $this->con = new Database();
+                $this->con = $this->con->dbConnection();
+            } catch (Exception $e) {
+                die("Error:" . $e->getMessage());
+            }            
+        }
+
+        function viewServingsBySizeAndTier($shape_id,$size_id,$tier_id) {
+            
+            $sql = "SELECT *
+            FROM servings 
+            WHERE shape_id = :shape_id 
+            AND size_id = :size_id
+            AND tier_id = :tier_id";              
+             
+            $stmt = $this->con->prepare($sql);
+            $stmt->execute(array(':size_id' => $size_id,':tier_id' => $tier_id, ':shape_id' => $shape_id));    
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($results) {
+                return $results;
+            }
+        }
+    }
+
+    class Order
+    {
+        private $conn;
+	
+        public function __construct()
+        {
+            try {
+                $this->con = new Database();
+                $this->con = $this->con->dbConnection();
+            } catch (Exception $e) {
+                die("Error:" . $e->getMessage());
+            }            
+        }
+
+        function insertOrderData($flavour_id, $sub_flavour_id=null, $filling_id, $tier_id, $multiple_tier_id=null, $size_id, $shape_id) {
+            
+            $sql = "INSERT INTO orders (flavour_id, sub_flavour_id, filling_id, tier_id, multiple_tier_id, size_id, shape_id) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+            $stmt = $this->con->prepare($sql);
+
+            $stmt->bindParam(1, $flavour_id);
+            $stmt->bindParam(2, $sub_flavour_id);
+            $stmt->bindParam(3, $filling_id);
+            $stmt->bindParam(4, $tier_id);
+            $stmt->bindParam(6, $multiple_tier_id);
+            $stmt->bindParam(5, $size_id);           
+            $stmt->bindParam(7, $shape_id);
+
+            $result = $stmt->execute();
+
+            if ($result) {
+                return true;
+            }
+
+        }
+    }
+
+

@@ -29,7 +29,7 @@
 	
 	<!-- Page specific styles-->
 	<link rel="stylesheet" href="vendor/slick/slick/slick.css">
-  <link rel="stylesheet" href="vendor/lightGallery-master/dist/css/lightgallery.min.css">
+  	<link rel="stylesheet" href="vendor/lightGallery-master/dist/css/lightgallery.min.css">
 
 </head>
 
@@ -64,8 +64,8 @@
 									foreach ($product_image_details as $childrow) {
 								?>
 								<div class="item">
-									<a href="img/gallery/<?php echo $childrow['image'];?>">
-										<img class="img-fluid image" src="img/gallery/<?php echo $childrow['image'];?>" alt="">
+									<a href="img/gallery/<?php echo $row['name'] . '/' . $childrow['image'];?>">
+										<img class="img-fluid image" src="img/gallery/<?php echo $row['name'] . '/' . $childrow['image'];?>" alt="">
 									</a>
 								</div>
 								<?php } ?>
@@ -93,7 +93,7 @@
 								$product_image_thumbnails = $products->viewProductImages($row['id']);
 								foreach ($product_image_thumbnails as $childrow) {
 							?>
-								<div class="item"><img src="img/gallery/<?php echo $childrow['image'];?>" alt=""></div>
+								<div class="item"><img src="img/gallery/<?php echo $row['name'] . '/' . $childrow['image'];?>" alt=""></div>
 							<?php } ?>					
 
 								<!-- <div class="item"><img src="img/kids/1/2.jpg" alt=""></div>

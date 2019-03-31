@@ -37,8 +37,8 @@ h2 {
 }
 p {
     font-family: 'EB Garamond', serif;
-    font-size: 16px;
-    line-height: 23px;
+    font-size: 18px;
+    line-height: 28px;
     margin: 0 0 23px 0;
 }
 h4 {
@@ -81,8 +81,8 @@ th {
 /* Button */
 .btn-dark:before, .btn-dark:after {
 	border: 1px solid #000;
-    border-color: #000 !important;
-    opacity: 1 !important;
+  border-color: #000 !important;
+  opacity: 1 !important;
 }
 .main-btn {
     -webkit-backface-visibility: hidden;
@@ -90,7 +90,7 @@ th {
     border-radius: 5px;
     text-align: center;
     stroke: #fff;
-    color: #6a6a6a;
+    color: #000;
     font-family: 'EB Garamond', serif;
     font-size: 14px;
     font-weight: bold;
@@ -180,7 +180,7 @@ th {
     background-image: url("../img/bg12a.jpg");
     /*margin-top: -55px;*/
     padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-bottom: 6rem;
     background-size: cover;
 }
 .my-bg h1{
@@ -188,7 +188,9 @@ th {
 }
 .my-bg h1 a{
   font-size: 4rem;   
-	font-family: 'Dancing Script', cursive;
+  /*font-family: 'Dancing Script', cursive;*/
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
 	color: #000;
 	/*-webkit-text-fill-color: #403232;*/ /* Will override color (regardless of order) */
 	/*-webkit-text-stroke-width: 1px;
@@ -300,6 +302,23 @@ th {
 	min-height:20px;
 	width: 100%;
 }
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+    Mega Menu
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
+.megamenu-li {
+  position: static;
+}
+
+.megamenu {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  padding: 15px;
+}
+
 
 /*
 ::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -307,14 +326,34 @@ th {
 ::::::::::::::::::::::::::::::::::::::::::::::::::::
 */
 .homepage{
-    margin-top: 0px;
+  margin-top: 0px;
 }
 .header-margin{
 	margin-top: 100px;
 }
+.home-welcome{
+  background: #dcd9d4 url(../img/cake-bg-small.png);
+  padding-top: 100px;
+  padding-bottom: 100px;
+  padding-left: 60px;
+  padding-right: 60px;
+}
+.home-welcome h2 {
+  text-align: center!important;
+  color: #000;
+  font-size: 2rem;
+}
 .home-cake-section {
     padding-top: 60px;
     padding-bottom: 60px;
+    width: 85%;
+    margin: auto;
+}
+.home-cake-section h2 {
+  text-align: center!important;
+  color: #000;
+  font-size: 2rem;
+  line-height: 2rem;
 }
 .home-cake-section .card {
     background-color: rgba(0,0,0,.03);
@@ -332,6 +371,7 @@ th {
   /*font-family: 'Dancing Script', cursive;*/
 	color: #2f2c2c;
   font-weight: 600;
+  text-align: center;
 }
 .home-cake-section a:hover{
 	color: #ab3184;
@@ -396,6 +436,7 @@ nav > ul > li:first-child { border-left: none; }
   text-align: center!important;
   color: #fff;
   font-size: 2rem;
+  line-height: 2rem;
   margin-bottom: 40px;
 }
 .card .carousel-item {
@@ -444,8 +485,9 @@ a:hover > .ico {
 .cake-designs{
 	background: #f6fbff url('../img/cake-bg-small.png');
   margin-top: 45px;
-    padding-top: 1px;
-	padding: 1rem;
+  padding-top: 1px;
+  padding: 1rem;
+  border: 1px solid #ecf1f5;
 }
 .cake-designs h1{
     font-size: 2rem;
@@ -629,12 +671,12 @@ figure {
 #zoomIn img {
 	-webkit-transform: scale(1);
 	transform: scale(1);
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
+	-webkit-transition: .6s ease-in-out;
+	transition: .6s ease-in-out;
 }
 #zoomIn:hover img {
-	-webkit-transform: scale(1.3);
-	transform: scale(1.3);
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
 }
 
 /*
@@ -797,7 +839,7 @@ figure {
   margin: 0 auto;
   left: 0;
   right: 0;
-  top: 50%;
+  top: 37%;
   z-index: 1;
 }
 .wizard .nav-tabs > li.active > a,

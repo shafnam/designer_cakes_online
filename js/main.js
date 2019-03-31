@@ -1,26 +1,32 @@
 
 /* MULTIPLE LEVEL NAVIGATION */
 
-(function($){
-
-	$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
-	  if (!$(this).next().hasClass('show')) {
-		$(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
-	  }
-	  var $subMenu = $(this).next(".dropdown-menu");
-	  $subMenu.toggleClass('show');
-
-	  $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
-		$('.dropdown-submenu .show').removeClass("show");
-	  });
-
-	  return false;
+$(document).ready(function() {
+	$(".megamenu").on("click", function(e) {
+		e.stopPropagation();
 	});
+});
 
-})(jQuery)
+// (function($){
+
+// 	$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+// 	  if (!$(this).next().hasClass('show')) {
+// 		$(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+// 	  }
+// 	  var $subMenu = $(this).next(".dropdown-menu");
+// 	  $subMenu.toggleClass('show');
+
+// 	  $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+// 		$('.dropdown-submenu .show').removeClass("show");
+// 	  });
+
+// 	  return false;
+// 	});
+
+// })(jQuery)
 
 
-/* Fixed Header on Scroll */
+/* FIXED HEADER ON SCROLL */
  
 $(window).scroll(function() {
   if ($(this).scrollTop() > 150) {
@@ -30,14 +36,23 @@ $(window).scroll(function() {
   }
 });
 
+/* 
+---------------------	
+CAKE DESIGN ORDER FORM 
+----------------------	
+*/
 
-$(document).ready(function(){	
+/* CAKE DESIGN ORDER FORM DYNAMICALLY GENERATE CAKE FILLING FIELDS FROM CAKE FLAVOUR FIELDS */
+$(document).ready(function(){
 
-	/* CAKE DESIGN ORDER FORM */
+	$('#Step_1').hide();
+	$('#Step_2').hide();
+	$('#Step_3').hide();
+	$('#Step_4').hide();
 
-	$('#Step_1').prop("disabled", true);
-	$('#Step_2').prop("disabled", true);
-	$('#Step_3').prop("disabled", true);
+	/*-------------- 
+		STEP 1
+	----------------*/
 
 	// show sub flavours
 	$('#order-design-form input[name="flavour"]').click(function(){
@@ -45,53 +60,60 @@ $(document).ready(function(){
 		var targetDiv = inputValue + "-flavour";
 		$('.hide').hide();
 		$("#"+ targetDiv).show('slow');
-		//alert(inputValue);
 	});
 
-	$('#order-design-form input[name="flavour"]').change(function () {		
+	// dynamic dependent filling fields
+	$('#order-design-form input[name="flavour"]').change(function (){	
 
 		var inputValue = $(this).attr("id");
 		var targetDiv = inputValue + "-flavour";
+		var targetRadioID = inputValue + "-sub-flavour";
 		var radioValue;
 
-		if($("#"+inputValue).is(':checked')) {
+		// alert(inputValue);
 
+		if($("#"+inputValue).is(':checked')) {
+			
 			if(($("#" + targetDiv).length == 1)) {
 
-				// radio button has child elements
-				$('input[name="'+targetDiv+'"]').attr('required', true);
-				$('#Step_1').prop("disabled", true);
+				// radio button has child elements make them required.
+				$("#"+targetRadioID).attr('required', true);
+				$('#Step_1').fadeOut(100);
 				
-				$('#order-design-form input[name="'+targetDiv+'"]').change(function () {		
-						if($('input[name="'+targetDiv+'"]').is(':checked')){
+				$('#order-design-form input[name="sub_flavour"]').change(function () {
+					
+					if($('#order-design-form input[name="sub_flavour"]').is(':checked')){
 
-							radioValue = $("input[name='"+targetDiv+"']:checked").val();
-							$('#Step_1').prop("disabled", false);	
+						radioValue = $("input[name='sub_flavour']:checked").val();
+						$('#Step_1').fadeIn(100);	
 
-							// find the relevent cake fillings with selected id
-							$.ajax({
-								type: "POST",
-								url: "inc/get-fillings.php",
-								data: { 
-									id: radioValue
-								},
-								cache: false,
-								success: function(result) {
-									$(".cakeFillings").html(result);
-								},
-								error: function(result) {
-									alert('error');
-								}
-							});
+						// find the relevent cake fillings with selected id
+						$.ajax({
+							type: "POST",
+							url: "inc/get-fillings.php",
+							data: { 
+								id: radioValue
+							},
+							cache: false,
+							success: function(result) {
+								$(".cakeFillings").html(result);
+								// console.log(result);
+							},
+							error: function(result) {
+								alert('error');
+							}
+						});
 
-						}
+					}
+
 				});
 
 			}
 			else {
-
+				
 				radioValue = $("input[name='flavour']:checked").val();
-				$('#Step_1').prop("disabled", false);
+				// remove required from child elements.
+				$('#Step_1').fadeIn(100);
 
 				// find the relevent cake fillings with selected id
 				$.ajax({
@@ -115,21 +137,182 @@ $(document).ready(function(){
    	
 	});
 
-	$("#Step_1").click(function(e) {
+	/*-------------- 
+		STEP 2  
+	----------------*/
+
+	/* CAKE DESIGN ORDER FORM DYNAMICALLY GENERATED CAKE FILLING FIELDS */
+	$(document).on('click','#order-design-form input[name="filling"]',function () {
+		if ($(this).is(':checked')) {			
+			$('#Step_2').fadeIn(100);
+			//alert($(this).val());
+		}
+	});
+
+	/*-------------- 
+		STEP 3  
+	----------------*/
+
+	var tier_id;
+
+	// show multiple tiers
+	$('#order-design-form input[name="tiers"]').click(function(){
+		if ($(this).attr('id') === 'multiple'){			
+			$('#multiple-tier').show(800);
+			$('.cakeSizes').hide();
+			$('.cakeShapes').hide();
+			$('input[name="multiple_tiers"]').attr('required', true);
+		}
+		else if ($(this).attr('id') === 'single'){
+			$('#multiple-tier').hide(800);
+			$('.cakeSizes').show(800);
+			$('.cakeShapes').hide();
+			$('input[name="multiple_tiers"]').attr('required', false);
+		}	
+	});
+
+	// Show single tier sizes
+	$('#order-design-form input[name="tiers"]').change(function () {
+
+		if ($(this).attr('id') === 'single'){
+
+			var inputValue = $(this).attr("id");
+			var radioValue;
+
+			if($("#"+inputValue).is(':checked')) {
+				
+				radioValue = $("input[name='tiers']:checked").val();
+
+				// find the relevent cake sizes with selected id
+				$.ajax({
+					type: "POST",
+					url: "inc/get-sizes.php",
+					data: { 
+						id: radioValue
+					},
+					cache: false,
+					success: function(result) {
+						$(".cakeSizes").html(result).fadeIn(500);
+						$('.cakeSizes').show(800);
+					},
+					error: function(result) {
+						alert('error');
+					}
+				});
+
+				// get tier id
+				tier_id = radioValue;
+				//alert(tier_id);
+
+			}
+		}
+
+	});
+
+	// Show multi tier sizes
+	$('#order-design-form input[name="multiple_tiers"]').change(function () {
+
+		$('.cakeSizes').hide();
+		$('.cakeShapes').hide();
+
+		var inputValue = $(this).attr("id");
+		var radioValue;
+
+		if($("#"+inputValue).is(':checked')) {
+			
+			radioValue = $("input[name='multiple_tiers']:checked").val();
+
+			// find the relevent cake sizes with selected id
+			$.ajax({
+				type: "POST",
+				url: "inc/get-sizes.php",
+				data: { 
+					id: radioValue
+				},
+				cache: false,
+				success: function(result) {
+					$(".cakeSizes").html(result).fadeIn(500);
+					$('.cakeSizes').show(800);
+				},
+				error: function(result) {
+					alert('error');
+				}
+			});
+			// get tier id
+			tier_id = radioValue;
+			//alert('tier_id: '+tier_id);
+		}
+
+	});
+
+	/* CAKE DESIGN ORDER FORM DYNAMICALLY GENERATED CAKE SIZES FIELDS */
+	$(document).on('change','#order-design-form #size',function () {
+
+		$('.cakeShapes').hide();
+		
+		var radioValue = this.value;
+
+		// find the relevent cake shapes with selected id
+		$.ajax({
+			type: "POST",
+			url: "inc/get-shapes.php",
+			data: { 
+				id: radioValue
+			},
+			cache: false,
+			success: function(result) {
+				$(".cakeShapes").html(result).fadeIn(500);
+				$('.cakeShapes').show(800);
+			},
+			error: function(result) {
+				alert('error');
+			}
+		});
+		
+	});
+
+	/* CAKE DESIGN ORDER FORM DYNAMICALLY GENERATED CAKE SHAPES FIELDS */
+	$(document).on('click','#order-design-form input[name="shape"]',function () {
+
+		$('.cakeServings').hide();
+		
+		// Get the selected value from the size dropdown
+		var size_id = $( "#order-design-form #size option:checked" ).val();
+		//alert('size id val '+size_id);
+		var id = this.value;
+		//alert('id val '+id);	
+		//alert('t: '+tier_id+'s: '+size_id+'sh: '+id);
+
+		// find the relevent cake servings with selected id (also we need size_id and tier_id)
+		$.ajax({
+			type: "POST",
+			url: "inc/get-servings.php",
+			data: { 
+				id: id,
+				size_id: size_id,
+				tier_id: tier_id
+			},
+			cache: false,
+			success: function(result) {
+				$(".cakeServings").html(result).fadeIn(500);
+				$('.cakeServings').show(800);
+				$('#Step_3').fadeIn(100);
+			},
+			error: function(result) {
+				alert('error');
+			}
+		});
+
+	});
+
+	$("#Step_3").click(function(e) {
 		e.preventDefault();
-		$('#flavour-error').show("fast");
+		//alert('test');
 	});
 
 });
 
 
-$(document).on('click','#order-design-form input[name="filling"]',function () {
-	if ($(this).is(':checked')) {
-			//alert($(this).val());
-		$('#Step_2').prop("disabled", false);
-
-	}
-});
 	
 	// $("#Step_1").click(function(e) {
 	// 	e.preventDefault();
@@ -192,30 +375,30 @@ $(document).on('click','#order-design-form input[name="filling"]',function () {
 
 $(document).ready(function(){		
 
-	$("input[name='tiers']").on("click", function(){
-			$("#cake_shape").slideDown("slow");
-	});
+	// $("input[name='tiers']").on("click", function(){
+	// 		$("#cake_shape").slideDown("slow");
+	// });
 
-	$("input[name='shape']").on("click", function(){
-			$("#cake_size").show();
-	});
+	// $("input[name='shape']").on("click", function(){
+	// 		$("#cake_size").show();
+	// });
 	
 	/* Cake Flavours Page */
 	
 	$(".showFlavours").click(function(){
-			var $toggle = $(this); 
+		var $toggle = $(this); 
 
-			var id = "#flavourOptions-" + $toggle.data('id'); 
+		var id = "#flavourOptions-" + $toggle.data('id'); 
 
-			$( id ).toggle(500);
+		$( id ).toggle(500);
 	});
 
 	$("#dLabel").change(function () {
 		var $aval = $(this).find(':selected').data('id');
 		console.log($aval);		
-    $("#OrderLinkOne").attr('href', 'order-flavour.php?flavour_id='+$aval);
-    //$("#PriceOne").html('1000'); // you can turn this interger in what you want
-  });
+    	$("#OrderLinkOne").attr('href', 'order-flavour.php?flavour_id='+$aval);
+    	//$("#PriceOne").html('1000'); // you can turn this interger in what you want
+  	});
 
 });
 

@@ -18,12 +18,12 @@
 
             foreach ($filling_details as $row) { 
 ?>
-            <div class="col-lg-4 mb-4">	
+            <div class="col-lg-3 mb-4">	
 
                 <label class="img-label">
                     <input type="radio" name="filling" value="<?php echo $row['slug'];?>" id="<?php echo $row['slug'];?>" required>
                     <img class="card-img-top img-fluid" src="img/cake-fillings/<?php echo $row['image'];?>" alt="" style="width: 100px;">
-                    <h4 class="px-3 pt-3 m-0"><?php echo $row['name'];?></h4>		
+                    <h5 class="pt-3 m-0 text-center"><?php echo $row['name'];?></h4>		
                 </label>
 
             </div>
