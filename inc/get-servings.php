@@ -20,7 +20,7 @@
         } else {
 ?>
             <div class="col-lg-12 mt-4">	
-             <h5 class="text-md-left pb-4">Approximate Cake Servings: <?php echo $serving_details['name']; ?> People</h5>
+             <h5 class="text-md-left pb-4 sub-cr">Approximate Cake Servings: <?php echo $serving_details['name']; ?> People</h5>
             </div>
 
 <?php            

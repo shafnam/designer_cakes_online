@@ -26,34 +26,39 @@
 	<?php include('header.php'); ?>
 
 	<!-- Welcome -->
-	<!-- <section class="container-fluid home-welcome">
+	<!-- <section class="container-fluid home-welcomes">
 		
-		<h2>Welcome</h2>
-
 		<div class="row">
-			<div class="col-lg-6">
+			<!-- <div class="col-lg-3">
 				<img class="img-fluid" src="img/testimonials/1.jpg">	
-			</div>
-			<div class="col-lg-6">
-				<p class="text-center">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus 
-				Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. 
-				Rackham.
-				</p>
+			</div> --
+			<div class="col-lg-12">
+				<h2>Welcome</h2>
 			</div>
 		</div>
 
-		
-
 	</section> -->
+
+	<!-- <div class="container homepage">
+
+		<h2>Welcome</h2>
+		
+		<p class="text-center">
+			The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus 
+			Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. 
+			Rackham.
+		</p>
+
+	</div> -->
 
 	<!-- Page Content -->
 	<div class="container homepage">
 
-		<!-- Cake Category Section-->
+		<!-- Cake Category Section to Designer Cakes Toowoomba-->
 		<section class="row mt-0 home-cake-section">
 
 			<!-- Welcome -->
-			<h2 class="col-lg-12 m-4 text-center">Our Designs</h2>
+			<h2 class="col-lg-12 m-4 text-center pb-5">Welcome </h2>
 
 			<?php foreach ($desgin_details as $row) { ?> 
 			<div class="col-lg-4 mb-4">

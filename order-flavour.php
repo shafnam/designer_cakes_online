@@ -1,13 +1,17 @@
 <?php	
 	require_once 'inc/config.php';
 	require_once 'inc/class.crud.php';
+
 	$flavours = new Flavour();
 	$flavour_details = $flavours->viewFlavourInfo($_GET['flavour_id']);
 	extract($flavour_details); 
 
 	//check whether item is a parent or child
 	$product = new Product();
-    $has_parent = $product->checkHasParent($_GET['flavour_id'],'flavours');
+	$has_parent = $product->checkHasParent($_GET['flavour_id'],'flavours');
+	
+	$fillings = new Filling();
+	$filling_details = $fillings->viewFillingByFlavour($_GET['flavour_id']);
 
 ?>
 <!DOCTYPE html>
@@ -24,10 +28,8 @@
 
 	<?php include('layout-header.php');?>
 	
-	<!-- Page specific styles-->
-	<link rel="stylesheet" href="vendor/slick/slick/slick.css">
-	<link rel="stylesheet" href="vendor/lightGallery-master/dist/css/lightgallery.min.css">
-	<link rel="stylesheet" href="vendor/step-wizard/css/step-wizard.css">
+	<!-- Page specific styles -->
+	<link href="vendor/datepicker/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
 	<style>		
 	
@@ -35,11 +37,10 @@
 
 </head>
 
-<body>
+<body class="order-cake">
 	<!-- Header -->
-	<?php //include('header.php'); ?>	
 	
-	<!-- Page Header cake-designs-->
+	<!-- Page Header -->
 	<div class="container cake-designs my-5" id="order-design">
 		<div class="row">
 			<div class="col-lg-9">
@@ -59,386 +60,297 @@
 	<!-- Page Content -->
 	<div class="container my-5">
 
-		<!-- Steps -->
-		<div class="stepwizard">
-			<div class="stepwizard-row setup-panel">
-				<!-- <div class="stepwizard-step">
-					<a href="#step-1" type="button" class="btn btn-primary stepwizard-btn">
-						<img src="img/step-1b.png" alt="">
-					</a>
-					<p> Cake Flavour</p>
-				</div> -->
-				<div class="stepwizard-step">
-					<a href="#step-1" type="button" class="btn btn-primary stepwizard-btn">
-						<img src="img/step-2b.png" alt="">
-					</a>
-					<p> Cake Filling</p>
-				</div>
-				<div class="stepwizard-step">
-					<a href="#step-2" type="button" class="btn btn-default btn-circle stepwizard-btn disabled">
-						<img src="img/step-3b.png" alt="">
-					</a>												
-					<p> Cake Shape & Size</p>
-				</div>
-			</div>
-		</div>
-
 		<div class="row">
-			<div class="col-lg-12 p-5">
+			<div class="col-lg-12 mx-auto d-block">
 						
-				<form role="form" id="order-flavour-form" class="cake-flavours">
+				<!-- multistep form -->
+				<form class="form cf cake-flavours" id="order-flavour-form" method="post" action="inc/submit.php">
+                    <div class="wizard">
+
+                        <div class="wizard-inner">
+                            <div class="connecting-line"></div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="nav-item text-center mx-auto">
+                                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1" class="nav-link active">
+										<span class="round-tab">
+											<img src="img/step-2b.png">
+										</span>
+									</a>
+									<p> Cake Filling</p>
+                                </li>
+                                <li role="presentation" class="nav-item text-center mx-auto">
+                                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2" class="nav-link disabled">
+										<span class="round-tab">
+											<img src="img/step-3b.png">
+										</span>
+									</a>
+									<p> Cake Size</p>
+                                </li>
+                                <li role="presentation" class="nav-item text-center mx-auto">
+                                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3" class="nav-link disabled">
+										<span class="round-tab">
+											<img src="img/step-6b.png">
+										</span>
+									</a>
+									<p> Cake Design</p>
+                                </li>
+                                <li role="presentation" class="nav-item text-center mx-auto">
+                                    <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4" class="nav-link disabled">
+										<span class="round-tab">
+											<img src="img/step-4b.png">
+										</span>
+									</a>
+									<p> Personal Info</p>
+                                </li>
+                                <!-- <li role="presentation" class="nav-item text-center">
+                                    <a href="#step5" data-toggle="tab" aria-controls="step5" role="tab" title="Step 5" class="nav-link disabled">
+										<span class="round-tab">
+											<i class="fa fa-check"></i>
+										</span>
+									</a>
+                                </li> -->
+                            </ul>
+                        </div>
+
+                        <div class="tab-content">
+
+                            <!-- Please Choose a Cake Flavour -->
+							<div class="tab-pane active" role="tabpanel" id="step1">
 								
-					<!-- Cake Flavour -->
-					<div class="setup-content" id="step-1">
-					
-						<div class="row">										
-							<div class="col-lg-12 pb-5">
-								<h3>Choose Cake Flavour</h3>
+								<h3 class="text-md-left pb-4">Please Choose a Cake Filling</h3>
+
+                                <div class="row">
+
+									<?php foreach ($filling_details as $row) { ?> 
+										<div class="col-lg-3 mb-4">	
+
+											<label class="img-label mx-auto d-block">
+												<input type="radio" name="filling" value="<?php echo $row['slug'];?>" id="<?php echo $row['slug'];?>" required>
+												<img class="card-img-top img-fluid mx-auto d-block" src="img/cake-fillings/<?php echo $row['image'];?>" alt="" style="width: 100px;">
+												<h5 class="pt-3 m-0 text-center"><?php echo $row['name'];?></h4>		
+											</label>
+
+										</div>
+									<?php } ?>
+
+								</div>
+								
+                                <ul class="list-inline text-md-left sub-cr">
+									<li><button type="button" id="Step_1" class="btn main-btn btn-dark next-step next-button">Next</button></li>
+								</ul>
+								
+                            </div>
+
+                            <!-- Please Choose a Cake Filling -->
+							<div class="tab-pane" role="tabpanel" id="step2">
+								
+								<h3 class="text-md-left pb-4">Please Choose a Cake Filling</h3>
+								
+								<div class="row cakeFillings">	
+                                   <!-- filled with ajax data -->
+								</div>
+								
+                                <ul class="list-inline text-md-left sub-cr">
+                                    <li><button type="button" id="Step_2" class="btn main-btn btn-dark next-step next-button">Next</button></li>
+								</ul>
+								
 							</div>
-						</div>
-										
-						<div class="row">
+							
+							<!-- Please Choose Tier Type -->
+                            <div class="tab-pane" role="tabpanel" id="step3">
+								
+								<div class="row">
+
+									<div class="col-lg-12 mb-4">
+										<h3 class="text-md-left pb-4">Please Choose Tier Type</h3>
+									</div>	
+
+									<?php foreach ($tier_details as $row) { ?>
+										<div class="col-lg-3 mb-4">	
+
+											<label class="img-label mx-auto d-block">
+												<input type="radio" name="tiers" value="<?php echo $row['id'];?>" id="<?php echo $row['slug'];?>" required>
+												<img class="card-img-top img-fluid mx-auto d-block" src="img/cake-tiers/<?php echo $row['image'];?>" alt="" style="width: 200px;">
+												<h5 class="px-3 pt-3 m-0 text-center"><?php echo $row['name'];?></h4>		
+											</label>
+
+										</div>
+									<?php } ?>  
+
+								</div>								
+
+								<div class="row" id="multiple-tier" style="display: none;">
+
+									<div class="col-lg-12 mb-4">	
+										<h3 class="text-md-left py-2">Please Choose Number of Tiers</h3>
+									</div>
+
+									<?php foreach ($m_tier_details as $row) {  ?>
+										<div class="col-lg-3 mb-4">	
+
+											<label class="img-label mx-auto d-block" style="border: 0px solid #dee2e6;">
+												<input type="radio" name="multiple_tiers" value="<?php echo $row['id'];?>" id="<?php echo $row['slug'];?>">
+												<img class="card-img-top img-fluid mx-auto d-block" src="img/cake-tiers/<?php echo $row['image'];?>" alt="" style="width: 150px;">
+												<h5 class="px-3 pt-3 m-0 text-center"><?php echo $row['name'];?></h4>		
+											</label>
+
+										</div>
+									<?php } ?>                                    
+								</div>
+								
+								<div class="row cakeSizes" style="display: none;">									
+                                   	<!-- filled with ajax data -->
+								</div>
+
+								<div class="row cakeShapes" style="display: none;">									
+                                   	<!-- filled with ajax data -->
+								</div>
+
+								<div class="row cakeServings" style="display: none;">									
+                                   	<!-- filled with ajax data -->
+								</div>
+								
+                                <ul class="list-inline text-md-left sub-cr">
+                                    <li><button id="Step_3" class="btn main-btn btn-dark next-step next-button">Next</button></li>
+								</ul>
+								
+							</div>
+							
+                           	<!-- Fill the Personal Details -->
+							<div class="tab-pane" role="tabpanel" id="step4">
+								
+								<h3 class="text-md-left pb-4">Please Fill Your Personal Details Below</h3>
+
+								<div class="row sub-cr">
 									
-							<!-- Sponge Cake -->
-							<div class="col-lg-4 mb-4">								
-								<label class="img-label">
-									<input type="radio" name="flavour" value="sponge-cake" id="sponge-cake" required>
-									<img class="card-img-top" src="img/cake-flavours/1.jpg" alt="" style="height: 195px;">
-									<h4 class="px-3 pt-3 m-0">Sponge Cake</h4>		
-								</label>								
-								<!-- extra sponge flavours -->
-								<div class="sponge-flavours" style="display: none;">
-									<div class="row">
-										<div class="col-lg-6">		
-											<div class="form-check">
-												<label class="form-check-label radio">
-													<input type="radio" class="form-check-input" name="sponge-flavour" value="Vanilla" id="sponge-cake-vanilla"><span>Vanilla</span>
-												</label>
-											</div>
-											<div class="form-check">
-												<label class="form-check-label radio">
-													<input type="radio" class="form-check-input" name="sponge-flavour" value="Chocolate" id="sponge-cake-chocolate"><span>Chocolate</span>
-												</label>
-											</div>
+									<div class="col-lg-6 mb-4">
+
+										<div class="form-group">
+											<label for="name">First Name:</label>
+											<input type="text" class="form-control" id="f_name" name="f_name" required>
 										</div>
-										<div class="col-lg-6">		
-											<div class="form-check">
-												<label class="form-check-label radio">
-													<input type="radio" class="form-check-input" name="sponge-flavour" value="Strawberry" id="sponge-cake-strawberry"><span>Strawberry</span>
-												</label>
-											</div>
-											<div class="form-check">
-												<label class="form-check-label radio">
-													<input type="radio" class="form-check-input" name="sponge-flavour" value="Coffee" id="sponge-cake-coffee"><span>Coffee</span>
-												</label>
-											</div>
+										
+										<div class="form-group">
+											<label for="email">Email address:</label>
+											<input type="email" class="form-control" id="email" required>
+										</div>																											
+
+									</div>
+
+									<div class="col-lg-6 mb-4">
+
+										<div class="form-group">
+											<label for="name">Last Name:</label>
+											<input type="text" class="form-control" id="l_name" name="l_name" required>
 										</div>
-									</div>
-								</div>
-							</div>
+										
+										<div class="form-group">
+											<label for="phone">Phone Number:</label>
+											<input type="number" class="form-control" id="phone" name="phone" required>
+										</div>																			
 
-							<!-- Carrot Cake -->
-							<div class="col-lg-4 mb-4">				
-								<label class="img-label">
-									<input type="radio" name="flavour" value="carrot-cake" id="carrot-cake">
-									<img class="card-img-top" src="img/cake-flavours/2.jpg" alt="" style="height: 195px;">
-									<h4 class="px-3 pt-3 m-0">Carrot Cake</h4>		
-								</label>
-							</div>
+									</div>										
 
-							<!-- Choco Mud Cake -->
-							<div class="col-lg-4 mb-4">				
-								<label class="img-label">
-									<input type="radio" name="flavour" value="chocolate-mud-cake" id="chocolate-mud-cake">
-									<img class="card-img-top" src="img/cake-flavours/3.jpg" alt="" style="height: 195px;">
-									<h4 class="px-3 pt-3 m-0">Chocolate Mud Cake</h4>		
-								</label>
-							</div>
-
-						</div>
-						
-						<div class="row">
-							
-							<!-- Red Velvet Cake -->
-							<div class="col-lg-4 mb-4">				
-								<label class="img-label">
-									<input type="radio" name="flavour" value="red-velvet-cake" id="red-velvet-cake">
-									<img class="card-img-top" src="img/cake-flavours/4.jpg" alt="" style="height: 195px;">
-									<h4 class="px-3 pt-3 m-0">Red Velvet Cake</h4>		
-								</label>
-							</div>
-							
-							<!-- Sri Lankan Cake -->
-							<div class="col-lg-4 mb-4">
-								
-								<label class="img-label">
-									<input type="radio" name="flavour" value="sl-cake" id="sl-cake">
-									<img class="card-img-top" src="img/cake-flavours/5.jpg" alt="" style="height: 195px;">
-									<h4 class="px-3 pt-3 m-0">Sri Lankan Cake</h4>		
-								</label>
-								<!-- extra sl flavours -->
-								<div class="sl-flavours" style="display: none;">
-									<div class="row">
-										<div class="col-lg-12">		
-											<div class="form-check">
-												<label class="form-check-label radio">
-													<input type="radio" class="form-check-input" name="sl-flavour" value="Vanilla Butter Cake" id="sl-cake-vanilla"><span>Vanilla Butter Cake</span>
-												</label>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="form-check">
-												<label class="form-check-label radio">
-													<input type="radio" class="form-check-input" name="sl-flavour" value="Chocolate Cake" id="sl-cake-chocolate"><span>Chocolate Cake</span>
-												</label>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="form-check">
-												<label class="form-check-label radio">
-													<input type="radio" class="form-check-input" name="sl-flavour" value="Ribbon Cake" id="sl-cake" id="sl-cake-ribbon"><span>Ribbon Cake</span>
-												</label>
-											</div>
-										</div>
-									</div>
-								</div>	
-
-							</div>
-							
-							<!-- Dietary Requirement Cakes -->
-							<div class="col-lg-4 mb-4">
-								
-								<label class="img-label">
-									<input type="radio" name="flavour" value="dr-cake" id="dr-cake">
-									<img class="card-img-top" src="img/cake-flavours/6.jpg" alt="" style="height: 195px;">
-									<h4 class="px-3 pt-3 m-0">Dietary Requirement Cakes</h4>		
-								</label>
-								<!-- extra dr flavours -->
-								<div class="dr-flavours ml-3" style="display: none;">
-									<div class="form-check">
-										<label class="form-check-label radio">
-											<input type="radio" class="form-check-input" name="dr-flavour" value="Vanilla - Eggless Cake" id="dr-cake-vanilla-eggless">
-											Vanilla - Eggless Cake
-										</label>
-									</div>
-									<div class="form-check">
-										<label class="form-check-label radio">
-											<input type="radio" class="form-check-input" name="dr-flavour" value="Chocolate - Eggless Cake" id="dr-cake-chocolate-eggless">
-											Chocolate - Eggless Cake
-										</label>
-									</div>
-
-									<div class="form-check">
-										<label class="form-check-label radio">
-											<input type="radio" class="form-check-input" name="dr-flavour" value="Vanilla - Gluten Free Cake" id="dr-cake-vanilla-gf">
-											Vanilla - Gluten Free Cake
-										</label>
-									</div>
-									<div class="form-check">
-										<label class="form-check-label">
-											<input type="radio" class="form-check-input" name="dr-flavour" value="Chocolate - Gluten Free Cake" id="dr-cake-chocolate-gf">
-											Chocolate - Gluten Free Cake
-										</label>
-									</div>
-
-									<div class="form-check">
-										<label class="form-check-label">
-											<input type="radio" class="form-check-input" name="dr-flavour" value="Vanilla - Lactose Free Cake" id="dr-cake-vanilla-lf">
-											Vanilla - Lactose Free Cake
-										</label>
-									</div>
-									<div class="form-check">
-										<label class="form-check-label">
-											<input type="radio" class="form-check-input" name="dr-flavour" value="Chocolate - Lactose Free Cake" id="dr-cake-chocolate-lf">
-											Chocolate - Lactose Free Cake
-										</label>
-									</div>
-
-									<div class="form-check">
-										<label class="form-check-label">
-											<input type="radio" class="form-check-input" name="dr-flavour" value="Vanilla - Vegan Cake" id="dr-cake-vanilla-vegan">
-											Vanilla - Vegan Cake
-										</label>
-									</div>
-									<div class="form-check">
-										<label class="form-check-label">
-											<input type="radio" class="form-check-input" name="dr-flavour" value="Chocolate - Vegan Cake" id="dr-cake-chocolate-vegan">
-											Chocolate - Vegan Cake
-										</label>
-									</div>
 								</div>
 
-							</div>
-						
-						</div>
-						
-						<div class="row">
-						
-							<div class="col-lg-12">
-								<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>	
-							</div>
-							
-						</div>
+								<div class="row sub-cr">
 
-					</div>
+									<div class="col-lg-6 mb-4">
 
-					<!-- Cake Filling -->
-					<div class="setup-content" id="step-2">
-
-						<div class="row">
-							<div class="col-lg-12 pb-5">
-								<h3>Choose Cake Filling</h3>
-							</div>
-						</div>
-							
-						<div class="row">
-							
-							<?php for ($x = 1; $x <= 15; $x++) { ?>
-							<div class="col-lg-2 mb-4">				
-								<label class="img-label">
-									<input type="radio" name="filling" value="filling-<?php echo $x; ?>" id="filling-<?php echo $x; ?>" required>
-									<img class="card-img-top" src="img/cake-flavours/4.jpg" alt="" style="height: 100px;">
-									<h5 class="p-3 m-0">Cake Filling <?php echo $x; ?></h5>		
-								</label>
-							</div>
-							<?php } ?>
-							
-							<div class="clearfix"></div>
-
-							<div class="col-lg-12">
-								<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>	
-							</div>
-
-						</div>
-
-							<!-- <div class="col-xs-12">
-									<div class="col-md-11">
-											<h3> Step 2</h3>
-											<div class="form-group">
-													<label class="control-label">Company Name</label>
-													<input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
-											</div>
-											<div class="form-group">
-													<label class="control-label">Company Address</label>
-													<input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address"  />
-											</div>
-											<button class="btn btn-primary nextBtn pull-right" type="button" >Next</button>
-									</div>
-							</div> -->
-
-					</div>
-
-					<!-- Cake Shape & Size -->
-					<div class="setup-content" id="step-3">
-							
-						<div class="row">						
-							<!-- Cake Tiers -->
-							<div class="col-lg-12 pb-5">
-								<h3>Choose Cake Tiers</h3>
-							</div>
-						</div>
-						
-						<div class="row">
-						
-							<div class="col-lg-4 mb-4">								
-								<label class="img-label">
-									<input type="radio" name="tiers" value="single" id="single" required>
-									<img class="card-img-top" src="img/no/single_tier_cake.jpg" alt="" style="height: 195px;">
-									<h4 class="p-3 m-0">Single Cake</h4>		
-								</label>								
-							</div>
-							
-							<div class="col-lg-4 mb-4">								
-								<label class="img-label">
-									<input type="radio" name="tiers" value="tiered" id="tiered">
-									<img class="card-img-top" src="img/no/tiered-cake.jpg" alt="" style="height: 195px;">
-									<h4 class="p-3 m-0">Tiered Cake</h4>		
-								</label>								
-							</div>
-							
-						</div>
-						
-						<!--<div >-->
-						
-						<div class="row" id="cake_shape" style="display:none;">
-							
-							<!-- Cake Shape -->							
-							<div class="col-lg-12 pb-5">
-								<h3>Choose Cake Shape</h3>
-							</div>
-								
-							<div class="col-lg-4 mb-4">								
-								<label class="img-label">
-									<input type="radio" name="shape" value="round" id="round" required>
-									<img class="card-img-top" src="img/no/single_tier_cake.jpg" alt="" style="height: 195px;">
-									<h4 class="p-3 m-0">Round</h4>		
-								</label>								
-							</div>
-						
-							<div class="col-lg-4 mb-4">								
-								<label class="img-label">
-									<input type="radio" name="shape" value="square" id="square">
-									<img class="card-img-top" src="img/no/tiered-cake.jpg" alt="" style="height: 195px;">
-									<h4 class="p-3 m-0">Square</h4>		
-								</label>								
-							</div>
-							
-							<div class="col-lg-4 mb-4">								
-								<label class="img-label">
-									<input type="radio" name="shape" value="heart" id="heart">
-									<img class="card-img-top" src="img/no/tiered-cake.jpg" alt="" style="height: 195px;">
-									<h4 class="p-3 m-0">Heart</h4>		
-								</label>								
-							</div>
-							
-						</div>
-							
-						<!--</div>
-						
-						<div >-->
-						
-						<div class="row" id="cake_size" style="display:none;">
-						
-							<!-- Cake Size -->							
-							<div class="col-lg-12 pb-5">
-								<h3>Choose Cake Size</h3>
-							</div>
-							
-							<div class="col-lg-12">
-								<select class="form-control mb-5" name="size" id="size">
-									<option value="6&quot; (Serves 6-8)|0">6" (Serves 6-8)</option>
-									<option value="7&quot; (Serves 10-12)|0">7" (Serves 10-12)</option>
-									<option value="8&quot; (Serves 10-18)|0">8" (Serves 10-18)</option>
-									<option value="9&quot; (Serves 20-24)|0">9" (Serves 20-24)</option>
-									<option value="10&quot; (Serves 26-35)|0">10" (Serves 26-35)</option>
-									<option value="12&quot; (Serves 35-48)|0">12" (Serves 35-48)</option>
-									<option value="14&quot; (Serves 50-65)|0">14" (Serves 50-65)</option>
-									<option value="16&quot; (Serves 70-85)|0">16" (Serves 70-85)</option>
-								</select>								
-							</div>					
-						
-						</div>
-						
-						<div class="row">
-							<div class="col-lg-12">
-								<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>	
-							</div>
-						</div>
-
-						
-								<!-- <div class="col-xs-12">
-										<div class="col-md-11">
-												<h3> Step 3</h3>
-												<p>Take a moment to review the form, and edit any information.</p>
-												<button class="btn btn-success pull-right" type="submit">Finish!</button>
+										<div class="form-group">
+											<label for="delivery_date">Pick Up/Delivery Date:</label>
+											<input id="datepicker" name="delivery_date" width="276" required />		
 										</div>
-								</div>
-						
-						</div>-->
-						
-					</div>
 
-				</form>
+									</div>
+									
+									<div class="col-lg-6 mb-4">
+
+										<div class="form-group ml-4">
+											<label for="method">Method:</label>
+
+											<div class="form-check">
+												<input class="form-check-input" type="radio" value="pick-up" name="method" id="pick-up" required>
+												<label class="form-check-label" for="pick-up">
+													Pick Up
+												</label>
+											</div>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" value="deliver" name="method" id="deliver">
+												<label class="form-check-label" for="deliver">
+													Deliver Within Toowoomba ($20)
+												</label>
+											</div>
+											
+										</div>
+
+									</div>
+
+									<div class="col-lg-12 mb-4" id="venuAddress" style="display: none;">
+
+										<div class="form-group">
+											<label for="venue_address">Venue Address</label>
+											<textarea class="form-control" id="venue_address" name="venue_address" rows="3"></textarea>
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="row sub-cr">
+
+									<div class="col-lg-12 mb-4">
+										<div class="form-check ml-4">
+											<input class="form-check-input" type="checkbox" name="add_details_on_cake" id="add_details_on_cake">
+											<label class="form-check-label" for="add_details_on_cake">
+												Need to add name and age on cake
+											</label>
+										</div>
+									</div>
+
+								</div>						
+								
+
+								<div class="row sub-cr" id="nameAgeBox" style="display: none;">
+								
+									<div class="col-lg-6 mb-4">
+
+										<div class="form-group">
+											<label for="name">Name on Cake:</label>
+											<input type="text" class="form-control" id="cake_name" name="cake_name">
+										</div>																				
+
+									</div>
+
+									<div class="col-lg-6 mb-4">
+
+										<div class="form-group">
+											<label for="email">Age on Cake: </label>
+											<input type="number" class="form-control" id="cake_age" name="cake_age">
+										</div>																			
+
+									</div>	
+
+								</div>				
+
+
+								<ul class="list-inline text-md-left sub-cr">
+									<li><button type="submit" id="Step_4" class="btn main-btn btn-dark next-step next-button">Submit Order</button></li>
+								</ul>
+
+							</div>  
+                             <!-- <div class="tab-pane" role="tabpanel" id="step5">
+                                <h1 class="text-md-left">Complete</h1>
+                                <div class="row">
+
+                                </div>
+							</div>-->
+							
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+                </form>
 
 			</div>
 		</div>

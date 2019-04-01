@@ -180,7 +180,7 @@ th {
     background-image: url("../img/bg12a.jpg");
     /*margin-top: -55px;*/
     padding-top: 2rem;
-    padding-bottom: 6rem;
+    padding-bottom: 0rem;
     background-size: cover;
 }
 .my-bg h1{
@@ -248,7 +248,7 @@ th {
   color: rgba(0,0,0,0.7);
   font-size: 16px;
   padding: 2px;
-	display: block !important;
+  display: block !important;
 }
 .mainmenu .active a,
 .mainmenu .active a:focus,
@@ -259,7 +259,8 @@ th {
 .navbar-default .navbar-nav>.show>a:focus, 
 .navbar-default .navbar-nav>.show>a:hover{
 	color: #954f9c;
-	outline: 0;
+  outline: 0;
+  background: none;
 }
 /* MAIN NAVIGATION MENU Sub Menu */
 .mainmenu .collapse ul > li:hover > a{
@@ -310,13 +311,27 @@ th {
 .megamenu-li {
   position: static;
 }
-
 .megamenu {
   position: absolute;
   width: 100%;
   left: 0;
   right: 0;
   padding: 15px;
+}
+.navbar-nav .dropdown-menu {
+  width: 85%;
+  background: #fff0f6;
+}
+.dropdown-item {
+  transition: transform 0.5s linear;
+  background: none;
+  font-family: 'EB Garamond', serif !important;
+  text-transform: capitalize !important;
+  font-weight: 100 !important;
+}
+.dropdown-item:hover {
+  transform: translateX(5px);
+  transition: transform 0.5s linear;
 }
 
 
@@ -476,6 +491,16 @@ a:hover > .ico {
 }
 
 /****************************/
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+    Cake Order form Page
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
+
+.order-cake {
+  background: #ecf1f5;
+}
 
 /*
 ::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -700,7 +725,7 @@ figure {
 }
 /* CHECKED STYLES */
 .cake-flavours .img-label [type=radio]:checked + img {
-    border: 2px solid #f00;
+  border: 2px solid #a02a66;
 }
 .cake-flavours .nav-tabs {
   border-bottom: 0px;
@@ -820,13 +845,14 @@ figure {
 
 .wizard {
   margin: 0 auto;
-  background: #fff;
 }
 .wizard .nav-tabs {
+  background: #fff;
   position: relative;
   margin: 0 auto;
-  margin-bottom: 0;
-  border-bottom-color: #e0e0e0;
+  margin-bottom: 30px;
+  border: 1px solid #e0e0e0;
+  box-shadow:1px 2px 5px 2px rgba(191, 198, 206, 0.2);
 }
 .wizard > div.wizard-inner {
   position: relative;
@@ -850,7 +876,6 @@ figure {
   border: 0;
   border-bottom-color: transparent;
 }
-
 span.round-tab {
   width: 75px;
   height: 75px;
@@ -865,29 +890,23 @@ span.round-tab {
   text-align: center;
   font-size: 25px;
 }
-
 span.round-tab i {
   color: #555555;
 }
-
 .wizard li a.active span.round-tab {
   background: #e48acd;
   border: 2px solid #9a5b8a;
 }
-
 .wizard li a.active span.round-tab i {
   color: #5bc0de;
 }
-
 span.round-tab:hover {
   color: #333;
   border: 2px solid #333;
 }
-
 .wizard .nav-tabs > li {
   width: 19%;
 }
-
 .wizard li a:after {
   content: " ";
   position: relative;
@@ -900,7 +919,6 @@ span.round-tab:hover {
   border-bottom-color: #5bc0de;
   transition: 0.1s ease-in-out;
 }
-
 .wizard li.active.nav-item:after {
   content: " ";
   position: relative;
@@ -912,7 +930,6 @@ span.round-tab:hover {
   border: 10px solid transparent;
   border-bottom-color: #5bc0de;
 }
-
 .wizard .nav-tabs > li a {
   width: 70px;
   height: 70px;
@@ -921,18 +938,23 @@ span.round-tab:hover {
   padding: 0;
   position: relative;
 }
-
 .wizard .nav-tabs > li a:hover {
   background: transparent;
 }
-
+.wizard .tab-content{
+  background: #fff;
+  padding: 20px;
+}
 .wizard .tab-pane {
   position: relative;
   padding-top: 30px;
 }
-
 .wizard h3 {
   margin-top: 0;
+  margin-left: 45px;
+}
+.sub-cr{
+  padding: 1rem 3rem;
 }
 
 /*

@@ -20,7 +20,7 @@
              <h3 class="text-md-left pb-4">Please Choose Cake Size</h3>
             </div>
 
-            <div class="col-lg-6 mb-4">	
+            <div class="col-lg-6 mb-4 sub-cr">	
                 
                 <select class="form-control mb-2" name="size" id="size">
                     <option value='0'>Select Size</option>

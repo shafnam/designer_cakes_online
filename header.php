@@ -19,15 +19,16 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbar">
 					<ul class="navbar-nav mx-auto text-center">
-						<li class="nav-item">
+						
+						<li class="nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '');?>">
 							<a href="index.php">Home</a>
 						</li>				 
-						<li class="nav-item dropdown megamenu-li">
+						<li class="nav-item dropdown megamenu-li <?php echo (basename($_SERVER['PHP_SELF']) == 'cake-designs.php' ? 'active' : '');?>">
 							<a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Designs</a>
 							<div class="dropdown-menu megamenu mx-auto p-5" aria-labelledby="dropdown01">
 								<div class="row">
 									<div class="col-sm-6 col-lg-3">
-										<img src="https://img1.cookinglight.timeinc.net/sites/default/files/styles/medium_2x/public/1542062283/chocolate-and-cream-layer-cake-1812-cover.jpg?itok=rEWL7AIN" alt="..." style="width: 60%;">
+										<img src="https://img1.cookinglight.timeinc.net/sites/default/files/styles/medium_2x/public/1542062283/chocolate-and-cream-layer-cake-1812-cover.jpg?itok=rEWL7AIN" style="width: 75%;">
 									</div>
 									<div class="col-sm-6 col-lg-3">
 										<!-- <img src="img/gallery/Hatchimals Cake/5.jpg" alt="..." style="width: 60%;"> -->
@@ -55,12 +56,24 @@
 								</div>
 							</div>
 						</li>
-						<li class="nav-item"><a href="cake-flavours.php">Cake Flavours</a></li>
-						<li class="nav-item"><a href="cake-fillings.php">Cake Fillings</a></li>
-						<li class="nav-item"><a href="cake-sizes.php">Cake Sizes</a></li>
-						<li class="nav-item"><a href="get-a-quote.php">Get a Quote</a></li>
-						<li class="nav-item"><a href="about.php">About Us</a></li>
-						<li class="nav-item"><a href="contact.php">Contact Us</a></li>
+						<li class="nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'cake-flavours.php' ? 'active' : '');?>">
+							<a href="cake-flavours.php">Cake Flavours</a>
+						</li>
+						<li class="nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'cake-fillings.php' ? 'active' : '');?>">
+							<a href="cake-fillings.php">Cake Fillings</a>
+						</li>
+						<li class="nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'cake-sizes.php' ? 'active' : '');?>">
+							<a href="cake-sizes.php">Cake Sizes</a>
+						</li>
+						<li class="nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'get-a-quote.php' ? 'active' : '');?>">
+							<a href="get-a-quote.php">Get a Quote</a>
+						</li>
+						<li class="nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'about.php' ? 'active' : '');?>">
+							<a href="about.php">About Us</a>
+						</li>
+						<li class="nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'contact.php' ? 'active' : '');?>">
+							<a href="contact.php">Contact Us</a>
+						</li>
 
 						<!-- <li class="nav-item dropdown megamenu-li">
 							<a class="nav-link dropdown-toggle" href="" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mega Menu 2</a>

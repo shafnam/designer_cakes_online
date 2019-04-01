@@ -45,10 +45,9 @@ CAKE DESIGN ORDER FORM
 /* CAKE DESIGN ORDER FORM DYNAMICALLY GENERATE CAKE FILLING FIELDS FROM CAKE FLAVOUR FIELDS */
 $(document).ready(function(){
 
-	$('#Step_1').hide();
-	$('#Step_2').hide();
-	$('#Step_3').hide();
-	$('#Step_4').hide();
+	$('#order-design-form #Step_1').hide();
+	$('#order-design-form #Step_2').hide();
+	$('#order-design-form #Step_3').hide();
 
 	/*-------------- 
 		STEP 1
@@ -142,7 +141,7 @@ $(document).ready(function(){
 	----------------*/
 
 	/* CAKE DESIGN ORDER FORM DYNAMICALLY GENERATED CAKE FILLING FIELDS */
-	$(document).on('click','#order-design-form input[name="filling"]',function () {
+	$(document).on('click','#order-design-form input[name="filling"]',function (){
 		if ($(this).is(':checked')) {			
 			$('#Step_2').fadeIn(100);
 			//alert($(this).val());
@@ -172,7 +171,7 @@ $(document).ready(function(){
 	});
 
 	// Show single tier sizes
-	$('#order-design-form input[name="tiers"]').change(function () {
+	$('#order-design-form input[name="tiers"]').change(function (){
 
 		if ($(this).attr('id') === 'single'){
 
@@ -210,7 +209,7 @@ $(document).ready(function(){
 	});
 
 	// Show multi tier sizes
-	$('#order-design-form input[name="multiple_tiers"]').change(function () {
+	$('#order-design-form input[name="multiple_tiers"]').change(function (){
 
 		$('.cakeSizes').hide();
 		$('.cakeShapes').hide();
@@ -246,7 +245,7 @@ $(document).ready(function(){
 	});
 
 	/* CAKE DESIGN ORDER FORM DYNAMICALLY GENERATED CAKE SIZES FIELDS */
-	$(document).on('change','#order-design-form #size',function () {
+	$(document).on('change','#order-design-form #size',function (){
 
 		$('.cakeShapes').hide();
 		
@@ -272,7 +271,7 @@ $(document).ready(function(){
 	});
 
 	/* CAKE DESIGN ORDER FORM DYNAMICALLY GENERATED CAKE SHAPES FIELDS */
-	$(document).on('click','#order-design-form input[name="shape"]',function () {
+	$(document).on('click','#order-design-form input[name="shape"]',function (){
 
 		$('.cakeServings').hide();
 		
@@ -307,7 +306,33 @@ $(document).ready(function(){
 
 	$("#Step_3").click(function(e) {
 		e.preventDefault();
-		//alert('test');
+	});
+
+	/*-------------- 
+		STEP 4  
+	----------------*/
+
+	$('#order-design-form input[name="method"]').click(function(){
+		if ($(this).attr('id') === 'deliver'){			
+			$('#venuAddress').show(800);
+			$('#venue_address').attr('required', true);
+		}
+		else {
+			$('#venuAddress').hide(800);
+			$('#venue_address').attr('required', false);
+		}	
+	});
+
+	$('#order-design-form input[name="add_details_on_cake"]').click(function(){
+		if($(this).is(':checked')) {
+			$('#nameAgeBox').show(800);
+			$('#cake_name').attr('required', true);
+			$('#cake_age').attr('required', true);;
+		} else {
+			$('#nameAgeBox').hide(800);
+			$('#cake_name').attr('required', false);
+			$('#cake_age').attr('required', false);
+		}
 	});
 
 });
