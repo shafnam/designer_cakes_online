@@ -63,7 +63,9 @@
 				<div class="col-lg-12 mx-auto d-block">
 							
 					<!-- multistep form -->
-					<form class="form cf cake-flavours" id="order-design-form" method="post" action="inc/submit.php">
+					<form class="form cf cake-flavours" id="order-design-form" method="post" action="inc/order-design-submit.php">
+						<input type="hidden" name="product" value="<?php echo $id; ?>">
+						
 						<div class="wizard">
 
 							<div class="wizard-inner">
@@ -180,34 +182,184 @@
 								<!-- Please Choose Tier Type -->
 								<div class="tab-pane" role="tabpanel" id="step3">
 									
-									<div class="row">
+									<div class="row px-5">
 
 										<div class="col-lg-12 mb-4">
-											<h3 class="text-md-left pb-4">Please Choose Tier Type</h3>
+											<h3 class="text-md-left ml-0 mb-0">Please Choose Tier Type</h3>
 										</div>	
 
 										<?php foreach ($tier_details as $row) { ?>
-											<div class="col-lg-3 mb-4">	
+											<div class="col-lg-2 mb-4">	
 
 												<label class="img-label mx-auto d-block">
 													<input type="radio" name="tiers" value="<?php echo $row['id'];?>" id="<?php echo $row['slug'];?>" required>
-													<img class="card-img-top img-fluid mx-auto d-block" src="img/cake-tiers/<?php echo $row['image'];?>" alt="" style="width: 200px;">
+													<img class="card-img-top img-fluid mx-auto d-block" src="img/cake-tiers/<?php echo $row['image'];?>" alt="" style="width: 250px;">
 													<h5 class="px-3 pt-3 m-0 text-center"><?php echo $row['name'];?></h4>		
 												</label>
 
 											</div>
-										<?php } ?>  
+										<?php } ?>
+
+										<div class="col-lg-7 mx-4 row p-2 sticky-table" style="">	
+											
+											<p class="text-right pl-3 mb-0">Approximate Cake Portions Servings Chart</p>
+
+											<div class="col-lg-6 mb-0">
+												
+												<p class="pt-0 pb-1 mb-0"><small>Single Cakes</small></p>	
+
+												<div class="table-responsive">
+													<table class="table table-bordered table-striped table-hover">
+														<thead>
+															<tr>
+																<th>Cake Sizes</th>
+																<th><i class="fas fa-circle"></i></th>
+																<th><i class="fa fa-square" aria-hidden="true"></i></th>
+																<th><i class="fa fa-heart" aria-hidden="true"></i></th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<th>5 Inch</th>
+																<td>8</td>
+																<td>8</td>
+																<td>6</td>
+															</tr>
+															<tr>
+																<th>6 Inch</th>
+																<td>11</td>
+																<td>18</td>
+																<td>12</td>
+															</tr>
+															<tr>
+																<th>7 Inch</th>
+																<td>15</td>
+																<td>24</td>
+																<td>16</td>
+															</tr>
+															<tr>
+																<th>8 Inch</th>
+																<td>20</td>
+																<td>32</td>
+																<td>24</td>
+															</tr>
+															<tr>
+																<th>9 Inch</th>
+																<td>27</td>
+																<td>35</td>
+																<td>28</td>
+															</tr>
+															<tr>
+																<th>10 Inch</th>
+																<td>38</td>
+																<td>50</td>
+																<td>30</td>
+															</tr>
+															<tr>
+																<th>11 Inch</th>
+																<td>45</td>
+																<td>56</td>
+																<td>35</td>
+															</tr>
+															<tr>
+																<th>12 Inch</th>
+																<td>56</td>
+																<td>72</td>
+																<td>40</td>
+															</tr>
+															<tr>
+																<th>14 Inch</th>
+																<td>64</td>
+																<td>98</td>
+																<td>45</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+
+											</div> 
+
+											<div class="col-lg-6 mb-0">	
+
+												<p class="pt-0 pb-1 mb-0"><small>Tiered Cakes</small></p>
+
+												<div class="table-responsive">
+													<table class="table table-bordered table-striped table-hover">
+														<thead>
+															<tr>
+																<th>Cake Sizes</th>
+																<th><i class="fas fa-circle"></i></th>
+																<th><i class="fa fa-square" aria-hidden="true"></i></th>
+																<th><i class="fa fa-heart" aria-hidden="true"></i></th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<th>6,10 Inch</th>
+																<td>49</td>
+																<td>68</td>
+																<td>42</td>
+															</tr>
+															<tr>
+																<th>8,12 Inch</th>
+																<td>76</td>
+																<td>104</td>
+																<td>64</td>
+															</tr>
+															<tr>
+																<th>6,8,10 Inch</th>
+																<td>69</td>
+																<td>100</td>
+																<td>90</td>
+															</tr>
+															<tr>
+																<th>6,9,12 Inch</th>
+																<td>94</td>
+																<td>125</td>
+																<td></td>
+															</tr>
+															<tr>
+																<th>8,10,12 Inch</th>
+																<td>114</td>
+																<td>154</td>
+																<td>120</td>
+															</tr>
+															<tr>
+																<th>6,8,10,12 Inch</th>
+																<td>125</td>
+																<td>172</td>
+																<td></td>
+															</tr>
+															<tr>
+																<th>8,10,12,14 Inch</th>
+																<td>169</td>
+																<td>308</td>
+																<td></td>
+															</tr>
+															<tr>
+																<th>6,8,10,12,14 Inch</th>
+																<td>189</td>
+																<td>326</td>
+																<td></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+
+											</div> 
+
+										</div>
 
 									</div>								
 
-									<div class="row" id="multiple-tier" style="display: none;">
+									<div class="row mt-5 px-5" id="multiple-tier" style="display: none;">
 
 										<div class="col-lg-12 mb-4">	
-											<h3 class="text-md-left py-2">Please Choose Number of Tiers</h3>
+											<h3 class="text-md-left ml-0 py-2">Please Choose Number of Tiers</h3>
 										</div>
 
 										<?php foreach ($m_tier_details as $row) {  ?>
-											<div class="col-lg-3 mb-4">	
+											<div class="col-lg-2 mb-4">	
 
 												<label class="img-label mx-auto d-block" style="border: 0px solid #dee2e6;">
 													<input type="radio" name="multiple_tiers" value="<?php echo $row['id'];?>" id="<?php echo $row['slug'];?>">
@@ -219,15 +371,15 @@
 										<?php } ?>                                    
 									</div>
 									
-									<div class="row cakeSizes" style="display: none;">									
+									<div class="row mt-5 px-5 cakeSizes" style="display: none;">									
 										<!-- filled with ajax data -->
 									</div>
 
-									<div class="row cakeShapes" style="display: none;">									
+									<div class="row mt-5 px-5 cakeShapes" style="display: none;">									
 										<!-- filled with ajax data -->
 									</div>
 
-									<div class="row cakeServings" style="display: none;">									
+									<div class="row mt-5 px-5 cakeServings" style="display: none;">									
 										<!-- filled with ajax data -->
 									</div>
 									
@@ -242,9 +394,9 @@
 									
 									<h3 class="text-md-left pb-4">Please Fill Your Personal Details Below</h3>
 
-									<div class="row sub-cr">
+									<div class="row sub-cr py-0">
 										
-										<div class="col-lg-6 mb-4">
+										<div class="col-lg-6 mb-0">
 
 											<div class="form-group">
 												<label for="name">First Name:</label>
@@ -253,12 +405,12 @@
 											
 											<div class="form-group">
 												<label for="email">Email address:</label>
-												<input type="email" class="form-control" id="email" required>
+												<input type="email" class="form-control" id="email" name="email" required>
 											</div>																											
 
 										</div>
 
-										<div class="col-lg-6 mb-4">
+										<div class="col-lg-6 mb-0">
 
 											<div class="form-group">
 												<label for="name">Last Name:</label>
@@ -274,9 +426,9 @@
 
 									</div>
 
-									<div class="row sub-cr">
+									<div class="row sub-cr py-0">
 
-										<div class="col-lg-6 mb-4">
+										<div class="col-lg-6 mb-0">
 
 											<div class="form-group">
 												<label for="delivery_date">Pick Up/Delivery Date:</label>
@@ -285,18 +437,18 @@
 
 										</div>
 										
-										<div class="col-lg-6 mb-4">
+										<div class="col-lg-6 mb-0">
 
-											<div class="form-group ml-4">
+											<div class="form-group mb-0">
 												<label for="method">Method:</label>
 
-												<div class="form-check">
+												<div class="form-check ml-4">
 													<input class="form-check-input" type="radio" value="pick-up" name="method" id="pick-up" required>
 													<label class="form-check-label" for="pick-up">
 														Pick Up
 													</label>
 												</div>
-												<div class="form-check">
+												<div class="form-check ml-4">
 													<input class="form-check-input" type="radio" value="deliver" name="method" id="deliver">
 													<label class="form-check-label" for="deliver">
 														Deliver Within Toowoomba ($20)
@@ -307,7 +459,7 @@
 
 										</div>
 
-										<div class="col-lg-12 mb-4" id="venuAddress" style="display: none;">
+										<div class="col-lg-12 mb-0" id="venuAddress" style="display: none;">
 
 											<div class="form-group">
 												<label for="venue_address">Venue Address</label>
@@ -318,9 +470,9 @@
 
 									</div>
 
-									<div class="row sub-cr">
+									<div class="row sub-cr py-0">
 
-										<div class="col-lg-12 mb-4">
+										<div class="col-lg-12 mt-0">
 											<div class="form-check ml-4">
 												<input class="form-check-input" type="checkbox" name="add_details_on_cake" id="add_details_on_cake">
 												<label class="form-check-label" for="add_details_on_cake">
@@ -329,8 +481,7 @@
 											</div>
 										</div>
 
-									</div>						
-									
+									</div>									
 
 									<div class="row sub-cr" id="nameAgeBox" style="display: none;">
 									
@@ -352,14 +503,14 @@
 
 										</div>	
 
-									</div>				
-
-
+									</div>
+													
 									<ul class="list-inline text-md-left sub-cr">
 										<li><button type="submit" id="Step_4" class="btn main-btn btn-dark next-step next-button">Submit Order</button></li>
 									</ul>
 
 								</div> 
+								
 								<!-- <div class="tab-pane" role="tabpanel" id="step5">
 									<h1 class="text-md-left">Complete</h1>
 									<div class="row">

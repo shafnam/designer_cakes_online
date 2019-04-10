@@ -21,7 +21,7 @@
             <div class="col-lg-3 mb-4">	
  
                 <label class="img-label mx-auto d-block">
-                    <input type="radio" name="filling" value="<?php echo $row['slug'];?>" id="<?php echo $row['slug'];?>" required>
+                    <input type="radio" name="filling" value="<?php echo $row['id'];?>" id="<?php echo $row['slug'];?>" required>
                     <img class="card-img-top img-fluid mx-auto d-block" src="img/cake-fillings/<?php echo $row['image'];?>" alt="" style="width: 100px;">
                     <h5 class="pt-3 m-0 text-center"><?php echo $row['name'];?></h4>		
                 </label>

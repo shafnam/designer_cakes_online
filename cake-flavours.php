@@ -45,17 +45,17 @@
 		<div class="row mt-5">
 
 			<?php foreach ($flavour_details as $row) { ?> 
-			<div class="col-lg-4 mb-4">
-				<div class="card m-3" id="zoomInd">
+			<div class="col-lg-3 mb-4">
+				<div class="card" id="zoomInd">
 					<img id="Flavour-<?php echo $row['id'];?>" class="card-img-top" src="img/cake-flavours/<?php echo $row['image'];?>" alt="<?php echo $row['name'];?>" style="height: 195px;">	
 					
 					<div class="card-footer">				
-						<h4 class="px-3 pt-3 m-0"><?php echo $row['name'];?></h4>
+						<h5 class="px-3 pt-3 m-0"><?php echo $row['name'];?></h5>
 					<?php 
 						$child_flavour_details = $flavours->viewChildFlavours($row['id']);
 						if(count($child_flavour_details) > 0 ){
 					?>
-						<h6 class="pt-3 px-3 showFlavours" data-id="<?php echo $row['id'];?>">View Available Flavours</h6>
+						<h6 class="p-3 showFlavours" data-id="<?php echo $row['id'];?>">View Available Flavours</h6>
 
 						<div id="flavourOptions-<?php echo $row['id'];?>" style="display:none;">
 							<div class="form-group px-3 m-0">
@@ -66,12 +66,12 @@
 								</select>
 							</div>
 
-							<a id="OrderLinkOne" class="btn main-btn btn-dark mx-3 mt-3" href="order-flavour.php?flavour_id=<?php echo $childrow['id'];?>">Order Now</a> 
+							<a id="OrderLinkOne" class="btn main-btn btn-dark mx-3 mt-3" href="order-flavour.php?flavour_id=<?php echo $childrow['id'];?>">Order Cake</a> 
 						
 						</div>
 
 					<?php } else {?>
-						<a id="OrderLinkOne" class="btn main-btn btn-dark mx-3 mt-3" href="order-flavour.php?flavour_id=<?php echo $row['id'];?>">Order Now</a>									  
+						<a id="OrderLinkOne" class="btn main-btn btn-dark mx-3 mt-3" href="order-flavour.php?flavour_id=<?php echo $row['id'];?>">Order Cake</a>									  
 					<?php } ?>					
 					</div>
 				</div>

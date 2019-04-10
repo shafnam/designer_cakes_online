@@ -83,7 +83,7 @@
 						<div class="card-body">
 							<h4 class="card-title text-center"><?php echo $row['name'];?></h4>
 							<div class="col text-center">
-							  <a href="order-design.php?product_id=<?php echo $row['id']; ?>" class="btn main-btn btn-dark">Order Now</a>
+							  <a href="order-design.php?product_id=<?php echo $row['id']; ?>" class="btn main-btn btn-dark">Order Cake</a>
 							</div>							
 						</div>
 						<div class="ps-product__preview pp1">

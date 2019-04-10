@@ -1,3 +1,14 @@
+<?php	
+	require_once 'inc/config.php';
+	require_once 'inc/class.crud.php';
+	
+	$fillings = new Filling();	
+	$filling_details = $fillings->viewFillings();
+	
+	// print_r($filling_details);
+	// die();
+	
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,13 +19,11 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>About Us | Designer Cakes Toowoomba</title>
+	<title>Cake Fillings | Designer Cakes Toowoomba</title>
 
 	<?php include('layout-header.php');?>
 	
 	<style>
-	
-	
 	</style>
 
 </head>
@@ -30,11 +39,34 @@
 	</div>	
 	
 	<div class="container mt-5 cake-filling">
+		
+		<div class="row mt-5">
 
-		<div class="row mt-5 pt-3">
+		<?php foreach ($filling_details as $row) { ?> 
+		<div class="col-lg-3 mb-4">
+			
+			<div class="card m-3">
+
+				<img class="card-img-top" src="img/cake-fillings/<?php echo $row['image'];?>" alt="<?php echo $row['name'];?>" style="height: 195px;">	
+				
+				<div class="card-footer">				
+					<h5 class="px-3 pt-3 m-0"><?php echo $row['name'];?></h5>
+					<a class="btn main-btn btn-dark mx-3 mt-3" href="order-filling.php?filling_id=<?php echo $row['id'];?>">Order Cake</a>									  
+				</div>
+				
+			</div>
+
+		</div>
+		<?php } ?>
+
+		</div>		
+
+		<!-- <div class="row mt-5 pt-3">
+			
 			<div class="col-md-6">
 				<img class="img-fluid" src="img/cake-fillings-sample.png" style="height: 500px;">  
 			</div>
+
 			<div class="col-md-6">
 				<ul class="list-group">
 					<li class="list-group-item">Vanilla Buttercream</li>
@@ -53,7 +85,8 @@
 					<li class="list-group-item">Caramel flavoured buttercream</li>
 					<li class="list-group-item">Lime Flavoured Buttercream</li>
 				</ul>
-			</div>			
+			</div>	
+
 			<div class="col-md-12 mt-5 py-5">	
 			
 				<h3 class="pb-3">Cross Matching Guide for Recommended Flavours and Fillings (BC = Buttercream)</h3>
@@ -390,7 +423,8 @@
 					</table>
 				</div>
 			</div>
-		</div>
+
+		</div> -->
 	</div>
 
 

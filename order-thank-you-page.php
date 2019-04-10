@@ -43,12 +43,14 @@
 	</div>
 
 	<!-- Page Content -->
-	<div class="container my-5">
+	<div class="container my-5" style="height: 405px;">
 
 		<div class="row">
 			<div class="col-lg-11 mx-auto d-block px-5 py-0">
 			
-				<div class="messages"></div>				
+				<div class="messages">
+					<h3 class="text-center">Your order has been placed. We will contact you soon to get more details.</h3>
+				</div>				
 
 			</div>
 		</div>
@@ -60,11 +62,6 @@
 	<?php include('footer.php'); ?>
 
 	<?php include('layout-footer.php'); ?>
-	
-	<!-- Custom Plugins-->
-	<script src="js/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="js/bootstrap-validate.js"></script>
-  <script src="js/order-design.js"></script>
 
 	<script>
 	

@@ -2,16 +2,12 @@
 	require_once 'inc/config.php';
 	require_once 'inc/class.crud.php';
 
-	$flavours = new Flavour();
-	$flavour_details = $flavours->viewFlavourInfo($_GET['flavour_id']);
-	extract($flavour_details); 
-
-	//check whether item is a parent or child
-	$product = new Product();
-	$has_parent = $product->checkHasParent($_GET['flavour_id'],'flavours');
-	
 	$fillings = new Filling();
-	$filling_details = $fillings->viewFillingByFlavour($_GET['flavour_id']);
+	$filling_details = $fillings->viewFillingInfo($_GET['filling_id']);
+	extract($filling_details); 
+
+	$flavours = new Flavour();
+	//$flavour_details = $flavours->viewParentFlavours();
 
 	$tiers = new Tier();
 	$tier_details = $tiers->viewParentTiers();
@@ -52,11 +48,7 @@
 		<div class="row">
 			<div class="col-lg-9">
 				<!-- Page Heading/Breadcrumbs -->
-				<?php if($has_parent == null){ ?>
-					<h1>Order - <?php echo $name; ?></h1>
-				<?php } else { ?>				
-				<h1>Order - <?php echo $ParentName . ' / '. $ChildName; ?></h1>
-				<?php } ?>
+				<h1>Order - <?php echo $name; ?> Filled Cake</h1>	
 			</div>
 			<div class="col-lg-3">
 				<a href="javascript:history.go(-1)" class="btn main-btn"><< GO BACK</a>
@@ -71,13 +63,9 @@
 			<div class="col-lg-12 mx-auto d-block">
 						
 				<!-- multistep form -->
-				<form class="form cf cake-flavours" id="order-flavour-form" method="post" action="inc/order-design-submit.php">
-					<?php if($has_parent == null){ ?>
-						<input type="hidden" name="flavour" value="<?php echo $id; ?>">
-					<?php } else { ?>
-						<input type="hidden" name="flavour" value="<?php echo $parentID; ?>">
-						<input type="hidden" name="sub_flavour" value="<?php echo $childID; ?>">
-					<?php }?>
+				<form class="form cf cake-flavours" id="order-filling-form" method="post" action="inc/order-design-submit.php">
+					
+					<input type="hidden" name="filling" value="<?php echo $id; ?>">				
 
 				    <div class="wizard">
 
@@ -87,10 +75,10 @@
                                 <li role="presentation" class="nav-item text-center mx-auto">
                                     <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1" class="nav-link active">
 										<span class="round-tab">
-											<img src="img/step-2b.png">
+											<img src="img/step-1b.png">
 										</span>
 									</a>
-									<p> Cake Filling</p>
+									<p> Cake Flavour</p>
                                 </li>
                                 <li role="presentation" class="nav-item text-center mx-auto">
                                     <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2" class="nav-link disabled">
@@ -116,46 +104,78 @@
 									</a>
 									<p> Personal Info</p>
                                 </li>
-                                <!-- <li role="presentation" class="nav-item text-center">
-                                    <a href="#step5" data-toggle="tab" aria-controls="step5" role="tab" title="Step 5" class="nav-link disabled">
-										<span class="round-tab">
-											<i class="fa fa-check"></i>
-										</span>
-									</a>
-                                </li> -->
                             </ul>
                         </div>
 
                         <div class="tab-content">
 
-                            <!-- Please Choose a Cake Filling -->
+                            <!-- Please Choose a Cake Flavour -->
 							<div class="tab-pane active" role="tabpanel" id="step1">
 								
-								<h3 class="text-md-left pb-4">Please Choose a Cake Filling</h3>
+								<h3 class="text-md-left pb-4">Please Choose a Cake Flavour</h3>
 
-                                <div class="row">
+								<div class="row">
 
-									<?php foreach ($filling_details as $row) { ?> 
-										<div class="col-lg-3 mb-4">	
+								<?php 
+									$pc_flavour_details = $flavours->viewParentFlavoursByFilling($_GET['filling_id']);
+									if(count($pc_flavour_details) > 0 ){
+										foreach ($pc_flavour_details as $row) {										
+								?> 
+										<div class="col-lg-4 mb-4">	
+											<label class="img-label mx-auto d-block">
+												<input type="radio" name="flavour" value="<?php echo $row['id'];?>" id="<?php echo $row['slug'];?>" required>
+												<img class="card-img-top img-fluid mx-auto d-block" src="img/cake-flavours/<?php echo $row['image'];?>" alt="" style="width: 250px;height: 175px;">
+												<h5 class="px-3 pt-3 m-0 text-center"><?php echo $row['name'];?></h5>		
+											</label>
+										</div>	
+								<?php 
+										}
+									}
+									$p_flavour_details = $flavours->viewChildFlavoursByFilling($_GET['filling_id']);
+									if(count($p_flavour_details) > 0 ){
+										foreach ($p_flavour_details as $row) {
+								?>
+										<div class="col-lg-4 mb-4">	
 
 											<label class="img-label mx-auto d-block">
-												<input type="radio" name="filling" value="<?php echo $row['id'];?>" id="<?php echo $row['slug'];?>" required>
-												<img class="card-img-top img-fluid mx-auto d-block" src="img/cake-fillings/<?php echo $row['image'];?>" alt="" style="width: 100px;">
-												<h5 class="pt-3 m-0 text-center"><?php echo $row['name'];?></h4>		
+												<input type="radio" name="flavour" value="<?php echo $row['id'];?>" id="<?php echo $row['slug'];?>" required>
+												<img class="card-img-top img-fluid mx-auto d-block" src="img/cake-flavours/<?php echo $row['image'];?>" alt="" style="width: 250px;height: 175px;">
+												<h5 class="px-3 pt-3 m-0 text-center"><?php echo $row['name'];?></h5>		
 											</label>
-
-										</div>
-									<?php } ?>
-
+								<?php 
+											$child_flavour_details = $flavours->viewChildFlavourWithFilling($row['id'],$_GET['filling_id']);
+											if(count($child_flavour_details) > 0 ){
+								?>
+											<div id="<?php echo $row['slug'];?>-flavour" class="hide sub-cr" style="display: none;">
+												<div class="row">
+													<div class="col-lg-12">
+														<?php foreach ($child_flavour_details as $childrow) { ?>		
+															<div class="form-check">
+																<label class="form-check-label radioz">
+																	<input type="radio" class="form-check-inputz no-req" name="sub_flavour" value="<?php echo $childrow['id'];?>" id="<?php echo $row['slug'];?>-sub-flavour">
+																	<span><?php echo $childrow['name'];?></span>
+																</label>
+															</div>
+														<?php } ?>
+													</div>											
+												</div>
+											</div>
+								<?php 
+											}
+								?>		</div>
+								<?php 
+										}
+									}
+								?>
 								</div>
 								
-                                <ul class="list-inline text-md-left sub-cr">
+								<ul class="list-inline text-md-left sub-cr">
 									<li><button type="button" id="Step_1" class="btn main-btn btn-dark next-step next-button">Next</button></li>
 								</ul>
 								
-                            </div>
+							</div>
 
-                            <!-- Please Choose a Cake Tier -->
+                            <!-- Please Choose a Cake Filling -->
 							<div class="tab-pane" role="tabpanel" id="step2">
 								
 								<div class="row px-5">
@@ -349,15 +369,15 @@
 
 								</div>
 
-								<div class="row px-5 cakeSizes" style="display: none;">									
+								<div class="row cakeSizes" style="display: none;">									
 								<!-- filled with ajax data -->
 								</div>
 
-								<div class="row px-5 cakeShapes" style="display: none;">									
+								<div class="row cakeShapes" style="display: none;">									
 								<!-- filled with ajax data -->
 								</div>
 
-								<div class="row px-5 cakeServings" style="display: none;">									
+								<div class="row cakeServings" style="display: none;">									
 								<!-- filled with ajax data -->
 								</div>
 

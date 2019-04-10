@@ -16,14 +16,14 @@
 
         } else {
 ?>
-            <div class="col-lg-12 mt-04">	
-             <h3 class="text-md-left pb-4">Please Choose Cake Shape</h3>
+            <div class="col-lg-12 mb-4">	
+                <h3 class="text-md-left ml-0 py-2">Please Choose Cake Shape</h3>
             </div>
 <?php
             foreach ($shape_details as $row) { 
 ?>
 
-            <div class="col-lg-4 mb-4">	
+            <div class="col-lg-2 mb-4">	
 
                 <label class="img-label mx-auto d-block">
                     <input type="radio" name="shape" value="<?php echo $row['id'];?>" id="<?php echo $row['slug'];?>" required>
