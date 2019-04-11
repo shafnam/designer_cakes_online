@@ -2,24 +2,16 @@
 	require_once 'inc/config.php';
 	require_once 'inc/class.crud.php';
 
-	$flavours = new Flavour();
-	$flavour_details = $flavours->viewFlavourInfo($_GET['flavour_id']);
-	extract($flavour_details); 
+	$designs = new Design();
+	$desgin_details = $designs->viewParentDesigns('cupcakes-mini-cakes'); 
 
-	//check whether item is a parent or child
-	$product = new Product();
-	$has_parent = $product->checkHasParent($_GET['flavour_id'],'flavours');
-	
-	$fillings = new Filling();
-	$filling_details = $fillings->viewFillingByFlavour($_GET['flavour_id']);
+	$flavours = new Flavour();	
+	$flavour_details = $flavours->viewParentFlavours('cupcakes-mini-cakes');	
 
 	$tiers = new Tier();
 	$tier_details = $tiers->viewParentTiers();
 	$m_tier_details = $tiers->viewChildTiers();
-
-	$designs = new Design();
-	$desgin_details = $designs->viewParentDesigns('cupcakes-mini-cakes');
-
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,38 +23,29 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Order Now | Designer Cakes Toowoomba</title>
+	<title>Get a Quote | Designer Cakes Toowoomba</title>
 
 	<?php include('layout-header.php');?>
 	
 	<!-- Page specific styles -->
-	<link href="vendor/datepicker/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+	<link href="vendor/datepicker/css/gijgo.min.css" rel="stylesheet" type="text/css" />	
 
-	<style>	
+	<style>
+	
 	</style>
 
 </head>
 
 <body class="order-cake">
 	<!-- Header -->
-	
-	<!-- Page Header -->
-	<div class="container cake-designs my-5" id="order-design">
-		<div class="row">
-			<div class="col-lg-9">
-				<!-- Page Heading/Breadcrumbs -->
-				<?php if($has_parent == null){ ?>
-					<h1>Order - <?php echo $name; ?></h1>
-				<?php } else { ?>				
-				<h1>Order - <?php echo $ParentName . ' / '. $ChildName; ?></h1>
-				<?php } ?>
-			</div>
-			<div class="col-lg-3">
-				<a href="javascript:history.go(-1)" class="btn main-btn"><< GO BACK</a>
-			</div>
-		</div>
-	</div>
+	<?php include('header.php'); ?>
 
+	<!-- Page Header -->
+	<div class="container cake-designs">
+		<!-- Page Heading/Breadcrumbs -->
+		<h1>Get a Quote</h1>
+	</div>
+	
 	<!-- Page Content -->
 	<div class="container my-5">
 
@@ -70,15 +53,9 @@
 			<div class="col-lg-12 mx-auto d-block">
 						
 				<!-- multistep form -->
-				<form class="form cf cake-flavours" id="order-flavour-form" method="post" action="inc/order-design-submit.php">
-					<?php if($has_parent == null){ ?>
-						<input type="hidden" name="flavour" value="<?php echo $id; ?>">
-					<?php } else { ?>
-						<input type="hidden" name="flavour" value="<?php echo $parentID; ?>">
-						<input type="hidden" name="sub_flavour" value="<?php echo $childID; ?>">
-					<?php }?>
-
-				    <div class="wizard">
+				<form class="form cf cake-flavours" id="get-quote-form" method="post" action="inc/order-design-submit.php" enctype="multipart/form-data">
+					
+					<div class="wizard">
 
                         <div class="wizard-inner">
                             <div class="connecting-line"></div>
@@ -86,10 +63,10 @@
                                 <li role="presentation" class="nav-item text-center mx-auto">
                                     <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1" class="nav-link active">
 										<span class="round-tab">
-											<img src="img/step-2b.png">
+											<img src="img/step-6b.png">
 										</span>
 									</a>
-									<p> Cake Filling</p>
+									<p>Cake Design</p>									
                                 </li>
                                 <li role="presentation" class="nav-item text-center mx-auto">
                                     <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2" class="nav-link disabled">
@@ -98,30 +75,31 @@
 										</span>
 									</a>
 									<p> Cake Size</p>
-                                </li>
-                                <li role="presentation" class="nav-item text-center mx-auto">
+								</li>
+								<li role="presentation" class="nav-item text-center mx-auto">
                                     <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3" class="nav-link disabled">
 										<span class="round-tab">
-											<img src="img/step-6b.png">
+											<img src="img/step-1b.png">
 										</span>
 									</a>
-									<p> Cake Design</p>
+									<p> Cake Flavour</p>
                                 </li>
                                 <li role="presentation" class="nav-item text-center mx-auto">
                                     <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4" class="nav-link disabled">
+										<span class="round-tab">
+											<img src="img/step-2b.png">
+										</span>
+									</a>
+									<p>Cake Filling</p>
+                                </li>
+                                <li role="presentation" class="nav-item text-center mx-auto">
+                                    <a href="#step5" data-toggle="tab" aria-controls="step5" role="tab" title="Step 5" class="nav-link disabled">
 										<span class="round-tab">
 											<img src="img/step-4b.png">
 										</span>
 									</a>
 									<p> Personal Info</p>
                                 </li>
-                                <!-- <li role="presentation" class="nav-item text-center">
-                                    <a href="#step5" data-toggle="tab" aria-controls="step5" role="tab" title="Step 5" class="nav-link disabled">
-										<span class="round-tab">
-											<i class="fa fa-check"></i>
-										</span>
-									</a>
-                                </li> -->
                             </ul>
                         </div>
 
@@ -130,11 +108,108 @@
                             <!-- Please Choose a Cake Filling -->
 							<div class="tab-pane active" role="tabpanel" id="step1">
 								
-								<h3 class="text-md-left pb-4">Please Choose a Cake Filling</h3>
+								<div class="row">
 
-                                <div class="row">
+									<div class="col-lg-12 mb-3">
+										<h3 class="text-md-left pb-2">Please Choose your Design</h3>
+										<h4 class="text-md-left ml-5">I need a design:</h4>
+									</div>	
 
-									<?php foreach ($filling_details as $row) { ?> 
+									<div class="col-lg-12 ml-5 mb-5">
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" name="design_option" id="gallery" value="Gallery">
+											<label class="form-check-label">From Gallery</label>
+										</div>
+
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" name="design_option" id="upload" value="Upload">
+											<label class="form-check-label">Upload my Own Image</label>
+										</div>
+
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" name="design_option" id="custom" value="custom">
+											<label class="form-check-label">Request Custom Design (We will contact you to get more information on the design you want)</label>
+										</div>										
+									</div>
+
+								</div>
+
+								<div class="row hide" id="from_gallery" style="display: none;">
+
+									<!-- From Gallery -->
+									<div class="col-lg-6 mb-0">
+
+										<h3 class="text-md-left pb-2">Please Choose Cake Category</h3>
+
+										<select class="form-control mx-5 my-4" name="design" id="design">
+											<option value="0">Select Category</option>
+											<?php 
+												foreach ($desgin_details as $row) { 											
+													$child_design_details = $designs->viewChildDesigns($row['id']);
+													if(count($child_design_details) > 0 ) {
+											?>
+												<optgroup label="<?php echo $row['name'];?>">	
+												<?php foreach ($child_design_details as $childrow) { ?>											
+													<option value="<?php echo $childrow['id'];?>"><?php echo $childrow['name'];?></option>
+												<?php } ?>
+												</optgroup>
+											<?php 
+													} 
+													else { ?>
+													<option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
+											<?php
+													}
+												}
+											?>
+										</select>
+
+									</div>
+									<!-- <div class="col-lg-6 mb-0"></div> -->
+
+									<div class="col-lg-12 row cakeDesigns sub-cr mt-2" style="display: none;">									
+										<!-- filled with ajax data -->
+									</div>
+
+								</div>
+								
+								<div class="row hide" id="from_upload" style="display: none;">
+									<div class="col-lg-12 ml-5">
+										<div class="form-group">
+											<label for="file_upload">Upload Image here</label>
+											<div class="input-group mb-3">
+												<!-- <div class="input-group-prepend">
+													<span class="input-group-text">Upload</span>
+												</div> -->
+												<div class="custom-file">
+													<input type="file" class="custom-file-input" id="imgInp" name="file_upload">
+													<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+												</div>
+											</div>
+
+											<!-- <div class="input-group">
+												<span class="input-group-btn">
+													<span class="btn btn-default btn-file">
+														Browse… <input type="file" id="imgInp" name="file_upload">
+													</span>
+												</span>
+												<input type="text" class="form-control" readonly>
+											</div> -->
+											<img id='img-upload'/>
+											<!-- <input type="file" class="form-control-file" id="file_upload" name="file_upload"> -->
+										</div>
+									</div>								
+								</div>
+
+								<div class="row hide" id="from_custom" style="display: none;">
+									<div class="col-lg-12 ml-5">
+									from_custom
+									</div>
+								</div>
+
+								
+                                <!-- <div class="row">
+
+									<?php //foreach ($filling_details as $row) { ?> 
 										<div class="col-lg-3 mb-4">	
 
 											<label class="img-label mx-auto d-block">
@@ -144,9 +219,9 @@
 											</label>
 
 										</div>
-									<?php } ?>
+									<?php// } ?>
 
-								</div>
+								</div> -->
 								
                                 <ul class="list-inline text-md-left sub-cr">
 									<li><button type="button" id="Step_1" class="btn main-btn btn-dark next-step next-button">Next</button></li>
@@ -372,7 +447,7 @@
 								
 							</div>
 							
-							<!-- Please Choose Tier Type -->
+							<!-- Please Choose Category -->
                             <div class="tab-pane" role="tabpanel" id="step3">
 								
 								<div class="row">
@@ -555,21 +630,10 @@
 	</div>
 	<!-- /.container -->
 
-	<!-- Footer -->
 	<?php include('footer.php'); ?>
-
-	<?php include('layout-footer.php'); ?>
 	
-	<!-- Custom Plugins-->
-	<script src="vendor/datepicker/js/gijgo.min.js" type="text/javascript"></script>
+	<?php include('layout-footer.php'); ?>	
 
-	<script>
-		$('#datepicker').datepicker({
-            uiLibrary: 'bootstrap4'
-        });
-	</script>
-		
-	
 </body>
 
 </html>

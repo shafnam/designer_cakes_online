@@ -3,7 +3,7 @@
 	require_once 'inc/class.crud.php';
 	
 	$flavours = new Flavour();	
-	$flavour_details = $flavours->viewParentFlavours();	
+	$flavour_details = $flavours->viewParentFlavours('cupcakes-mini-cakes');	
 	//$products = new Product();
 	//$product_details = $products->viewAllDesignProducts($_GET['design_id']);
 
@@ -45,8 +45,8 @@
 		<div class="row mt-5">
 
 			<?php foreach ($flavour_details as $row) { ?> 
-			<div class="col-lg-3 mb-4">
-				<div class="card" id="zoomInd">
+			<div class="col-lg-4 mb-4">
+				<div class="card mx-3" id="zoomInd">
 					<img id="Flavour-<?php echo $row['id'];?>" class="card-img-top" src="img/cake-flavours/<?php echo $row['image'];?>" alt="<?php echo $row['name'];?>" style="height: 195px;">	
 					
 					<div class="card-footer">				
@@ -60,6 +60,7 @@
 						<div id="flavourOptions-<?php echo $row['id'];?>" style="display:none;">
 							<div class="form-group px-3 m-0">
 								<select id="dLabel" class="form-control" onchange="document.getElementById('Flavour-<?php echo $row['id'];?>').src = this.value">
+								<option value="0" selected disabled>--- Select Flavour ---</option>
 								<?php foreach ($child_flavour_details as $childrow) { ?>
 									<option value="img/cake-flavours/<?php echo $childrow['image'];?>" data-id="<?php echo $childrow['id'];?>"><?php echo $childrow['name'];?></option>
 								<?php } ?>

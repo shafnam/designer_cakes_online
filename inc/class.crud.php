@@ -16,11 +16,18 @@
             }            
         }
 
-        function viewParentDesigns() {
+        function viewParentDesigns($slug = null) {
+
+            if($slug != null){
+                $sql = "SELECT * FROM designs WHERE parent_id IS NULL AND NOT slug = :slug";
+                $stmt = $this->con->prepare($sql);    
+                $stmt->execute(array(':slug' => $slug));    
+            }else {
+                $sql = "SELECT * FROM designs WHERE parent_id IS NULL";     
+                $stmt = $this->con->query($sql);    
+                $stmt->execute();
+            }
     
-            $sql = "SELECT * FROM designs WHERE parent_id IS NULL";    
-            $stmt = $this->con->query($sql);  
-            $stmt->execute();  
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if ($results) {
@@ -194,11 +201,18 @@
             }            
         }
 
-        function viewParentFlavours() {
+        function viewParentFlavours($slug = null) {
     
-            $sql = "SELECT * FROM flavours WHERE parent_id IS NULL";    
-            $stmt = $this->con->query($sql);    
-            $stmt->execute();
+            if($slug != null){
+                $sql = "SELECT * FROM flavours WHERE parent_id IS NULL AND NOT slug = :slug";
+                $stmt = $this->con->prepare($sql);    
+                $stmt->execute(array(':slug' => $slug));    
+            }else {
+                $sql = "SELECT * FROM flavours WHERE parent_id IS NULL"; 
+                $stmt = $this->con->query($sql);    
+                $stmt->execute();
+            }          
+           
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($results) {
                 return $results;
@@ -513,6 +527,20 @@
 
         }
 
+        function  viewSizeInfo($size_id) {
+            $sql = "SELECT * FROM sizes WHERE id = :size_id";
+    
+            $stmt = $this->con->prepare($sql);
+            $stmt->execute(array(':size_id' => $size_id));
+    
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($results) {
+                return $results;
+            }
+        }
+        
+
     }
 
     class Shape
@@ -547,6 +575,19 @@
                 return $results;
             }
 
+        }
+
+        function viewShapeInfo($shape_id) {
+            
+            $sql = "SELECT * FROM shapes WHERE id = :shape_id";
+    
+            $stmt = $this->con->prepare($sql);
+            $stmt->execute(array(':shape_id' => $shape_id));    
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($results) {
+                return $results;
+            }
         }
 
     }

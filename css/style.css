@@ -391,7 +391,7 @@ th {
 	font-size: 1.2rem;
   /*font-family: 'Dancing Script', cursive;*/
 	color: #2f2c2c;
-  font-weight: 600;
+  font-weight: 100;
   text-align: center;
 }
 .home-cake-section a:hover{
@@ -969,6 +969,30 @@ span.round-tab:hover {
 }
 .sub-cr{
   padding: 1rem 3rem;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+
+#img-upload{
+  width: 100%;
 }
 
 /*

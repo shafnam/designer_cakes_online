@@ -28,7 +28,7 @@
 							<div class="dropdown-menu megamenu mx-auto p-5" aria-labelledby="dropdown01">
 								<div class="row">
 									<div class="col-sm-6 col-lg-3">
-										<!-- <img src="https://img1.cookinglight.timeinc.net/sites/default/files/styles/medium_2x/public/1542062283/chocolate-and-cream-layer-cake-1812-cover.jpg?itok=rEWL7AIN" style="width: 75%;"> -->
+										<img src="https://img1.cookinglight.timeinc.net/sites/default/files/styles/medium_2x/public/1542062283/chocolate-and-cream-layer-cake-1812-cover.jpg?itok=rEWL7AIN" style="width: 75%;">
 									</div>
 									<div class="col-sm-6 col-lg-3">
 										<!-- <img src="img/gallery/Hatchimals Cake/5.jpg" alt="..." style="width: 60%;"> -->

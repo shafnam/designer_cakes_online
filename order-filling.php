@@ -14,7 +14,7 @@
 	$m_tier_details = $tiers->viewChildTiers();
 
 	$designs = new Design();
-	$desgin_details = $designs->viewParentDesigns();
+	$desgin_details = $designs->viewParentDesigns('cupcakes-mini-cakes');
 
 ?>
 <!DOCTYPE html>
@@ -339,6 +339,12 @@
 															<td>326</td>
 															<td></td>
 														</tr>
+														<tr>
+															<td style="padding: 13px;"></td>
+															<td style="padding: 13px;"></td>
+															<td style="padding: 13px;"></td>
+															<td style="padding: 13px;"></td>
+														</tr>
 													</tbody>
 												</table>
 											</div>
@@ -369,15 +375,15 @@
 
 								</div>
 
-								<div class="row cakeSizes" style="display: none;">									
+								<div class="row px-5 cakeSizes" style="display: none;">									
 								<!-- filled with ajax data -->
 								</div>
 
-								<div class="row cakeShapes" style="display: none;">									
+								<div class="row px-5 cakeShapes" style="display: none;">									
 								<!-- filled with ajax data -->
 								</div>
 
-								<div class="row cakeServings" style="display: none;">									
+								<div class="row px-5 cakeServings" style="display: none;">									
 								<!-- filled with ajax data -->
 								</div>
 

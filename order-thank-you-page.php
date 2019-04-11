@@ -1,6 +1,5 @@
-<?php	
-	
-	
+<?php
+	header( "refresh:5;url=index.php" );
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,6 +48,7 @@
 			<div class="col-lg-11 mx-auto d-block px-5 py-0">
 			
 				<div class="messages">
+					<img class="img-fluid mx-auto d-block mb-5" src="img/about-bg.jpg" style="width: 75%;">
 					<h3 class="text-center">Your order has been placed. We will contact you soon to get more details.</h3>
 				</div>				
 

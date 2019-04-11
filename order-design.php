@@ -7,7 +7,7 @@
 	extract($product_details); 
 
 	$flavours = new Flavour();	
-	$flavour_details = $flavours->viewParentFlavours();	
+	$flavour_details = $flavours->viewParentFlavours('cupcakes-mini-cakes');	
 
 	$tiers = new Tier();
 	$tier_details = $tiers->viewParentTiers();
@@ -341,6 +341,12 @@
 																<td>189</td>
 																<td>326</td>
 																<td></td>
+															</tr>
+															<tr>
+																<td style="padding: 13px;"></td>
+																<td style="padding: 13px;"></td>
+																<td style="padding: 13px;"></td>
+																<td style="padding: 13px;"></td>
 															</tr>
 														</tbody>
 													</table>

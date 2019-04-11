@@ -12,7 +12,7 @@
         
         if($product_details == null){
 
-            echo '<div class="col-lg-12 mt-0"><h3 class="text-md-left pb-0">No Designs Yet</h3></div>';
+            echo '<div class="col-lg-12 mt-0"><h5 class="text-md-left pb-0 pl-5">No Designs Yet. Please Choose Another Cake Category</h5></div>';
 
         } else {
 ?>
