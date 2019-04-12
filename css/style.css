@@ -963,17 +963,21 @@ span.round-tab:hover {
   position: relative;
   padding-top: 30px;
 }
-.wizard h3 {
+.wizard h3, .wizard h4, .wizard h5{
   margin-top: 0;
   margin-left: 45px;
 }
 .sub-cr{
   padding: 1rem 3rem;
 }
-
+/* image upload */
 .btn-file {
   position: relative;
   overflow: hidden;
+  border: 1px solid #a75491;
+  border-right: 0;
+  border-radius: 0;
+  background:#e48acd;
 }
 .btn-file input[type=file] {
   position: absolute;
@@ -990,11 +994,14 @@ span.round-tab:hover {
   cursor: inherit;
   display: block;
 }
-
 #img-upload{
   width: 100%;
+  max-width: 350px;
 }
-
+.btn-text{
+  border: 1px solid #a75491;
+  border-radius: 0;
+}
 /*
 ####################################################
 M E D I A  Q U E R I E S

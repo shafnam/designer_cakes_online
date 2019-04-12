@@ -10,8 +10,24 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
-        // cake details
-        $product = $_POST["product"];        
+        // cake design 
+        $design_option = $_POST["design_option"];
+
+        if($design_option == 'design'){
+            //from gallery
+            $product = $_POST["product"];
+        } else if($design_option == 'upload') {
+            //from upload
+            $product = $_POST["upload_name"]; // product name
+            $file_name = $_FILES['input_upload']['name'];
+            $file_tmp =$_FILES['input_upload']['tmp_name'];
+            // upload image
+            move_uploaded_file($file_tmp,"../img/client_designs/".$file_name);
+        } else if($design_option == 'custom') {
+            //from custom
+            $product = $_POST["input_custom"];
+        }
+
         $flavour = $_POST["flavour"];
         if(isset( $_POST["sub_flavour"] )){
             $sub_flavour = $_POST["sub_flavour"];
@@ -59,7 +75,7 @@
 
         // Insert Data to DB
         if( !empty($product) && !empty($flavour) && !empty($filling) && !empty($tier) && !empty($size) && !empty($shape) ){
-            $db_result = $order->insertOrderData($product,$flavour,$sub_flavour,$filling,$tier,$multiple_tier,$size,$shape,$f_name,$l_name,$email,$phone,$delivery_date,$method,$venue_address,$add_details_on_cake,$cake_name,$cake_age);
+            $db_result = $order->insertOrderData($design_option,$product,$flavour,$sub_flavour,$filling,$tier,$multiple_tier,$size,$shape,$f_name,$l_name,$email,$phone,$delivery_date,$method,$venue_address,$add_details_on_cake,$cake_name,$cake_age);
             
             if($db_result){
                 header('Location: ../order-thank-you-page.php');

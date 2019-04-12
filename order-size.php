@@ -149,7 +149,7 @@
 
                         <div class="tab-content">
 
-                            <!-- Please Choose a Cake Filling -->
+                            <!-- Please Choose a Cake Flavour -->
 							<div class="tab-pane active" role="tabpanel" id="step1">
 								
 								<h3 class="text-md-left pb-4">Please Choose a Cake Flavour</h3>

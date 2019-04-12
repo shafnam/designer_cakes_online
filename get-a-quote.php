@@ -53,7 +53,7 @@
 			<div class="col-lg-12 mx-auto d-block">
 						
 				<!-- multistep form -->
-				<form class="form cf cake-flavours" id="get-quote-form" method="post" action="inc/order-design-submit.php" enctype="multipart/form-data">
+				<form class="form cf cake-flavours" id="get-quote-form" method="post" action="inc/get-a-quote-submit.php" enctype="multipart/form-data">
 					
 					<div class="wizard">
 
@@ -105,24 +105,24 @@
 
                         <div class="tab-content">
 
-                            <!-- Please Choose a Cake Filling -->
+                            <!-- Please Choose Cake Design -->
 							<div class="tab-pane active" role="tabpanel" id="step1">
 								
 								<div class="row">
 
 									<div class="col-lg-12 mb-3">
-										<h3 class="text-md-left pb-2">Please Choose your Design</h3>
-										<h4 class="text-md-left ml-5">I need a design:</h4>
+										<h3 class="text-md-left pb-4">Please Choose your Design</h3>
+										<h4 class="text-md-left ml-lg-5">I need a design:</h4>
 									</div>	
 
-									<div class="col-lg-12 ml-5 mb-5">
+									<div class="col-lg-12 ml-lg-5 mb-4">
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="design_option" id="gallery" value="Gallery">
+											<input class="form-check-input" type="radio" name="design_option" id="design" value="design">
 											<label class="form-check-label">From Gallery</label>
 										</div>
 
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="design_option" id="upload" value="Upload">
+											<input class="form-check-input" type="radio" name="design_option" id="upload" value="upload">
 											<label class="form-check-label">Upload my Own Image</label>
 										</div>
 
@@ -134,14 +134,14 @@
 
 								</div>
 
-								<div class="row hide" id="from_gallery" style="display: none;">
-
-									<!-- From Gallery -->
+								<!-- From Design -->
+								<div class="row hide" id="from_design" style="display: none;">
+									
 									<div class="col-lg-6 mb-0">
 
-										<h3 class="text-md-left pb-2">Please Choose Cake Category</h3>
+										<h5 class="text-md-left pb-2">Please Choose Cake Category</h5>
 
-										<select class="form-control mx-5 my-4" name="design" id="design">
+										<select class="form-control mx-5 my-4 req-false" name="input_design" id="input_design">
 											<option value="0">Select Category</option>
 											<?php 
 												foreach ($desgin_details as $row) { 											
@@ -172,56 +172,41 @@
 
 								</div>
 								
+								<!-- From Upload -->
 								<div class="row hide" id="from_upload" style="display: none;">
-									<div class="col-lg-12 ml-5">
-										<div class="form-group">
-											<label for="file_upload">Upload Image here</label>
-											<div class="input-group mb-3">
-												<!-- <div class="input-group-prepend">
-													<span class="input-group-text">Upload</span>
-												</div> -->
-												<div class="custom-file">
-													<input type="file" class="custom-file-input" id="imgInp" name="file_upload">
-													<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-												</div>
-											</div>
+									
+									<div class="col-lg-12">
+										<h5 class="text-md-left pb-2">Please Upload your Image Here</h5>
+									</div>
 
-											<!-- <div class="input-group">
+									<div class="col-lg-6 ml-lg-5">
+										<div class="form-group">
+											<div class="input-group mb-3">
 												<span class="input-group-btn">
-													<span class="btn btn-default btn-file">
-														Browse… <input type="file" id="imgInp" name="file_upload">
+													<span class="btn btn-default btn-file" >
+														Click here to upload<input type="file" id="input_upload" class="req-false" name="input_upload">
 													</span>
 												</span>
-												<input type="text" class="form-control" readonly>
-											</div> -->
-											<img id='img-upload'/>
-											<!-- <input type="file" class="form-control-file" id="file_upload" name="file_upload"> -->
+												<input type="text" class="form-control btn-text" name ="upload_name" readonly>
+											</div>
+											<img class="img-fluid" id="img-upload"/>
 										</div>
 									</div>								
 								</div>
 
+								<!-- Custom Design -->
 								<div class="row hide" id="from_custom" style="display: none;">
-									<div class="col-lg-12 ml-5">
-									from_custom
+									
+									<div class="col-lg-12">	
+										<h5 class="text-md-left pb-2">Please briefly describe us about your custom design below</h5>
+									</div>
+
+									<div class="col-lg-10 ml-lg-5">
+										<div class="form-group">
+											<textarea class="form-control req-false" rows="5" name="input_custom" id="input_custom"></textarea>
+										</div>
 									</div>
 								</div>
-
-								
-                                <!-- <div class="row">
-
-									<?php //foreach ($filling_details as $row) { ?> 
-										<div class="col-lg-3 mb-4">	
-
-											<label class="img-label mx-auto d-block">
-												<input type="radio" name="filling" value="<?php echo $row['id'];?>" id="<?php echo $row['slug'];?>" required>
-												<img class="card-img-top img-fluid mx-auto d-block" src="img/cake-fillings/<?php echo $row['image'];?>" alt="" style="width: 100px;">
-												<h5 class="pt-3 m-0 text-center"><?php echo $row['name'];?></h4>		
-											</label>
-
-										</div>
-									<?php// } ?>
-
-								</div> -->
 								
                                 <ul class="list-inline text-md-left sub-cr">
 									<li><button type="button" id="Step_1" class="btn main-btn btn-dark next-step next-button">Next</button></li>
@@ -447,48 +432,48 @@
 								
 							</div>
 							
-							<!-- Please Choose Category -->
+							<!-- Please Choose Flavour -->
                             <div class="tab-pane" role="tabpanel" id="step3">
 								
+								<h3 class="text-md-left pb-4">Please Choose a Cake Flavour</h3>
+
 								<div class="row">
 
-									<div class="col-lg-12 mb-0">
-										<h3 class="text-md-left pb-0">Please Choose Cake Category</h3>
-									</div>	
+									<?php foreach ($flavour_details as $row) { ?> 
+										<div class="col-lg-4 mb-4">	
 
-									<div class="col-lg-6 mb-0 sub-cr">
+											<label class="img-label mx-auto d-block">
+												<input type="radio" name="flavour" value="<?php echo $row['id'];?>" id="<?php echo $row['slug'];?>" required>
+												<img class="card-img-top img-fluid mx-auto d-block" src="img/cake-flavours/<?php echo $row['image'];?>" alt="" style="width: 250px;height: 175px;">
+												<h4 class="px-3 pt-3 m-0 text-center"><?php echo $row['name'];?></h4>		
+											</label>
 
-										<select class="form-control mb-2" name="design" id="design">
-											<option value="0">Select Category</option>
 											<?php 
-												foreach ($desgin_details as $row) { 											
-													$child_design_details = $designs->viewChildDesigns($row['id']);
-													if(count($child_design_details) > 0 ) {
+												$child_flavour_details = $flavours->viewChildFlavours($row['id']);
+												if(count($child_flavour_details) > 0 ){
 											?>
-												<optgroup label="<?php echo $row['name'];?>">	
-												<?php foreach ($child_design_details as $childrow) { ?>											
-													<option value="<?php echo $childrow['id'];?>"><?php echo $childrow['name'];?></option>
-												<?php } ?>
-												</optgroup>
-											<?php 
-													} 
-													else { ?>
-													<option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
-											<?php
-													}
-												}
-											?>
-										</select>
 
-									</div>
-									<div class="col-lg-6 mb-0"></div>
+												<div id="<?php echo $row['slug'];?>-flavour" class="hide sub-cr" style="display: none;">
+													<div class="row">
+														<div class="col-lg-12">
+															<?php foreach ($child_flavour_details as $childrow) { ?>		
+																<div class="form-check">
+																	<label class="form-check-label radioz">
+																		<input type="radio" class="form-check-inputz no-req" name="sub_flavour" value="<?php echo $childrow['id'];?>" id="<?php echo $row['slug'];?>-sub-flavour">
+																		<span><?php echo $childrow['name'];?></span>
+																	</label>
+																</div>
+															<?php } ?>
+														</div>											
+													</div>
+												</div>
 
-								</div>	
+											<?php } ?>	
 
-								<div class="row cakeDesigns mt-2" style="display: none;">									
-									<!-- filled with ajax data -->
+										</div>
+									<?php } ?>
+
 								</div>
-
 
 								<ul class="list-inline text-md-left sub-cr">
                                     <li><button id="Step_3" class="btn main-btn btn-dark next-step next-button">Next</button></li>
@@ -496,9 +481,24 @@
 								
 							</div>
 							
-                           	<!-- Fill the Personal Details -->
+                           	<!-- Please Choose Filling -->
 							<div class="tab-pane" role="tabpanel" id="step4">
+
+								<h3 class="text-md-left pb-4">Please Choose a Cake Filling</h3>
 									
+								<div class="row cakeFillings">	
+								<!-- filled with ajax data -->
+								</div>
+									
+								<ul class="list-inline text-md-left sub-cr">
+									<li><button id="Step_4" class="btn main-btn btn-dark next-step next-button">Next</button></li>
+								</ul>
+
+							</div> 
+
+							<!-- Fill the Personal Details -->
+							<div class="tab-pane" role="tabpanel" id="step5">
+
 								<h3 class="text-md-left pb-4">Please Fill Your Personal Details Below</h3>
 
 								<div class="row sub-cr py-0">
@@ -549,13 +549,13 @@
 										<div class="form-group mb-0">
 											<label for="method">Method:</label>
 
-											<div class="form-check ml-4">
+											<div class="form-check ml-lg-4">
 												<input class="form-check-input" type="radio" value="pick-up" name="method" id="pick-up" required>
 												<label class="form-check-label" for="pick-up">
 													Pick Up
 												</label>
 											</div>
-											<div class="form-check ml-4">
+											<div class="form-check ml-lg-4">
 												<input class="form-check-input" type="radio" value="deliver" name="method" id="deliver">
 												<label class="form-check-label" for="deliver">
 													Deliver Within Toowoomba ($20)
@@ -580,7 +580,7 @@
 								<div class="row sub-cr py-0">
 
 									<div class="col-lg-12 mt-0">
-										<div class="form-check ml-4">
+										<div class="form-check ml-lg-4">
 											<input class="form-check-input" type="checkbox" name="add_details_on_cake" id="add_details_on_cake">
 											<label class="form-check-label" for="add_details_on_cake">
 												Need to add name and age on cake
@@ -613,7 +613,7 @@
 								</div>
 												
 								<ul class="list-inline text-md-left sub-cr">
-									<li><button type="submit" id="Step_4" class="btn main-btn btn-dark next-step next-button">Submit Order</button></li>
+									<li><button type="submit" id="Step_5" class="btn main-btn btn-dark next-step next-button">Submit Order</button></li>
 								</ul>
 
 							</div> 
@@ -633,6 +633,18 @@
 	<?php include('footer.php'); ?>
 	
 	<?php include('layout-footer.php'); ?>	
+
+	<!-- Custom Plugins-->
+	<script src="vendor/datepicker/js/gijgo.min.js" type="text/javascript"></script>
+	<!-- <script src="js/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="js/bootstrap-validate.js"></script>
+    <script src="js/order-design.js"></script> -->
+
+	<script>
+		$('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+	</script>
 
 </body>
 
