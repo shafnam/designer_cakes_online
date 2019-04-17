@@ -505,7 +505,8 @@ a:hover > .ico {
 */
 
 .order-cake {
-  background: #ecf1f5;
+  /* background: #ecf1f5; */
+  background: #fffafa;
 }
 
 .sticky-table {
@@ -958,6 +959,8 @@ span.round-tab:hover {
 .wizard .tab-content{
   background: #fff;
   padding: 20px;
+  border: 1px solid #e0e0e0;
+  box-shadow:1px 2px 5px 2px rgba(191, 198, 206, 0.2);
 }
 .wizard .tab-pane {
   position: relative;

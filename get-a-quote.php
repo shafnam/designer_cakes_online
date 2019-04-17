@@ -189,6 +189,7 @@
 												</span>
 												<input type="text" class="form-control btn-text" name ="upload_name" readonly>
 											</div>
+											<div id="image-error" class="text-danger pb-2"></div>
 											<img class="img-fluid" id="img-upload"/>
 										</div>
 									</div>								
@@ -249,9 +250,9 @@
 													<thead>
 														<tr>
 															<th>Cake Sizes</th>
-															<th><i class="fas fa-circle"></i></th>
-															<th><i class="fa fa-square" aria-hidden="true"></i></th>
-															<th><i class="fa fa-heart" aria-hidden="true"></i></th>
+															<th><i class="fas fa-circle" data-toggle="tooltip" data-placement="top" title="Circle Shape"></i></th>
+															<th><i class="fa fa-square" data-toggle="tooltip" data-placement="top" title="Square Shape"></i></th>
+															<th><i class="fa fa-heart" data-toggle="tooltip" data-placement="top" title="Heart Shape"></i></th>
 														</tr>
 													</thead>
 													<tbody>
@@ -324,9 +325,9 @@
 													<thead>
 														<tr>
 															<th>Cake Sizes</th>
-															<th><i class="fas fa-circle"></i></th>
-															<th><i class="fa fa-square" aria-hidden="true"></i></th>
-															<th><i class="fa fa-heart" aria-hidden="true"></i></th>
+															<th><i class="fas fa-circle" data-toggle="tooltip" data-placement="top" title="Circle Shape"></i></th>
+															<th><i class="fa fa-square" data-toggle="tooltip" data-placement="top" title="Square Shape"></i></th>
+															<th><i class="fa fa-heart" data-toggle="tooltip" data-placement="top" title="Heart Shape"></i></th>
 														</tr>
 													</thead>
 													<tbody>
@@ -526,7 +527,7 @@
 										
 										<div class="form-group">
 											<label for="phone">Phone Number:</label>
-											<input type="number" class="form-control" id="phone" name="phone" required>
+											<input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9]{10}" required>
 										</div>																			
 
 									</div>										
@@ -642,8 +643,12 @@
 
 	<script>
 		$('#datepicker').datepicker({
-            uiLibrary: 'bootstrap4'
-        });
+			uiLibrary: 'bootstrap4',
+			disableDates:  function (date) {
+				const currentDate = new Date();
+				return date > currentDate ? true : false;
+			}
+    	});
 	</script>
 
 </body>

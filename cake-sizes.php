@@ -37,7 +37,7 @@
 
 		<form method="get" action="order-size.php">
 
-			<div class="row px-5">	
+			<div class="row">	
 												
 				<div class="col-lg-12 mb-3">			
 					<h3 class="text-md-left ml-0 py-2">Approximate Cake Portions Servings Chart</h3>
@@ -195,7 +195,7 @@
 
 			</div>
 
-			<div class="row px-5 pt-4">
+			<div class="row pt-4">
 
 				<div class="col-lg-12 mb-4">
 					<h3 class="text-md-left ml-0 py-2">Tier Types</h3>
@@ -216,7 +216,7 @@
 
 			</div>
 			
-			<div class="row mt-5 px-5" id="multiple-tier" style="display: none;">
+			<div class="row mt-5" id="multiple-tier" style="display: none;">
 
 				<div class="col-lg-12 mb-4">	
 					<h3 class="text-md-left ml-0 py-2">Available Number of Tiers</h3>
@@ -236,19 +236,19 @@
 
 			</div>
 
-			<div class="row px-5 cakeSizes" style="display: none;">									
+			<div class="row cakeSizes" style="display: none;">									
 				<!-- filled with ajax data -->
 			</div>
 
-			<div class="row px-5 cakeShapes" style="display: none;">									
+			<div class="row cakeShapes" style="display: none;">									
 				<!-- filled with ajax data -->
 			</div>
 
-			<div class="row px-5 cakeServings" style="display: none;">									
+			<div class="row cakeServings" style="display: none;">									
 				<!-- filled with ajax data -->
 			</div>
 			
-			<ul class="list-inline text-md-left sub-cr">
+			<ul class="list-inline text-md-left">
 				<li><button type="submit" id="Step_2" class="btn main-btn btn-dark next-step next-button">Order Now</button></li>
 			</ul>
 

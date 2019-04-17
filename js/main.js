@@ -7,24 +7,9 @@ $(document).ready(function() {
 	});
 });
 
-// (function($){
-
-// 	$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
-// 	  if (!$(this).next().hasClass('show')) {
-// 		$(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
-// 	  }
-// 	  var $subMenu = $(this).next(".dropdown-menu");
-// 	  $subMenu.toggleClass('show');
-
-// 	  $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
-// 		$('.dropdown-submenu .show').removeClass("show");
-// 	  });
-
-// 	  return false;
-// 	});
-
-// })(jQuery)
-
+$(document).ready(function(){
+	$('[data-toggle="tooltip"]').tooltip(); 
+});
 
 /* FIXED HEADER ON SCROLL */
  
@@ -306,7 +291,7 @@ $(document).ready(function(){
 
 	});
 
-	$("#Step_3").click(function(e) {
+	$("#order-design-form #Step_3").click(function(e) {
 		e.preventDefault();
 	});
 
@@ -574,9 +559,9 @@ $(document).ready(function(){
 		}
 	});
 
-	/*$("#Step_3").click(function(e) {
+	$("#order-flavour-form #Step_3").click(function(e) {
 		e.preventDefault();
-	});*/
+	});
 
 	/*-------------- 
 		STEP 4  
@@ -851,6 +836,10 @@ $(document).ready(function(){
 		if($('#order-filling-form input[name="product"]').is(':checked')) {
 			$('#Step_3').fadeIn(100);
 		}
+	});
+
+	$("#order-filling-form #Step_3").click(function(e) {
+		e.preventDefault();
 	});
 
 	/*-------------- 
@@ -1194,6 +1183,10 @@ $(document).ready(function(){
 		}
 	});
 
+	$("#order-size-form #Step_3").click(function(e) {
+		e.preventDefault();
+	});
+
 	/*-------------- 
 		STEP 4  
 	----------------*/
@@ -1311,7 +1304,32 @@ $(document).ready(function(){
 		
 		/* Show button when upload option selected */
 		if(label){
+
 			$('#Step_1').fadeIn(100);
+
+			/* Image size validation */
+			//this.files[0].size gets the size of your file.
+			var imgbytes = this.files[0].size;
+			// var imgkbytes = Math.round(parseInt(imgbytes)/1024);
+			// alert(imgkbytes+' KB');1000000
+			if(imgbytes > 100000) {
+				$("#image-error").html("Image larger than 1MB. Please upload an image less than 1MB");
+				$('#Step_1').fadeOut(100);
+			}else{
+				$("#image-error").html("");
+				$('#Step_1').fadeIn(100);
+			}
+			/* Image extension validation */
+			var ext = $('#input_upload').val().split('.').pop().toLowerCase();
+			//alert(ext);
+			if ($.inArray(ext, ['gif','png','jpg','jpeg']) == -1){
+				$("#image-error").html("Invalid Image Format! Image Format Must Be jpg, jpeg, png or gif.");
+				$('#Step_1').fadeOut(100);
+			}else{
+				$("#image-error").html("");
+				$('#Step_1').fadeIn(100);			
+			}
+
 		} else {
 			$('#Step_1').fadeOut(100);
 		}
@@ -1343,12 +1361,9 @@ $(document).ready(function(){
 		}
 	}
 
-	$('#input_upload').bind('change', function() {
-		//this.files[0].size gets the size of your file.
-		var imgbytes = this.files[0].size;
-		var imgkbytes = Math.round(parseInt(imgbytes)/1024);
-		alert(imgkbytes+' KB');
-	});
+	// $('#input_upload').bind('change', function() {
+		
+	// });
 
 	$("#input_upload").change(function(){
 		readURL(this);
@@ -1523,7 +1538,7 @@ $(document).ready(function(){
 
 	});
 
-	$("#Step_2").click(function(e) {
+	$("#get-quote-form #Step_2").click(function(e) {
 		e.preventDefault();
 	});
 
@@ -1626,7 +1641,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#Step_4").click(function(e) {
+	$("#get-quote-form #Step_4").click(function(e) {
 		e.preventDefault();
 	});
 

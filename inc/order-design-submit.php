@@ -7,10 +7,12 @@
 
     // define variables and set to empty values
     $flavour = $sub_flavour = $filling = $tier = $multiple_tier = $size = $shape = "";
+    $product_name = null;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         // cake details
+        $design_option = 'design';
         $product = $_POST["product"];        
         $flavour = $_POST["flavour"];
         if(isset( $_POST["sub_flavour"] )){
@@ -59,8 +61,10 @@
 
         // Insert Data to DB
         if( !empty($product) && !empty($flavour) && !empty($filling) && !empty($tier) && !empty($size) && !empty($shape) ){
-            $db_result = $order->insertOrderData($product,$flavour,$sub_flavour,$filling,$tier,$multiple_tier,$size,$shape,$f_name,$l_name,$email,$phone,$delivery_date,$method,$venue_address,$add_details_on_cake,$cake_name,$cake_age);
             
+            $db_result = $order->insertOrderData($design_option,$product,$product_name,$flavour,$sub_flavour,$filling,$tier,$multiple_tier,$size,$shape,$f_name,$l_name,$email,$phone,$delivery_date,$method,$venue_address,$add_details_on_cake,$cake_name,$cake_age);
+            
+
             if($db_result){
                 header('Location: ../order-thank-you-page.php');
             }

@@ -292,7 +292,7 @@
 										
 										<div class="form-group">
 											<label for="phone">Phone Number:</label>
-											<input type="number" class="form-control" id="phone" name="phone" required>
+											<input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9]{10}" required>
 										</div>																			
 
 									</div>										
@@ -406,8 +406,12 @@
 
 	<script>
 		$('#datepicker').datepicker({
-            uiLibrary: 'bootstrap4'
-        });
+			uiLibrary: 'bootstrap4',
+			disableDates:  function (date) {
+				const currentDate = new Date();
+				return date > currentDate ? true : false;
+			}
+    	});
 	</script>
 		
 	

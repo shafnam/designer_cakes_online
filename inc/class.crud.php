@@ -638,10 +638,10 @@
             }            
         }
 
-        function insertOrderData($design_option=null,$product_id,$flavour_id,$sub_flavour_id=null,$filling_id,$tier_id,$multiple_tier_id=null,$size_id,$shape_id,$f_name,$l_name,$email,$phone,$delivery_date,$method,$venue_address=null,$add_details_on_cake,$cake_name=null,$cake_age=null) {
+        function insertOrderData($design_option=null,$product_id,$product_name=null,$flavour_id,$sub_flavour_id=null,$filling_id,$tier_id,$multiple_tier_id=null,$size_id,$shape_id,$f_name,$l_name,$email,$phone,$delivery_date,$method,$venue_address=null,$add_details_on_cake,$cake_name=null,$cake_age=null) {
             
             $sql = "INSERT INTO orders (
-                    design_option, product_id, flavour_id, 
+                    design_option, product_id, product_name, flavour_id, 
                     sub_flavour_id, filling_id, tier_id,  
                     multiple_tier_id, size_id, shape_id,
                     f_name, l_name,
@@ -649,29 +649,30 @@
                     delivery_date,method,
                     venue_address,add_details_on_cake,
                     cake_name,cake_age ) 
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
             $stmt = $this->con->prepare($sql);
 
             $stmt->bindParam(1, $design_option);
             $stmt->bindParam(2, $product_id);
-            $stmt->bindParam(3, $flavour_id);
-            $stmt->bindParam(4, $sub_flavour_id);
-            $stmt->bindParam(5, $filling_id);
-            $stmt->bindParam(6, $tier_id);
-            $stmt->bindParam(7, $multiple_tier_id);
-            $stmt->bindParam(8, $size_id);           
-            $stmt->bindParam(9, $shape_id);  
-            $stmt->bindParam(10, $f_name); 
-            $stmt->bindParam(11, $l_name); 
-            $stmt->bindParam(12, $email); 
-            $stmt->bindParam(13, $phone); 
-            $stmt->bindParam(14, $delivery_date); 
-            $stmt->bindParam(15, $method); 
-            $stmt->bindParam(16, $venue_address); 
-            $stmt->bindParam(17, $add_details_on_cake); 
-            $stmt->bindParam(18, $cake_name); 
-            $stmt->bindParam(19, $cake_age); 
+            $stmt->bindParam(3, $product_name);
+            $stmt->bindParam(4, $flavour_id);
+            $stmt->bindParam(5, $sub_flavour_id);
+            $stmt->bindParam(6, $filling_id);
+            $stmt->bindParam(7, $tier_id);
+            $stmt->bindParam(8, $multiple_tier_id);
+            $stmt->bindParam(9, $size_id);           
+            $stmt->bindParam(10, $shape_id);  
+            $stmt->bindParam(11, $f_name); 
+            $stmt->bindParam(12, $l_name); 
+            $stmt->bindParam(13, $email); 
+            $stmt->bindParam(14, $phone); 
+            $stmt->bindParam(15, $delivery_date); 
+            $stmt->bindParam(16, $method); 
+            $stmt->bindParam(17, $venue_address); 
+            $stmt->bindParam(18, $add_details_on_cake); 
+            $stmt->bindParam(19, $cake_name); 
+            $stmt->bindParam(20, $cake_age); 
 
             $result = $stmt->execute();
 

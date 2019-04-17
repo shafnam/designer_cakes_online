@@ -117,7 +117,7 @@
 
         function getLatestTestimonials() {
             
-            $sql = "SELECT * FROM testimonials ORDER BY created_at DESC LIMIT 20";
+            $sql = "SELECT * FROM testimonials ORDER BY created_at DESC LIMIT 10";
     
             $query = $this->con->query($sql);
     
@@ -133,8 +133,7 @@
     {
         private $conn;
 	
-        public function __construct()
-        {
+        public function __construct() {
             try {
                 $this->con = new Database();
                 $this->con = $this->con->dbConnection();
@@ -322,5 +321,123 @@
 
 
         
+    }
+
+    class Order
+    {
+        private $conn;
+	
+        public function __construct()
+        {
+            try {
+                $this->con = new Database();
+                $this->con = $this->con->dbConnection();
+            } catch (Exception $e) {
+                die("Error:" . $e->getMessage());
+            }            
+        }
+
+        function getOrderCount(){
+            $sql = "SELECT COUNT(*) FROM orders";
+    
+            $stmt = $this->con->prepare($sql);
+            $stmt->execute(); 
+            $results=  $stmt->fetchColumn(); 
+
+            if ($results) {
+                return $results;
+            }            
+        }
+
+        function getLatestOrders() {
+            
+            //$sql = "SELECT * FROM orders ORDER BY created_at DESC LIMIT 20";
+            $sql = "SELECT o.id AS ORDER_ID, o.design_option AS D_OPTION, 
+            o.product_name AS U_Product_Image, 
+            o.f_name AS F_NAME, o.l_name AS L_NAME,
+            o.delivery_date AS D_DATE,
+            p.code AS PRODUCT_CODE, p.id AS PRODUCT_ID, p.name AS Product_Name, 
+            p_i.image AS Product_Image, MIN(p_i.created_at) AS P_Date,
+            fl.name AS FLAVOUR, 
+            sfl.name AS SUB_FLAVOUR,
+            fi.name AS FILLING,
+            t.name AS TIER, 
+            mt.name AS M_TIER,
+            s.name AS SIZE,
+            sh.name AS SHAPE
+            FROM orders AS o 
+            LEFT JOIN products AS p 
+            ON p.id = o.product_id 
+            LEFT JOIN product_images p_i
+            ON p.id = p_i.product_id 
+            LEFT JOIN flavours fl
+            ON fl.id = o.flavour_id 
+            LEFT JOIN flavours sfl
+            ON sfl.id = o.sub_flavour_id
+            LEFT JOIN fillings fi
+            ON fi.id = o.filling_id
+            LEFT JOIN tiers t
+            ON t.id = o.tier_id 
+            LEFT JOIN tiers mt
+            ON mt.id = o.multiple_tier_id
+            LEFT JOIN sizes s
+            ON s.id = o.size_id
+            LEFT JOIN shapes sh
+            ON sh.id = o.shape_id
+            GROUP By o.id
+            ORDER BY o.created_at DESC LIMIT 10";
+    
+            $query = $this->con->query($sql);
+    
+            $results = $query->fetchAll(PDO::FETCH_ASSOC);
+            if ($results) {
+                return $results;
+            }
+        }
+
+        function getAllOrders(){
+
+            $sql = "SELECT o.id AS ORDER_ID, o.design_option AS D_OPTION, 
+            o.product_name AS U_Product_Image, 
+            o.f_name AS F_NAME, o.l_name AS L_NAME,
+            o.delivery_date AS D_DATE,
+            p.code AS PRODUCT_CODE, p.id AS PRODUCT_ID, p.name AS Product_Name, 
+            p_i.image AS Product_Image, MIN(p_i.created_at) AS P_Date,
+            fl.name AS FLAVOUR, 
+            sfl.name AS SUB_FLAVOUR,
+            fi.name AS FILLING,
+            t.name AS TIER, 
+            mt.name AS M_TIER,
+            s.name AS SIZE,
+            sh.name AS SHAPE
+            FROM orders AS o 
+            LEFT JOIN products AS p 
+            ON p.id = o.product_id 
+            LEFT JOIN product_images p_i
+            ON p.id = p_i.product_id 
+            LEFT JOIN flavours fl
+            ON fl.id = o.flavour_id 
+            LEFT JOIN flavours sfl
+            ON sfl.id = o.sub_flavour_id
+            LEFT JOIN fillings fi
+            ON fi.id = o.filling_id
+            LEFT JOIN tiers t
+            ON t.id = o.tier_id 
+            LEFT JOIN tiers mt
+            ON mt.id = o.multiple_tier_id
+            LEFT JOIN sizes s
+            ON s.id = o.size_id
+            LEFT JOIN shapes sh
+            ON sh.id = o.shape_id
+            GROUP By o.id";
+    
+            $query = $this->con->query($sql);
+    
+            $results = $query->fetchAll(PDO::FETCH_ASSOC);
+            if ($results) {
+                return $results;
+            }
+
+        }
     }
 

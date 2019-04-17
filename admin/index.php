@@ -17,6 +17,10 @@ $testimonal_details = $testimonals->getLatestTestimonials();
 
 $design_count = 1;
 
+$orders = new Order();
+$order_count = $orders->getOrderCount();
+$order_details = $orders->getLatestOrders();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -141,6 +145,76 @@ $design_count = 1;
 
 							<div class="card shadow mb-4">
 
+								<div class="card-header py-3 d-sm-flex align-items-center justify-content-between mb-4">
+									<h6 class="m-0 font-weight-bold text-primary">Latest Orders</h6>
+									<a href="orders.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Go to All Orders</a>
+								</div>
+
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered" id="" width="100%" cellspacing="0">
+											<thead>
+												<tr>
+													<th>Order ID</th>
+													<th>Product</th>	
+													<th>Flavour</th>
+													<th>Filling</th>	
+													<!-- <th>Tiers</th> -->
+													<th>Size(Inches) & Shape</th>	
+													<th>Customer Name</th>	
+													<th>Delivery Date</th>	
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+											<?php
+												if(count($order_details) > 0){ 
+													foreach ($order_details as $row){ 													
+											?>
+												<tr>
+													<td><?php echo($row['ORDER_ID']) ?></td>
+													<td>
+														<?php if( $row['D_OPTION'] == 'design' ){ ?>
+															<img class="img-fluid" src="../img/gallery/<?php echo $row['Product_Name'] . '/' . $row['Product_Image'];?>" alt="" style="width: 75px;">
+														<?php	
+															} else if( $row['D_OPTION'] == 'upload' ){ ?>
+															<img class="img-fluid" src="../img/client_designs/<?php echo $row['U_Product_Image'];?>" alt="" style="width: 75px;">
+														<?php	
+															} else { echo "Custom Design" ; }?>
+													</td>		
+													<td><?php echo($row['FLAVOUR']) ?> <br/> <?php echo $row['SUB_FLAVOUR']; ?></td>		
+													<td><?php echo($row['FILLING']) ?></td>
+													<!-- <td>
+														<?php if( $row['TIER'] == 'Single' ){ ?>
+															Single Tier
+														<?php	
+															} else { echo $row['M_TIER'] . ' Tiers' ; }?>
+													</td>		 -->
+													<td><?php echo($row['SIZE']) ?><br/><?php echo($row['SHAPE']) ?></td>
+													<td><?php echo $row['F_NAME'] . " " . $row['L_NAME']; ?></td>
+													<td><?php echo($row['D_DATE']) ?></td>		
+													<td><a href="order-view.php?id=<?php echo $row['ORDER_ID'] ?>" title="View Details" class="btn btn-success btn-circle btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a></td>									
+												</tr>
+											<?php } 
+												}else { ?>
+												<tr>
+													<td>No </td>
+													<td>Data</td>													
+												</tr>
+											<?php	} ?>  
+											</tbody>
+										</table>
+									</div>
+								</div>
+                
+              </div>
+								
+						</div>
+
+						<div class="row">
+
+							<div class="card shadow mb-4">
+
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">Latest Testimonials</h6>
 								</div>
@@ -154,19 +228,22 @@ $design_count = 1;
 													<th>Testimonial</th>													
 												</tr>
 											</thead>
-											<tfoot>
-												<tr>
-													<th>Name</th>
-													<th>Testimonial</th>												
-												</tr>
-											</tfoot>
 											<tbody>
-											<?php foreach ($testimonal_details as $row){ ?>
+											<?php
+												if(count($testimonal_details) > 0){ 
+													foreach ($testimonal_details as $row){ 													
+											?>
 												<tr>
 													<td><?php echo($row['name']) ?></td>
 													<td><?php echo($row['testimonial']) ?></td>													
 												</tr>
-											<?php } ?>  
+											<?php } 
+												}else { ?>
+												<tr>
+													<td>No </td>
+													<td>Data</td>													
+												</tr>
+											<?php	} ?>  
 											</tbody>
 										</table>
 									</div>
@@ -174,7 +251,49 @@ $design_count = 1;
                 
               </div>
 								
-						</div>					
+						</div>
+						
+						<div class="row">
+
+							<div class="card shadow mb-4">
+
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Latest Products</h6>
+								</div>
+
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered" id="" width="100%" cellspacing="0">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Testimonial</th>													
+												</tr>
+											</thead>
+											<tbody>
+											<?php
+												if(count($testimonal_details) > 0){ 
+													foreach ($testimonal_details as $row){ 													
+											?>
+												<tr>
+													<td><?php echo($row['name']) ?></td>
+													<td><?php echo($row['testimonial']) ?></td>													
+												</tr>
+											<?php } 
+												}else { ?>
+												<tr>
+													<td>No </td>
+													<td>Data</td>													
+												</tr>
+											<?php	} ?>  
+											</tbody>
+										</table>
+									</div>
+								</div>
+                
+              </div>
+								
+						</div>
 
 					</div>
 					<!-- /.container-fluid -->

@@ -401,7 +401,7 @@
 									<h3 class="text-md-left pb-4">Please Fill Your Personal Details Below</h3>
 
 									<div class="row sub-cr py-0">
-										
+									
 										<div class="col-lg-6 mb-0">
 
 											<div class="form-group">
@@ -425,7 +425,7 @@
 											
 											<div class="form-group">
 												<label for="phone">Phone Number:</label>
-												<input type="number" class="form-control" id="phone" name="phone" required>
+												<input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9]{10}" required>
 											</div>																			
 
 										</div>										
@@ -448,13 +448,13 @@
 											<div class="form-group mb-0">
 												<label for="method">Method:</label>
 
-												<div class="form-check ml-4">
+												<div class="form-check ml-lg-4">
 													<input class="form-check-input" type="radio" value="pick-up" name="method" id="pick-up" required>
 													<label class="form-check-label" for="pick-up">
 														Pick Up
 													</label>
 												</div>
-												<div class="form-check ml-4">
+												<div class="form-check ml-lg-4">
 													<input class="form-check-input" type="radio" value="deliver" name="method" id="deliver">
 													<label class="form-check-label" for="deliver">
 														Deliver Within Toowoomba ($20)
@@ -479,7 +479,7 @@
 									<div class="row sub-cr py-0">
 
 										<div class="col-lg-12 mt-0">
-											<div class="form-check ml-4">
+											<div class="form-check ml-lg-4">
 												<input class="form-check-input" type="checkbox" name="add_details_on_cake" id="add_details_on_cake">
 												<label class="form-check-label" for="add_details_on_cake">
 													Need to add name and age on cake
