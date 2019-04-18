@@ -29,6 +29,14 @@
                 <span>Designs</span>
             </a>
         </li> -->
+
+        <li class="nav-item">
+            <a class="nav-link" href="orders.php">
+                <i class="fas fa-cart-arrow-down"></i>
+                <span>Orders</span>
+            </a>
+        </li>
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
                 <i class="fas fa-birthday-cake"></i>
